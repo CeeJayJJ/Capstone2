@@ -26,10 +26,3 @@ public class PlayerController : MonoBehaviour
 
     // ... (Methods for movement, combat, etc.)
 }
-
-// Player-specific data (stats, inventory, etc.)
-[CreateAssetMenu(fileName = "New Player Data", menuName = "RPG/Player Data")]
-public class PlayerData : ScriptableObject
-{
-    // ... (Define your player data variables here)
-}

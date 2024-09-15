@@ -29,6 +29,7 @@ public class ButtonActions : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneNameToLoad))
         {
             SceneManager.LoadScene(sceneNameToLoad);
+            AudioManager.Instance.PlayMusic("Theme2");
         }
         else
         {
