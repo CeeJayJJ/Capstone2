@@ -6,5 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Player Data", menuName = "RPG/Player Data")]
 public class PlayerData : ScriptableObject
 {
-    // ... (Define your player data variables here)
+    public float techbar;
+    public float socialbar;
+    public int relationship;
+    public int coins;
 }
