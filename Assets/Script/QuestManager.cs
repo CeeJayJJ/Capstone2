@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class QuestManager : MonoBehaviour
 {
@@ -42,6 +43,11 @@ public class QuestManager : MonoBehaviour
         {
             observer.OnQuestUpdated(questData, eventType);
         }
+    }
+
+    internal void RegisterQuestObserver(AchievementManager achievementManager)
+    {
+        throw new NotImplementedException();
     }
 }
 
