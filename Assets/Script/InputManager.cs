@@ -6,7 +6,17 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton implementation (similar to other core scripts)
+        // Singleton implementation
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     // Methods to get player input (e.g., movement, actions)
