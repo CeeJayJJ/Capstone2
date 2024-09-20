@@ -8,7 +8,17 @@ public class SaveLoadManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton implementation (similar to PlayerController)
+        // Singleton implementation
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void SaveGame()
