@@ -35,7 +35,7 @@ public class AchievementManager : MonoBehaviour
         if (eventType == QuestEventType.Completed)
         {
             // Check if there's an achievement associated with this quest
-            string achievementKey = questData.questName + "_Completed"; // Example key
+            string achievementKey = questData.questTitle + "_Completed"; // Example key
 
             if (achievements.ContainsKey(achievementKey))
             {
