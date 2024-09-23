@@ -15,7 +15,8 @@ public class LoadingScreen : MonoBehaviour
     public void LoadScene(int SceneID)
     {
        StartCoroutine(LoadSceneAsync(SceneID));
-
+       AudioManager.Instance.musicSource.Stop();
+       AudioManager.Instance.PlayMusic("Theme2");
     }
 
     IEnumerator LoadSceneAsync(int SceneID)
