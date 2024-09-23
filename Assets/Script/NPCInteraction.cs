@@ -1,17 +1,67 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCInteraction : MonoBehaviour
 {
-    public NPCData npcData; // ScriptableObject for NPC-specific data
-
-    // Optional: For proximity-based interaction triggers
+    public NPCData npcData;
     public float interactionRadius = 2f;
 
-    private void OnMouseDown() // Or OnTriggerEnter for proximity-based interaction
+    public GameObject interactionPrompt; // UI element for the prompt
+    private Canvas interactionPromptCanvas; // To control UI positioning
+
+    private void Start()
     {
-        if (CanInteract())
+        // Get the Canvas component of the interaction prompt (assuming it's a child)
+        interactionPromptCanvas = interactionPrompt.GetComponentInChildren<Canvas>();
+        if (interactionPromptCanvas == null)
         {
-            Interact();
+            Debug.LogError("Interaction prompt needs a Canvas component or a child with one!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) // Assuming your player has the "Player" tag
+        {
+            interactionPrompt.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && CanInteract())
+        {
+            // Position the interaction prompt above the NPC's head
+            PositionInteractionPrompt();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactionPrompt.SetActive(false);
+        }
+    }
+
+    private void PositionInteractionPrompt()
+    {
+        if (interactionPromptCanvas != null)
+        {
+            // Calculate position above NPC's head (adjust offset as needed)
+            Vector3 promptPosition = transform.position + Vector3.up * 2f;
+
+            // Convert world position to screen position
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(promptPosition);
+
+            // Set the UI position on the canvas
+            RectTransform promptRect = interactionPromptCanvas.GetComponent<RectTransform>();
+            promptRect.position = screenPos;
         }
     }
 
