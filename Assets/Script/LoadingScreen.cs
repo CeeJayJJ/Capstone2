@@ -20,11 +20,7 @@ public class LoadingScreen : MonoBehaviour
         if(SceneID == 1)
         {
           AudioManager.Instance.PlayMusic("Theme2");
-        }else
-        {
-
         }
-       
     }
 
     IEnumerator LoadSceneAsync(int SceneID)
