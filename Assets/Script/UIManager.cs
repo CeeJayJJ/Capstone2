@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public TMPro.TextMeshProUGUI dialogueText;
     public GameObject questLogPanel;
     public GameObject inventoryPanel;
+    public GameObject optionPanel;
     // ... other UI elements
 
     private void Awake()
@@ -37,6 +38,16 @@ public class UIManager : MonoBehaviour
     public void HideDialogue()
     {
         dialoguePanel.SetActive(false);
+    }
+
+    public void ShowOption()
+    {
+       optionPanel.SetActive(true);
+    }
+
+    public void HideOption()
+    {
+       optionPanel.SetActive(false);
     }
 
     public void ShowQuestLog()
