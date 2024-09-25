@@ -14,8 +14,6 @@ public class LoadingScreen : MonoBehaviour
     }
 
 
-    //public GameObject LoadingScreens;
-
     //public Image LoadingBarFill;
 
     //public void LoadScene(int SceneID)
