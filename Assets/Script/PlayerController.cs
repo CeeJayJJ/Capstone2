@@ -1,16 +1,16 @@
 using UnityEngine;
 
-
 public class PlayerController : MonoBehaviour
 {
+    // ... (Singleton implementation and playerData remain the same)
     public static PlayerController Instance { get; private set; } // Singleton
-
     public PlayerData playerData;
-
-    // Movement variables
     public float moveSpeed = 5f;
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
+    public float groundCheckDistance = 0.2f; // Adjust as needed
+    public Animator animator;
+    public LayerMask groundLayer;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        // Singleton implementation
+        // Singleton implementation (similar to other core scripts)
         if (Instance == null)
         {
             Instance = this;
@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        // Initialize player data
     }
 
     void Start()
@@ -44,14 +42,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Check if grounded
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, LayerMask.GetMask("Ground")); // Adjust layer mask if needed
+        // Ground check
+        isGrounded = Physics.CheckSphere(transform.position + Vector3.down * 0.1f, groundCheckDistance, groundLayer);
 
-        // Handle movement
+        // Get movement input (consider using InputManager here)
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        // Calculate movement direction
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical);
         moveDirection = transform.TransformDirection(moveDirection); // Convert to world space
+        moveDirection.Normalize(); // Ensure consistent speed in all directions
+
+        // Apply movement
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
 
         // Handle jumping
@@ -61,7 +64,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Apply gravity
-        velocity.y += gravity * Time.deltaTime;
+        if (!isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
         controller.Move(velocity * Time.deltaTime);
+
+        // Update animator (add more parameters as needed for other animations)
+        animator.SetFloat("Speed", moveDirection.magnitude);
     }
 }

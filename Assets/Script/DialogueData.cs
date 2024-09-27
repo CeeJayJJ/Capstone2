@@ -9,6 +9,9 @@ public class DialogueData : ScriptableObject
     public string npcName;
     public Sprite npcPortrait; // Use Sprite instead of Image for efficiency
 
+    // Define the dialogue type (Friendly, Hostile, Neutral)
+    public NPCData.DialogueType dialogueType;
+
     // List of dialogue lines
     public List<string> dialogueLines = new List<string>();
 
