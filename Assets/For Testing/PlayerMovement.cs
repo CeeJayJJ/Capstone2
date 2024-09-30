@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Vector3 movePos = transform.position;
                 movePos.y = hit.point.y + groundDist; transform.position = movePos;
+                AudioManager.Instance.PlaySFX("Walk");
             }
         }
 
