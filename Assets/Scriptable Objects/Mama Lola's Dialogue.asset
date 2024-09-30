@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5c6086eaf7a504292ab031bc6410db, type: 3}
+  m_Name: Mama Lola's Dialogue
+  m_EditorClassIdentifier: 
+  npcName: Mama Lola
+  npcPortrait: {fileID: -377642121, guid: 2e042d4b891856241902657c57bc5d66, type: 3}
+  dialogueType: 0
+  dialogueLines:
+  - Kai, I just bought a new phone but I just turned around to get something and
+    it was gone. Could you help me?
+  choices:
+  - choiceText: "Sure, Lola. I\u2019ll take a look around.!"
+    nextDialogueIndexIfChosen: 0
+    choiceText2: Okay Lola, but I'm really in the middle of something. Could you
+      wait a bit?
+    nextDialogueIndexIfChosen2: 0
