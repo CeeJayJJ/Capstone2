@@ -54,7 +54,7 @@ public class VolumeController : MonoBehaviour
         bool musicMuted = PlayerPrefs.GetInt(MUSIC_MUTE_KEY, 0) == 1;
         bool sfxMuted = PlayerPrefs.GetInt(SFX_MUTE_KEY, 0) == 1;
 
-        AudioManager.Instance.musicSource.mute = musicMuted;
+        AudioManager.Instance.musicSource.mute = musicMuted; // Dito raw
         AudioManager.Instance.sfxSource.mute = sfxMuted;
 
         UpdateMuteButtonVisuals(musicMuteButton, musicMuted);
