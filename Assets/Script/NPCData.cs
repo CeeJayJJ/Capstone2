@@ -56,9 +56,8 @@ public class NPCData : ScriptableObject
                 }
             }
         }
-
         return null; // No available quests
     }
 
-}
 
+}

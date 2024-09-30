@@ -14,7 +14,7 @@ public class ButtonActions : MonoBehaviour
 
     // ... (QuitGame and LoadScene methods remain the same)
 
-  
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
