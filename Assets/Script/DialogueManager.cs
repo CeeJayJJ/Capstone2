@@ -1,4 +1,3 @@
-using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI; // Required for UI elements
 
@@ -7,19 +6,19 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance { get; private set; }
 
     // UI elements (assign these in the Inspector)
-    public NPCData npcData;
     public GameObject dialoguePanel;
-    public TextMesh npcNameText;
+    public Text npcNameText;
     public Image npcPortraitImage;
-    public TextMesh dialogueText;
+    public Text dialogueText;
     public Button choice1Button, choice2Button;
 
+    // Delegate to handle dialogue end event
     public delegate void DialogueEndedEventHandler(DialogueData dialogueData, int selectedChoice, int lineIndex);
     public event DialogueEndedEventHandler OnDialogueEnded;
 
     private DialogueData currentDialogue;
     private int currentLineIndex = 0;
-    public int lastSelectedChoice { get; private set; } // Store the last selected choice
+    private int lastSelectedChoice = 0; // Store the last selected choice
 
     private void Awake()
     {
@@ -39,56 +38,53 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
+    // Start the dialogue system with provided dialogue data
     public void StartDialogue(DialogueData dialogueData)
     {
         currentDialogue = dialogueData;
         currentLineIndex = 0;
+        dialoguePanel.SetActive(true); // Show dialogue panel
         DisplayNextLine();
     }
 
+    // Display the next line in the dialogue
     private void DisplayNextLine()
     {
-        if (currentDialogue == null)
+        if (currentDialogue == null || currentLineIndex >= currentDialogue.dialogueLines.Count)
         {
-            Debug.LogError("No dialogue data assigned!");
+            EndDialogue();
             return;
         }
 
-        if (currentLineIndex < currentDialogue.dialogueLines.Count)
+        // Update UI with NPC data
+        npcNameText.text = currentDialogue.npcName;
+        npcPortraitImage.sprite = currentDialogue.npcPortrait;
+        dialogueText.text = currentDialogue.dialogueLines[currentLineIndex];
+
+        // Handle dialogue choices if available
+        if (currentLineIndex < currentDialogue.choices.Count)
         {
-            // Display the current dialogue line
-            dialoguePanel.SetActive(true);
-            npcNameText.text = currentDialogue.npcName;
-            npcPortraitImage.sprite = currentDialogue.npcPortrait;
-            dialogueText.text = currentDialogue.dialogueLines[currentLineIndex];
+            var currentChoice = currentDialogue.choices[currentLineIndex];
+            choice1Button.gameObject.SetActive(true);
+            choice2Button.gameObject.SetActive(true);
 
-            // Check if there's a choice at this line
-            if (currentLineIndex < currentDialogue.choices.Count)
-            {
-                // Display choices only if they exist
-                var currentChoice = currentDialogue.choices[currentLineIndex];
+            choice1Button.GetComponentInChildren<Text>().text = currentChoice.choiceText;
+            choice2Button.GetComponentInChildren<Text>().text = currentChoice.choiceText2;
 
-                choice1Button.gameObject.SetActive(true);
-                choice2Button.gameObject.SetActive(true);
-
-                choice1Button.GetComponentInChildren<Text>().text = currentChoice.choiceText;
-                choice2Button.GetComponentInChildren<Text>().text = currentChoice.choiceText2;
-            }
-            else
-            {
-                // No more choices, hide choice buttons
-                choice1Button.gameObject.SetActive(false);
-                choice2Button.gameObject.SetActive(false);
-            }
+            choice1Button.onClick.RemoveAllListeners();
+            choice2Button.onClick.RemoveAllListeners();
+            choice1Button.onClick.AddListener(() => OnChoiceSelected(1));
+            choice2Button.onClick.AddListener(() => OnChoiceSelected(2));
         }
         else
         {
-            // End of dialogue
-            EndDialogue();
+            // Hide choice buttons if no choices exist for this line
+            choice1Button.gameObject.SetActive(false);
+            choice2Button.gameObject.SetActive(false);
         }
     }
 
-
+    // Handle the player's choice selection
     public void OnChoiceSelected(int choiceIndex)
     {
         lastSelectedChoice = choiceIndex;
@@ -105,101 +101,16 @@ public class DialogueManager : MonoBehaviour
         DisplayNextLine();
     }
 
+    // End the dialogue and invoke the event
     private void EndDialogue()
     {
-        dialoguePanel.SetActive(false);
-
-        // Trigger the event, passing the dialogue data and selected choice
-        OnDialogueEnded?.Invoke(currentDialogue, lastSelectedChoice, currentLineIndex);
+        dialoguePanel.SetActive(false); // Hide dialogue panel
+        OnDialogueEnded?.Invoke(currentDialogue, lastSelectedChoice, currentLineIndex); // Trigger event
 
         currentDialogue = null;
-        currentLineIndex = 0;
+        currentLineIndex = 0; // Reset line index for future dialogues
     }
-
-    private void Interact()
-    {
-        // Update relationship status
-        npcData.relationshipStatus += CalculateRelationshipChange();
-
-        // Trigger dialogue or other interactions
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.StartDialogue(npcData.GetDialogueBasedOnRelationship());
-
-            // Listen for dialogue end event
-            DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnd;
-        }
-        else
-        {
-            Debug.LogError("DialogueManager instance is not found!");
-        }
-    }
-
-
-
-    private int CalculateRelationshipChange()
-    {
-        // Simple example: Increase relationship by 10
-        return 10;
-    }
-
-
-
-
-
-    private void HandleDialogueEnd(DialogueData dialogueData, int selectedChoice, int lineIndex)
-    {
-        // Unsubscribe from the event after handling dialogue end
-        DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnd;
-
-        // Handle the choice made by the player
-        if (selectedChoice == 1)
-        {
-            if (npcData.npcName == "QuestGiver" && dialogueData.dialogueLines[lineIndex] == "Will you accept this quest?")
-            {
-                QuestData questToStart = GetQuestToStart();
-                if (questToStart != null)
-                {
-                    QuestManager.Instance.StartQuest(questToStart);
-                }
-                else
-                {
-                    Debug.LogError("Quest to start is not assigned or found!");
-                }
-            }
-        }
-        else if (selectedChoice == 2)
-        {
-            // Handle the second choice here, if necessary
-        }
-    }
-
-    private QuestData GetQuestToStart()
-    {
-        // Assuming you have a 'questsToOffer' list in your NPCData
-        if (npcData != null && npcData.questsToOffer != null && npcData.questsToOffer.Count > 0)
-        {
-            // Find the first available quest (not yet started or completed)
-            foreach (var quest in npcData.questsToOffer)
-            {
-                if (quest != null && quest.status == QuestData.QuestStatus.NotStarted)
-                {
-                    return quest;
-                }
-            }
-
-            // If no available quests, you might want to handle this differently (e.g., provide alternative dialogue)
-            Debug.LogWarning("No available quests to offer from this NPC!");
-        }
-        else
-        {
-            Debug.LogError("No questsToOffer assigned to this NPC or the list is empty!");
-        }
-
-        return null;
-    }
-
-
 }
+
 
 

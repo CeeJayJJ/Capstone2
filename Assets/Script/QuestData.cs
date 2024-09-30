@@ -20,7 +20,22 @@ public class QuestData : ScriptableObject
     public bool hasTimeLimit = false;  // If true, the quest must be completed by a specific time of day
     public float completionDeadline;   // Specific time of day when quest must be completed (e.g., 18.0 = 6:00 PM)
 
+    // New fields for time-based availability
+    public bool isTimeLimited;
+    public float startHour;  // Start time for the quest (e.g., 6 for 6 AM)
+    public float endHour;    // End time for the quest (e.g., 18 for 6 PM)
     // Enums for quest conditions
+
+    public bool IsQuestAvailable()
+    {
+        if (isTimeLimited)
+        {
+            float timeOfDay = TimeManager.Instance.timeOfDay;
+            return timeOfDay >= startHour && timeOfDay <= endHour;
+        }
+        return true; // If not time-limited, always available
+    }
+
     public enum QuestCondition
     {
         NotStarted,
