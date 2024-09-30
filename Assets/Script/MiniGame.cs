@@ -12,4 +12,3 @@ public class MiniGame : MonoBehaviour
     // ... (Methods for mini-game logic)
 }
 
-

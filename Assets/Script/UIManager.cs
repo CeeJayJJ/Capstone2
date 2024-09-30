@@ -42,12 +42,12 @@ public class UIManager : MonoBehaviour
 
     public void ShowOption()
     {
-       optionPanel.SetActive(true);
+        optionPanel.SetActive(true);
     }
 
     public void HideOption()
     {
-       optionPanel.SetActive(false);
+        optionPanel.SetActive(false);
     }
 
     public void ShowAudio()
