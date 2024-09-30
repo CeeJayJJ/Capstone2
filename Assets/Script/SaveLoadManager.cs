@@ -1,13 +1,10 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
 
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance { get; private set; }
-
-    private string saveFilePath;
 
     void Awake()
     {
@@ -16,7 +13,6 @@ public class SaveLoadManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            saveFilePath = Application.persistentDataPath + "/gamedata.dat"; // File path for saving game data
         }
         else
         {
@@ -29,113 +25,39 @@ public class SaveLoadManager : MonoBehaviour
     {
         // Gather data to save
         GameData dataToSave = new GameData();
-        dataToSave.playerData = PlayerController.Instance.playerData; // Save player data
-        dataToSave.questsData = QuestManager.Instance.GetQuestsData(); // Save quest progress
-        dataToSave.achievementsData = AchievementManager.Instance.GetAchievementsData(); // Save achievements
+        dataToSave.playerData = PlayerController.Instance.playerData; // Example: Get player data
+        // ... (Gather other data - quest progress, etc.)
 
         // Binary serialization
-        try
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream file = File.Create(saveFilePath))
-            {
-                bf.Serialize(file, dataToSave);
-            }
-            Debug.Log("Game saved successfully.");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError("Failed to save game: " + e.Message);
-        }
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamedata.dat");
+
+        bf.Serialize(file, dataToSave);
+        file.Close();
     }
 
     public void LoadGame()
     {
-        if (File.Exists(saveFilePath))
+        if (File.Exists(Application.persistentDataPath + "/gamedata.dat"))
         {
-            try
-            {
-                // Binary deserialization
-                BinaryFormatter bf = new BinaryFormatter();
-                using (FileStream file = File.Open(saveFilePath, FileMode.Open))
-                {
-                    GameData loadedData = (GameData)bf.Deserialize(file);
-
-                    // Apply loaded data to the game
-                    PlayerController.Instance.playerData = loadedData.playerData; // Load player data
-                    QuestManager.Instance.LoadQuestsData(loadedData.questsData); // Load quest progress
-                    AchievementManager.Instance.LoadAchievementsData(loadedData.achievementsData); // Load achievements
-                }
-                Debug.Log("Game loaded successfully.");
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Failed to load game: " + e.Message);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Save file not found.");
-        }
-    }
-
-    // Method to check if a save file exists
-    public static bool FileExists(string fileName)
-    {
-        return File.Exists(Application.persistentDataPath + "/" + fileName + ".dat");
-    }
-
-    // Generic method to save data
-    public static void Save<T>(T data, string fileName)
-    {
-        string path = Application.persistentDataPath + "/" + fileName + ".dat";
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(path);
-
-        bf.Serialize(file, data);
-        file.Close();
-
-        Debug.Log("Data saved to: " + path);
-    }
-
-    // Generic method to load data
-    public static T Load<T>(string fileName)
-    {
-        string path = Application.persistentDataPath + "/" + fileName + ".dat";
-
-        if (File.Exists(path))
-        {
+            // Binary deserialization
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(path, FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/gamedata.dat", FileMode.Open);
 
-            T data = (T)bf.Deserialize(file);
+            GameData loadedData = (GameData)bf.Deserialize(file);
             file.Close();
 
-            Debug.Log("Data loaded from: " + path);
-            return data;
-        }
-        else
-        {
-            Debug.LogError("Save file not found: " + path);
-            return default;
+            // Apply loaded data to the game
+            PlayerController.Instance.playerData = loadedData.playerData; // Example: Set player data
+            // ... (Apply other loaded data)
         }
     }
 }
 
-// Data structure to hold all saveable game data
+// Example data structure to hold save data
 [System.Serializable]
 public class GameData
 {
-    public PlayerData playerData;  // Stores player-specific data
-    public QuestData[] questsData; // Stores quest progress (array of quest data)
-    public Dictionary<string, bool> achievementsData; // Stores achievement progress
-
-    public float techbar;
-    public float socialbar;
-    public int relationship;
-    public int coins;
-
-    public List<ItemData> inventoryItems;   // Save inventory items
-    public List<QuestData> activeQuests;    // Save active quests
-    public List<QuestData> completedQuests; // Save completed quests
+    public PlayerData playerData;
+    // ... (Add other data fields as needed)
 }

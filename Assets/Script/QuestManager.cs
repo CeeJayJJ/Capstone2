@@ -7,35 +7,17 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance { get; private set; } // Singleton
 
     private List<IQuestObserver> questObservers = new List<IQuestObserver>();
-    private List<QuestData> quests = new List<QuestData>();
 
     void Awake()
     {
         // Singleton implementation (similar to PlayerController)
     }
 
-    // Method to start a new quest
-    public void StartQuest(QuestData quest)
+    public void StartQuest(QuestData questData)
     {
-        if (quest != null && !quests.Contains(quest))
-        {
-            quests.Add(quest);
-            quest.status = QuestData.QuestStatus.InProgress;
-            Debug.Log("Quest started: " + quest.questTitle);
-        }
-        else
-        {
-            Debug.LogWarning("Quest is already started or null.");
-        }
-    }
+        // ... (Logic to start a quest)
 
-    public void CompleteQuest(QuestData quest)
-    {
-        if (quest != null && quests.Contains(quest))
-        {
-            quest.status = QuestData.QuestStatus.Completed;
-            Debug.Log("Quest completed: " + quest.questTitle);
-        }
+        NotifyQuestObservers(questData, QuestEventType.Started);
     }
 
     public void UpdateQuest(QuestData questData, QuestEventType eventType)
@@ -66,18 +48,6 @@ public class QuestManager : MonoBehaviour
     internal void RegisterQuestObserver(AchievementManager achievementManager)
     {
         throw new NotImplementedException();
-    }
-
-    // Method to get all quests for saving
-    public QuestData[] GetQuestsData()
-    {
-        return quests.ToArray(); // Convert the list to an array for saving
-    }
-
-    // Method to load saved quests
-    public void LoadQuestsData(QuestData[] loadedQuests)
-    {
-        quests = new List<QuestData>(loadedQuests); // Convert the loaded array back to a list
     }
 }
 
