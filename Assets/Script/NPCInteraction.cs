@@ -43,7 +43,7 @@ public class NPCInteraction : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Interact();
+                Interact();  // Call the public Interact method
             }
         }
     }
@@ -93,7 +93,8 @@ public class NPCInteraction : MonoBehaviour
         return true;
     }
 
-    private void Interact()
+    // Change this method to public so that other scripts can access it
+    public void Interact()
     {
         // Update relationship status
         npcData.relationshipStatus += CalculateRelationshipChange();
@@ -163,6 +164,7 @@ public class NPCInteraction : MonoBehaviour
         return 0; // Placeholder value
     }
 }
+
 
 
 
