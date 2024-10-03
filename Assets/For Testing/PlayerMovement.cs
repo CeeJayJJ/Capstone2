@@ -11,19 +11,18 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public SpriteRenderer sr;
 
-    public Animator animator; 
- 
+    public Animator animator;
+
+    private NPCInteraction currentNPC;  // To store the current NPC the player can interact with
+    public KeyCode interactionKey = KeyCode.E; // The key for interaction, like 'E'
 
     private void Start()
     {
         rb.gameObject.GetComponent<Rigidbody>();
-
-      
     }
 
     private void Update()
     {
-      
         RaycastHit hit;
         Vector3 castPos = transform.position;
         castPos.y += 1;
@@ -32,7 +31,9 @@ public class PlayerMovement : MonoBehaviour
             if (hit.collider != null)
             {
                 Vector3 movePos = transform.position;
-                movePos.y = hit.point.y + groundDist; transform.position = movePos;
+                movePos.y = hit.point.y + groundDist;
+                transform.position = movePos;
+                AudioManager.Instance.PlaySFX("Walk");
             }
         }
 
@@ -41,21 +42,39 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movDir = new Vector3(x, 0, y);
 
-
         animator.SetFloat("xMove", movDir.x);
         animator.SetFloat("yMove", movDir.z);
         animator.SetFloat("Speed", movDir.sqrMagnitude);
 
         rb.velocity = movDir * speed;
 
-        //if(x != 0 && x < 0)
-        //{
-        //    sr.flipX = true;
-        //}
-        //else if(x != 0 && x > 0)
-        //{
-        //    sr.flipX=false;
-        //}    
+        // Check if player presses the interaction key and is near an NPC
+        if (currentNPC != null && Input.GetKeyDown(interactionKey))
+        {
+            // Trigger NPC interaction when near NPC
+            currentNPC.Interact();
+        }
     }
-   
+
+    // Detect when the player enters an NPC's interaction range (trigger collider)
+    private void OnTriggerEnter(Collider other)
+    {
+        NPCInteraction npc = other.GetComponent<NPCInteraction>();
+        if (npc != null)
+        {
+            currentNPC = npc;
+            Debug.Log("Player entered NPC interaction range.");
+        }
     }
+
+    // Detect when the player leaves an NPC's interaction range (trigger collider)
+    private void OnTriggerExit(Collider other)
+    {
+        NPCInteraction npc = other.GetComponent<NPCInteraction>();
+        if (npc != null && npc == currentNPC)
+        {
+            currentNPC = null;
+            Debug.Log("Player left NPC interaction range.");
+        }
+    }
+}

@@ -7,7 +7,15 @@ public class ScenesManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton implementation (similar to other core scripts)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void LoadScene(string sceneName)
