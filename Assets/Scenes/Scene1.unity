@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1826863, g: 0.22839344, b: 0.30711025, a: 1}
+  m_IndirectSpecularColor: {r: 0.18268566, g: 0.22839276, b: 0.30710936, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2607,10 +2607,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 514434007}
-    - targetCorrespondingSourceObject: {fileID: 3416518368715099733, guid: df647c61a615c9548b4851091815cf49,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 514434012}
     - targetCorrespondingSourceObject: {fileID: 3416518368715099733, guid: df647c61a615c9548b4851091815cf49,
         type: 3}
       insertIndex: -1
@@ -6693,33 +6689,6 @@ MonoBehaviour:
   npcData: {fileID: 11400000, guid: 252e1f9ce210e7847ae4ddb8be20772d, type: 2}
   interactionRadius: 2
   interactionPrompt: {fileID: 2123800652}
---- !u!54 &514434012
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514434006}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &515648716
 GameObject:
   m_ObjectHideFlags: 0
