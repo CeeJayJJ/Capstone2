@@ -6,13 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "RPG/Item")]
 public class ItemData : ScriptableObject
 {
-    public string itemName; // Add this field to avoid the error
+    public string itemName;
     public string itemDescription;
     public Sprite itemIcon;
     public int itemQuantity;
 
-    // Constructor to initialize item data
-    public ItemData(string name, string description, Sprite icon, int quantity)
+    // Method to initialize item data
+    public void InitializeItem(string name, string description, Sprite icon, int quantity)
     {
         itemName = name;
         itemDescription = description;

@@ -4,21 +4,42 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance { get; private set; } // Singleton
     public float speed = 5f;
     public float groundDist;
 
     public LayerMask terrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
-
     public Animator animator;
 
     private NPCInteraction currentNPC;  // To store the current NPC the player can interact with
     public KeyCode interactionKey = KeyCode.E; // The key for interaction, like 'E'
+    private NPCData currentNPC1;
+    public PlayerData playerData; // Reference to PlayerData ScriptableObject
+    private void Awake()
+    {
+        // Singleton implementation (similar to other core scripts)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     private void Start()
     {
         rb.gameObject.GetComponent<Rigidbody>();
+
+        if (playerData == null)
+        {
+            Debug.LogError("PlayerData ScriptableObject is not assigned!");
+        }
     }
 
     private void Update()
@@ -51,8 +72,30 @@ public class PlayerMovement : MonoBehaviour
         // Check if player presses the interaction key and is near an NPC
         if (currentNPC != null && Input.GetKeyDown(interactionKey))
         {
-            // Trigger NPC interaction when near NPC
+            UIManager.Instance.interactionPrompt.SetActive(false);
+            UIManager.Instance.dialoguePanel.SetActive(true);
             currentNPC.Interact();
+        }
+
+        // Test code for interacting with PlayerData (optional)
+        if (Input.GetKeyDown(KeyCode.H)) // Press 'H' to decrease techbar (for testing purposes)
+        {
+            playerData.techbar -= 10f;
+            UIManager.Instance.SetTechBar(playerData.techbar);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S)) // Press 'S' to increase socialbar (for testing purposes)
+        {
+            playerData.socialbar += 5f;
+            UIManager.Instance.SetSocialBar(playerData.socialbar);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I)) // Press 'I' to add an item to the inventory (for testing purposes)
+        {
+            // Add an item to the player's inventory (example, you need to define ItemData properly)
+            ItemData newItem = new ItemData(); // Create a new item (this will depend on how you define ItemData)
+            playerData.inventoryItems.Add(newItem);
+            Debug.Log("Added item to inventory.");
         }
     }
 
@@ -63,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         if (npc != null)
         {
             currentNPC = npc;
+            UIManager.Instance.interactionPrompt.SetActive(true);
             Debug.Log("Player entered NPC interaction range.");
         }
     }
@@ -74,7 +118,48 @@ public class PlayerMovement : MonoBehaviour
         if (npc != null && npc == currentNPC)
         {
             currentNPC = null;
+            UIManager.Instance.interactionPrompt.SetActive(false);
             Debug.Log("Player left NPC interaction range.");
+        }
+    }
+
+    private void InteractWithNPC()
+    {
+        if (currentNPC != null)
+        {
+            // Start dialogue with the NPC
+            DialogueManager.Instance.StartDialogue(currentNPC1.GetDialogueBasedOnRelationship());
+
+            // Subscribe to dialogue end event
+            DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnd;
+        }
+    }
+
+    private void HandleDialogueEnd(DialogueData dialogueData, int selectedChoice, int lineIndex)
+    {
+        // Unsubscribe after the dialogue ends to avoid multiple event subscriptions
+        DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnd;
+
+        // Handle the choice made by the player
+        if (selectedChoice == 1)
+        {
+            // If the NPC is offering a quest, handle it
+            if (currentNPC1.npcName == "QuestGiver" && dialogueData.dialogueLines[lineIndex] == "Will you accept this quest?")
+            {
+                QuestData questToStart = currentNPC1.GetFirstAvailableQuest(); // Use the NPC's method
+                if (questToStart != null)
+                {
+                    QuestManager.Instance.StartQuest(questToStart); // Assuming QuestManager exists and handles starting quests
+                }
+                else
+                {
+                    Debug.LogError("No available quests to start.");
+                }
+            }
+        }
+        else if (selectedChoice == 2)
+        {
+            // Handle alternative choice here, if necessary
         }
     }
 }
