@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI; // Required for UI elements
 
@@ -7,9 +8,9 @@ public class DialogueManager : MonoBehaviour
 
     // UI elements (assign these in the Inspector)
     public GameObject dialoguePanel;
-    public Text npcNameText;
+    public TextMeshProUGUI npcNameText;
     public Image npcPortraitImage;
-    public Text dialogueText;
+    public TextMeshProUGUI dialogueText, choiceText1, choiceText2;
     public Button choice1Button, choice2Button;
 
     // Delegate to handle dialogue end event

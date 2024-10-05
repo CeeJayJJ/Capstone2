@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject questLogPanel;
     public GameObject inventoryPanel;
     public GameObject optionPanel, audioPanel;
+    public Slider socialBar, techBar;
+    public GameObject interactionPrompt;
     // ... other UI elements
 
     private void Awake()
@@ -26,6 +30,31 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+    private void Start()
+    {
+        interactionPrompt.SetActive(false);
+        dialoguePanel.SetActive(false);
+    }
+
+    public void SetSocialBar(float value)
+    {
+       socialBar.value = value;
+    }
+
+    public float GetSocialBar()
+    {
+        return socialBar.value;
+    }
+
+    public void SetTechBar(float value)
+    {
+        techBar.value = value;
+    }
+
+    public float GetTechBar()
+    {
+        return techBar.value;
     }
 
     // Methods to show/hide UI elements
