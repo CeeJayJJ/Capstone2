@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5c6086eaf7a504292ab031bc6410db, type: 3}
+  m_Name: Berto's Dialogue
+  m_EditorClassIdentifier: 
+  npcName: Berto
+  npcPortrait: {fileID: -1839886867, guid: ecfe022241582374ba058013cb3e0473, type: 3}
+  dialogueType: 2
+  dialogueLines:
+  - Hello Kai, could you help me clean the sewage?
+  - Thanks Kai! That would help a lot!
+  - Okay I see..
+  - Remember, the cleaning is 4pm! Be there see you!
+  - 
+  choices:
+  - choiceText: Yes sir! I will help you right away!
+    nextDialogueIndexIfChosen: 1
+    choiceText2: Sorry sir, I have tons of work to do.
+    nextDialogueIndexIfChosen2: 2

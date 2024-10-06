@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -80,14 +81,14 @@ public class PlayerMovement : MonoBehaviour
         // Test code for interacting with PlayerData (optional)
         if (Input.GetKeyDown(KeyCode.H)) // Press 'H' to decrease techbar (for testing purposes)
         {
-            playerData.techbar -= 10f;
-            UIManager.Instance.SetTechBar(playerData.techbar);
+            playerData.techbar -= 0.5f;
+            UIManager.Instance.techBar.value = playerData.techbar;
         }
 
-        if (Input.GetKeyDown(KeyCode.S)) // Press 'S' to increase socialbar (for testing purposes)
+        if (Input.GetKeyDown(KeyCode.X)) // Press 'X' to increase socialbar (for testing purposes)
         {
-            playerData.socialbar += 5f;
-            UIManager.Instance.SetSocialBar(playerData.socialbar);
+            playerData.socialbar -= 0.5f;
+            UIManager.Instance.socialBar.value = playerData.socialbar;
         }
 
         if (Input.GetKeyDown(KeyCode.I)) // Press 'I' to add an item to the inventory (for testing purposes)
@@ -103,13 +104,39 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         NPCInteraction npc = other.GetComponent<NPCInteraction>();
+        DisplayPlayerDialogue playerDialogue = other.GetComponent<DisplayPlayerDialogue>();
+
+        // If player collides with an NPC, handle NPC interaction
         if (npc != null)
         {
             currentNPC = npc;
-            UIManager.Instance.interactionPrompt.SetActive(true);
+            UIManager.Instance.interactionPrompt.SetActive(true);  // Show interaction UI
             Debug.Log("Player entered NPC interaction range.");
         }
+
+        // If player collides with a playerDialogue object, start the player dialogue
+        else if (playerDialogue != null)
+        {
+            UIManager.Instance.playerDialoguePanel.SetActive(true);  // Show dialogue panel
+          
+            playerDialogue.StartDialogue();  // Start the dialogue
+            playerDialogue.StopPlayerMovement();
+
+            // Check for dialogue completion (or add event listener when dialogue ends)
+            StartCoroutine(WaitForDialogueToEnd(playerDialogue));
+        }
     }
+
+    // Coroutine to wait for the dialogue to finish
+    private IEnumerator WaitForDialogueToEnd(DisplayPlayerDialogue playerDialogue)
+    {
+        // While the dialogue panel is still active, wait
+        while (UIManager.Instance.playerDialoguePanel.activeSelf)
+        {
+            yield return null;  // Wait until the next frame, keep looping
+        }
+    }
+
 
     // Detect when the player leaves an NPC's interaction range (trigger collider)
     private void OnTriggerExit(Collider other)
