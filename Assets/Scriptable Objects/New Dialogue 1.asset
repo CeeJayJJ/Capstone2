@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5c6086eaf7a504292ab031bc6410db, type: 3}
   m_Name: New Dialogue 1
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Dani
   npcPortrait: {fileID: 0}
-  dialogueType: 0
-  dialogueLines: []
-  choices: []
+  dialogueType: 2
+  dialogueLines:
+  - 
+  - 
+  - 
+  - 
+  - 
+  choices:
+  - choiceText: 
+    nextDialogueIndexIfChosen: 0
+    choiceText2: 
+    nextDialogueIndexIfChosen2: 0
