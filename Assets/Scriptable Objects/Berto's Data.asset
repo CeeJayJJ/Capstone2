@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014c505b2c9b6314195615832841c4c1, type: 3}
   m_Name: Berto's Data
   m_EditorClassIdentifier: 
-  npcName: 
-  npcPortrait: {fileID: 0}
-  relationshipStatus: 0
-  dialogues: []
-  questsToOffer: []
+  npcName: Berto
+  npcPortrait: {fileID: 1070102262, guid: ecfe022241582374ba058013cb3e0473, type: 3}
+  relationshipStatus: 50
+  dialogues:
+  - {fileID: 11400000, guid: 6d69597612bda1e4b9a64d8eacf67310, type: 2}
+  questsToOffer:
+  - {fileID: 11400000, guid: d7ead7a6520b97c499829487a4378eb6, type: 2}
