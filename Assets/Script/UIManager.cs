@@ -8,8 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; } // Singleton
 
     // References to UI elements (panels, text, images, etc.)
-    public GameObject dialoguePanel;
-    public TMPro.TextMeshProUGUI dialogueText;
+    public GameObject dialoguePanel, playerDialoguePanel;
     public GameObject questLogPanel;
     public GameObject inventoryPanel;
     public GameObject optionPanel, audioPanel;
@@ -35,33 +34,17 @@ public class UIManager : MonoBehaviour
     {
         interactionPrompt.SetActive(false);
         dialoguePanel.SetActive(false);
+        //playerDialoguePanel.SetActive(false);
     }
 
-    public void SetSocialBar(float value)
+    public void ShowPlayerDialogue()
     {
-       socialBar.value = value;
+        playerDialoguePanel.SetActive(true);
     }
-
-    public float GetSocialBar()
-    {
-        return socialBar.value;
-    }
-
-    public void SetTechBar(float value)
-    {
-        techBar.value = value;
-    }
-
-    public float GetTechBar()
-    {
-        return techBar.value;
-    }
-
     // Methods to show/hide UI elements
     public void ShowDialogue(string text)
     {
         dialoguePanel.SetActive(true);
-        dialogueText.text = text;
     }
 
     public void HideDialogue()

@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8dbf39c2fb9bf042ba97a8fd22885c6, type: 3}
-  m_Name: Kai
+  m_Script: {fileID: 11500000, guid: be5c6086eaf7a504292ab031bc6410db, type: 3}
+  m_Name: New Dialogue 1
   m_EditorClassIdentifier: 
-  techbar: 91.70013
-  socialbar: 88
-  relationship: 50
-  coins: 25
-  inventoryItems: []
-  activeQuests: []
-  completedQuests: []
+  npcName: 
+  npcPortrait: {fileID: 0}
+  dialogueType: 0
+  dialogueLines: []
+  choices: []
