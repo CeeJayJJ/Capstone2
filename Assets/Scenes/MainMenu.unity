@@ -3053,7 +3053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1493689895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5269,7 +5269,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sfxSounds.Array.data[0].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 232a4baf0fc285e4aaaf4807a4735630, type: 3}
+      objectReference: {fileID: 8300000, guid: 07467893a8a34f140a9470048052308a, type: 3}
     - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
         type: 3}
       propertyPath: sfxSounds.Array.data[2].clip
@@ -5353,6 +5353,26 @@ PrefabInstance:
     - target: {fileID: 7896376927763055849, guid: 082812590e69cf341b690c9690d3594e,
         type: 3}
       propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144278083634437385, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144278083634437385, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144278083634437385, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: Priority
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144278083634437385, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789941961250277365, guid: 082812590e69cf341b690c9690d3594e,
