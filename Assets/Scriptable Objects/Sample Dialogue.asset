@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Karen
   npcPortrait: {fileID: 1793613462, guid: 9e13fb084dd4fa143abad4e813474b2f, type: 3}
-  dialogueType: 2
   dialogueLines:
   - Hello Kai! I just bought a new phone but I just turned around to get something
     and it was gone. Could you help me?
   - Thanks Kai that would be a great help!
   - Oh I see, I won't bother you any longer..
   - Remember, you need to find my phone within 1 minute...
-  - Oh I see, I won't bother you any longer..
+  - I hope you do me favor next time...
   choices:
   - choiceText: "Sure, Lola. I\u2019ll take a look around.!"
-    nextDialogueIndexIfChosen: 1
+    nextDialogueIndex1: 1
+    skipToLine1: 2
     choiceText2: Okay Lola, but I'm really in the middle of something. Could you
       wait a bit?
-    nextDialogueIndexIfChosen2: 2
+    nextDialogueIndex2: 2
+    skipToLine2: 3
+  dialogueType: 2
