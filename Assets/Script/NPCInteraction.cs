@@ -153,7 +153,11 @@ public class NPCInteraction : MonoBehaviour
 
     private int CalculateRelationshipChange()
     {
-        // Add your logic for calculating relationship change based on player's actions
+        int relationShipStatus = playerMovement.playerData.relationship;
+        if (relationShipStatus == 100)
+        {
+
+        }
         return 0; // Placeholder value
     }
 }
