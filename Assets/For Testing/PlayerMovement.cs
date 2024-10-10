@@ -78,19 +78,6 @@ public class PlayerMovement : MonoBehaviour
             currentNPC.Interact();
         }
 
-        // Test code for interacting with PlayerData (optional)
-        if (Input.GetKeyDown(KeyCode.H)) // Press 'H' to decrease techbar (for testing purposes)
-        {
-            playerData.techbar -= 0.5f;
-            UIManager.Instance.techBar.value = playerData.techbar;
-        }
-
-        if (Input.GetKeyDown(KeyCode.X)) // Press 'X' to increase socialbar (for testing purposes)
-        {
-            playerData.socialbar -= 0.5f;
-            UIManager.Instance.socialBar.value = playerData.socialbar;
-        }
-
         if (Input.GetKeyDown(KeyCode.I)) // Press 'I' to add an item to the inventory (for testing purposes)
         {
             // Add an item to the player's inventory (example, you need to define ItemData properly)
