@@ -1,28 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static NPCData;
 
 public class NPCInteraction : MonoBehaviour
 {
     public NPCData npcData;
     public float interactionRadius = 2f;
-    public GameObject interactionPrompt; // UI element for the prompt
 
-    private Canvas interactionPromptCanvas; // To control UI positioning
+    // Reference to the PlayerMovement script
+    private PlayerMovement playerMovement;
 
     private void Start()
-    {
-        if (interactionPrompt != null)
+    {    
+        UIManager.Instance.interactionPrompt.SetActive(false);
+        // Assuming PlayerMovement is attached to the Player with the "Player" tag
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            // Get the Canvas component of the interaction prompt (assuming it's a child)
-            interactionPromptCanvas = interactionPrompt.GetComponentInChildren<Canvas>();
-            if (interactionPromptCanvas == null)
-            {
-                Debug.LogError("Interaction prompt needs a Canvas component or a child with one!");
-            }
-        }
-        else
-        {
-            Debug.LogError("InteractionPrompt GameObject is not assigned!");
+            playerMovement = player.GetComponent<PlayerMovement>();
         }
     }
 
@@ -30,7 +25,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            interactionPrompt.SetActive(true);
+            UIManager.Instance.interactionPrompt.SetActive(true);
         }
     }
 
@@ -52,38 +47,34 @@ public class NPCInteraction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            interactionPrompt.SetActive(false);
+            UIManager.Instance.interactionPrompt.SetActive(false);
         }
     }
 
     private void PositionInteractionPrompt()
     {
-        if (interactionPromptCanvas != null)
+        if (UIManager.Instance.interactionPrompt != null)
         {
             // Calculate position above NPC's head (adjust offset as needed)
             Vector3 promptPosition = transform.position + Vector3.up * 2f;
 
             // Convert world position to screen position
             Vector3 screenPos = Camera.main.WorldToScreenPoint(promptPosition);
-
-            // Set the UI position on the canvas
-            RectTransform promptRect = interactionPromptCanvas.GetComponent<RectTransform>();
-            promptRect.position = screenPos;
         }
     }
 
     private bool CanInteract()
     {
-        if (PlayerController.Instance == null)
+        if (playerMovement == null)
         {
-            Debug.LogError("PlayerController is not available!");
+            Debug.LogError("PlayerMovement is not available!");
             return false;
         }
 
         // Check if the player is within interaction range
         if (interactionRadius > 0f)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.Instance.transform.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, playerMovement.transform.position);
             if (distanceToPlayer > interactionRadius)
             {
                 return false;
@@ -158,12 +149,19 @@ public class NPCInteraction : MonoBehaviour
         return null;
     }
 
+    
+
     private int CalculateRelationshipChange()
     {
-        // Add your logic for calculating relationship change based on player's actions
+        int relationShipStatus = playerMovement.playerData.relationship;
+        if (relationShipStatus == 100)
+        {
+
+        }
         return 0; // Placeholder value
     }
 }
+
 
 
 

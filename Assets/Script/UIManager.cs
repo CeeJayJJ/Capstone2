@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; } // Singleton
 
     // References to UI elements (panels, text, images, etc.)
-    public GameObject dialoguePanel;
-    public TMPro.TextMeshProUGUI dialogueText;
+    public GameObject dialoguePanel, playerDialoguePanel;
     public GameObject questLogPanel;
     public GameObject inventoryPanel;
     public GameObject optionPanel, audioPanel;
+    public Slider socialBar, techBar;
+    public GameObject interactionPrompt;
     // ... other UI elements
 
     private void Awake()
@@ -27,12 +30,21 @@ public class UIManager : MonoBehaviour
             return;
         }
     }
+    private void Start()
+    {
+        interactionPrompt.SetActive(false);
+        dialoguePanel.SetActive(false);
+        //playerDialoguePanel.SetActive(false);
+    }
 
+    public void ShowPlayerDialogue()
+    {
+        playerDialoguePanel.SetActive(true);
+    }
     // Methods to show/hide UI elements
     public void ShowDialogue(string text)
     {
         dialoguePanel.SetActive(true);
-        dialogueText.text = text;
     }
 
     public void HideDialogue()

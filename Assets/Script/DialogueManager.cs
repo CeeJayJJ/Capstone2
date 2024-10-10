@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI; // Required for UI elements
 
@@ -7,9 +8,9 @@ public class DialogueManager : MonoBehaviour
 
     // UI elements (assign these in the Inspector)
     public GameObject dialoguePanel;
-    public Text npcNameText;
+    public TextMeshProUGUI npcNameText;
     public Image npcPortraitImage;
-    public Text dialogueText;
+    public TextMeshProUGUI dialogueText;
     public Button choice1Button, choice2Button;
 
     // Delegate to handle dialogue end event
@@ -50,9 +51,17 @@ public class DialogueManager : MonoBehaviour
     // Display the next line in the dialogue
     private void DisplayNextLine()
     {
-        if (currentDialogue == null || currentLineIndex >= currentDialogue.dialogueLines.Count)
+        // Check if dialogue data is null
+        if (currentDialogue == null)
         {
-            EndDialogue();
+            Debug.LogError("DialogueData is null in DisplayNextLine!");
+            return;
+        }
+
+        // Ensure currentLineIndex is within bounds of the dialogue lines
+        if (currentLineIndex >= currentDialogue.dialogueLines.Count)
+        {
+            EndDialogue();  // End dialogue if no more lines
             return;
         }
 
@@ -61,16 +70,20 @@ public class DialogueManager : MonoBehaviour
         npcPortraitImage.sprite = currentDialogue.npcPortrait;
         dialogueText.text = currentDialogue.dialogueLines[currentLineIndex];
 
-        // Handle dialogue choices if available
-        if (currentLineIndex < currentDialogue.choices.Count)
+        // Check if there are choices available for this dialogue line
+        if (currentLineIndex < currentDialogue.choices.Count && !string.IsNullOrEmpty(currentDialogue.choices[currentLineIndex].choiceText))
         {
             var currentChoice = currentDialogue.choices[currentLineIndex];
+
+            // Display choice buttons
             choice1Button.gameObject.SetActive(true);
             choice2Button.gameObject.SetActive(true);
 
-            choice1Button.GetComponentInChildren<Text>().text = currentChoice.choiceText;
-            choice2Button.GetComponentInChildren<Text>().text = currentChoice.choiceText2;
+            // Set choice button texts
+            choice1Button.GetComponentInChildren<TMPro.TMP_Text>().text = currentChoice.choiceText;
+            choice2Button.GetComponentInChildren<TMPro.TMP_Text>().text = currentChoice.choiceText2;
 
+            // Remove previous listeners and add new listeners based on player's choice
             choice1Button.onClick.RemoveAllListeners();
             choice2Button.onClick.RemoveAllListeners();
             choice1Button.onClick.AddListener(() => OnChoiceSelected(1));
@@ -78,28 +91,57 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            // Hide choice buttons if no choices exist for this line
+            // No choices for this line, just display the next line
             choice1Button.gameObject.SetActive(false);
             choice2Button.gameObject.SetActive(false);
+
+            // Automatically move to the next dialogue line after a delay or player click
+            currentLineIndex++;
+            if (currentLineIndex < currentDialogue.dialogueLines.Count)
+            {
+                // Display the next line if available
+                Invoke("DisplayNextLine", 3f); // Add a slight delay to avoid instant jumps
+            }
+            else
+            {
+                // End the dialogue when there are no more lines
+                EndDialogue();
+            }
         }
     }
+
 
     // Handle the player's choice selection
     public void OnChoiceSelected(int choiceIndex)
     {
         lastSelectedChoice = choiceIndex;
 
-        if (choiceIndex == 1)
+        // Check if the current line has associated choices
+        if (currentLineIndex < currentDialogue.choices.Count)
         {
-            currentLineIndex = currentDialogue.choices[currentLineIndex].nextDialogueIndexIfChosen;
-        }
-        else if (choiceIndex == 2)
-        {
-            currentLineIndex = currentDialogue.choices[currentLineIndex].nextDialogueIndexIfChosen2;
-        }
+            var currentChoice = currentDialogue.choices[currentLineIndex];
 
-        DisplayNextLine();
+            // Move to the next dialogue line based on the player's choice
+            if (choiceIndex == 1)
+            {
+                currentLineIndex = currentChoice.nextDialogueIndexIfChosen;  // Update index based on choice 1
+            }
+            else if (choiceIndex == 2)
+            {
+                currentLineIndex = currentChoice.nextDialogueIndexIfChosen2;  // Update index based on choice 2
+            }
+
+            // After updating the line index, display the next line
+            DisplayNextLine();
+        }
+        else
+        {
+            Debug.LogError("No valid choices found at this index!");
+            EndDialogue();  // Safeguard in case no choices exist at this point
+        }
     }
+
+
 
     // End the dialogue and invoke the event
     private void EndDialogue()

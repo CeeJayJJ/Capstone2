@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5c6086eaf7a504292ab031bc6410db, type: 3}
   m_Name: Sample Dialogue
   m_EditorClassIdentifier: 
-  npcName: Roger
-  npcPortrait: {fileID: 56575655, guid: 454797c1a8b670c4f95826b182566348, type: 3}
+  npcName: Karen
+  npcPortrait: {fileID: 1793613462, guid: 9e13fb084dd4fa143abad4e813474b2f, type: 3}
   dialogueType: 2
   dialogueLines:
-  - Kai, I just bought a new phone but I just turned around to get something and
-    it was gone. Could you help me?
+  - Hello Kai! I just bought a new phone but I just turned around to get something
+    and it was gone. Could you help me?
+  - Thanks Kai that would be a great help!
+  - Oh I see, I won't bother you any longer..
+  - Remember, you need to find my phone within 1 minute...
+  - I hope you do me favor next time...
   choices:
   - choiceText: "Sure, Lola. I\u2019ll take a look around.!"
-    nextDialogueIndexIfChosen: 0
+    nextDialogueIndexIfChosen: 1
     choiceText2: Okay Lola, but I'm really in the middle of something. Could you
       wait a bit?
-    nextDialogueIndexIfChosen2: 0
+    nextDialogueIndexIfChosen2: 2

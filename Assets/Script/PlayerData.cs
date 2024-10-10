@@ -24,15 +24,15 @@ public class PlayerData : ScriptableObject
         GameData dataToSave = new GameData();
 
         // Gather data from PlayerData ScriptableObject
-        dataToSave.techbar = PlayerController.Instance.playerData.techbar;
-        dataToSave.socialbar = PlayerController.Instance.playerData.socialbar;
-        dataToSave.relationship = PlayerController.Instance.playerData.relationship;
-        dataToSave.coins = PlayerController.Instance.playerData.coins;
+        dataToSave.techbar = PlayerMovement.Instance.playerData.techbar;
+        dataToSave.socialbar = PlayerMovement.Instance.playerData.socialbar;
+        dataToSave.relationship = PlayerMovement.Instance.playerData.relationship;
+        dataToSave.coins = PlayerMovement.Instance.playerData.coins;
 
         // Copy inventory and quest data
-        dataToSave.inventoryItems = new List<ItemData>(PlayerController.Instance.playerData.inventoryItems);
-        dataToSave.activeQuests = new List<QuestData>(PlayerController.Instance.playerData.activeQuests);
-        dataToSave.completedQuests = new List<QuestData>(PlayerController.Instance.playerData.completedQuests);
+        dataToSave.inventoryItems = new List<ItemData>(PlayerMovement.Instance.playerData.inventoryItems);
+        dataToSave.activeQuests = new List<QuestData>(PlayerMovement.Instance.playerData.activeQuests);
+        dataToSave.completedQuests = new List<QuestData>(PlayerMovement.Instance.playerData.completedQuests);
 
         // Save using binary or JSON format
         SaveLoadManager.Save(dataToSave, "GameData");
@@ -45,15 +45,15 @@ public class PlayerData : ScriptableObject
             GameData loadedData = SaveLoadManager.Load<GameData>("GameData");
 
             // Populate PlayerData from loaded data
-            PlayerController.Instance.playerData.techbar = loadedData.techbar;
-            PlayerController.Instance.playerData.socialbar = loadedData.socialbar;
-            PlayerController.Instance.playerData.relationship = loadedData.relationship;
-            PlayerController.Instance.playerData.coins = loadedData.coins;
+            PlayerMovement.Instance.playerData.techbar = loadedData.techbar;
+            PlayerMovement.Instance.playerData.socialbar = loadedData.socialbar;
+            PlayerMovement.Instance.playerData.relationship = loadedData.relationship;
+            PlayerMovement.Instance.playerData.coins = loadedData.coins;
 
             // Copy inventory and quest data
-            PlayerController.Instance.playerData.inventoryItems = new List<ItemData>(loadedData.inventoryItems);
-            PlayerController.Instance.playerData.activeQuests = new List<QuestData>(loadedData.activeQuests);
-            PlayerController.Instance.playerData.completedQuests = new List<QuestData>(loadedData.completedQuests);
+            PlayerMovement.Instance.playerData.inventoryItems = new List<ItemData>(loadedData.inventoryItems);
+            PlayerMovement  .Instance.playerData.activeQuests = new List<QuestData>(loadedData.activeQuests);
+            PlayerMovement.Instance.playerData.completedQuests = new List<QuestData>(loadedData.completedQuests);
         }
     }
 }
