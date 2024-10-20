@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
+    public string spawnPointID;  // Track spawn point ID across scenes
     public static ScenesManager Instance { get; private set; } // Singleton
 
     private void Awake()
@@ -20,9 +21,12 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        // Optionally, trigger a loading screen or transition effect
-        // ...
-
+        SceneManager.LoadScene(sceneName);
+    }
+    // Method to load a new scene and pass the spawn point ID
+    public void LoadScene(string sceneName, string newSpawnPointID)
+    {
+        spawnPointID = newSpawnPointID;  // Set the target spawn point for the next scene
         SceneManager.LoadScene(sceneName);
     }
 }
