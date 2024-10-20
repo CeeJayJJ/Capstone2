@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         NPCInteraction npc = other.GetComponent<NPCInteraction>();
         DisplayPlayerDialogue playerDialogue = other.GetComponent<DisplayPlayerDialogue>();
-
+        PerformTeleport performTeleport = other.GetComponent<PerformTeleport>();
         // If player collides with an NPC, handle NPC interaction
         if (npc != null)
         {

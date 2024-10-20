@@ -2925,6 +2925,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30281ffd6eab8df4c813a8c9ea0cc4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1283697502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283697504}
+  - component: {fileID: 1283697503}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1283697503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283697502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca016c113f5a354895746d16e7752db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPointID: 
+--- !u!4 &1283697504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283697502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 314.63168, y: 131.87422, z: 1.2877747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1330516268
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,6 +5307,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
         type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
       propertyPath: musicSounds.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -5270,6 +5320,21 @@ PrefabInstance:
       propertyPath: sfxSounds.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: 07467893a8a34f140a9470048052308a, type: 3}
+    - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: sfxSounds.Array.data[0].name
+      value: Walk
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: sfxSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: sfxSounds.Array.data[1].name
+      value: Jump
+      objectReference: {fileID: 0}
     - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
         type: 3}
       propertyPath: sfxSounds.Array.data[2].clip
@@ -5288,6 +5353,16 @@ PrefabInstance:
     - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
         type: 3}
       propertyPath: sfxSounds.Array.data[3].name
+      value: ButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: sfxSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 845d5e13fb127de4cb08518eb64ece83, type: 3}
+    - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
+        type: 3}
+      propertyPath: sfxSounds.Array.data[4].name
       value: ButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 6947172969641792213, guid: 082812590e69cf341b690c9690d3594e,
@@ -5490,3 +5565,4 @@ SceneRoots:
   - {fileID: 7242923648734722480}
   - {fileID: 778769364163898895}
   - {fileID: 1821820023}
+  - {fileID: 1283697504}
