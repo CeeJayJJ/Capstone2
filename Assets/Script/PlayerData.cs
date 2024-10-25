@@ -56,4 +56,30 @@ public class PlayerData : ScriptableObject
             PlayerMovement.Instance.playerData.completedQuests = new List<QuestData>(loadedData.completedQuests);
         }
     }
+
+    // Inside PlayerData
+    public void AddGold(int amount)
+    {
+        coins += amount; // Assuming coins is your currency variable
+        Debug.Log("Added Gold: " + amount);
+    }
+
+    public void AddItem(ItemData item)
+    {
+        // Check if item already exists in inventory
+        var existingItem = inventoryItems.Find(i => i.itemName == item.itemName);
+
+        if (existingItem != null)
+        {
+            // Increase quantity if item already exists
+            existingItem.itemQuantity += item.itemQuantity;
+        }
+        else
+        {
+            // Add a new item to inventory
+            inventoryItems.Add(item);
+        }
+
+        Debug.Log("Added item: " + item.itemName + " Quantity: " + item.itemQuantity);
+    }
 }

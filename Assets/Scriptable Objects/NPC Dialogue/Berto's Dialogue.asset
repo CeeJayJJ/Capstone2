@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Berto
   npcPortrait: {fileID: -1839886867, guid: ecfe022241582374ba058013cb3e0473, type: 3}
+  dialogueType: 2
   dialogueLines:
   - Hello Kai, could you help me clean the sewage?
   - Thanks Kai! That would help a lot!
@@ -22,9 +23,6 @@ MonoBehaviour:
   - Maybe some other time then
   choices:
   - choiceText: Yes sir! I will help you right away!
-    nextDialogue1: 1
-    skipToLine1: 2
+    nextDialogueIndexIfChosen: 1
     choiceText2: Sorry sir, I have tons of work to do.
-    nextDialogue2: 2
-    skipToLine2: 3
-  dialogueType: 2
+    nextDialogueIndexIfChosen2: 2
