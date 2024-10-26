@@ -11,8 +11,10 @@ public class NPCInteraction : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private void Start()
-    {    
+    {
+        Debug.Log("NPC Data: " + (npcData != null ? npcData.npcName : "null"));
         UIManager.Instance.interactionPrompt.SetActive(false);
+
         // Assuming PlayerMovement is attached to the Player with the "Player" tag
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)

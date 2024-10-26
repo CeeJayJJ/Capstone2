@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance { get; private set; } // Singleton
     public float speed = 5f;
     public float groundDist;
 
@@ -18,20 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode interactionKey = KeyCode.E; // The key for interaction, like 'E'
     private NPCData currentNPC1;
     public PlayerData playerData; // Reference to PlayerData ScriptableObject
-    private void Awake()
-    {
-        // Singleton implementation (similar to other core scripts)
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
+
 
     private void Start()
     {
@@ -158,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         if (selectedChoice == 1)
         {
             // If the NPC is offering a quest, handle it
-            if (currentNPC1.npcName == "QuestGiver" && dialogueData.dialogueLines[lineIndex] == "Will you accept this quest?")
+            if (currentNPC1.npcName == "Berto" && dialogueData.dialogueLines[lineIndex] == "Hello Kai, could you help me clean the sewage?")
             {
                 QuestData questToStart = currentNPC1.GetFirstAvailableQuest(); // Use the NPC's method
                 if (questToStart != null)

@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Karen
   npcPortrait: {fileID: 1793613462, guid: 9e13fb084dd4fa143abad4e813474b2f, type: 3}
-  dialogueType: 2
+  dialogueType: 0
   dialogueLines:
   - Hello Kai! I just bought a new phone but I just turned around to get something
     and it was gone. Could you help me?
   - Thanks Kai that would be a great help!
   - Oh I see, I won't bother you any longer..
   - Remember, you need to find my phone within 1 minute...
+  - I hope you do me favor next time...
   - I hope you do me favor next time...
   choices:
   - choiceText: "Sure, Lola. I\u2019ll take a look around.!"
