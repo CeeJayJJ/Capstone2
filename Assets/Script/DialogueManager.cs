@@ -42,11 +42,18 @@ public class DialogueManager : MonoBehaviour
     // Start the dialogue system with provided dialogue data
     public void StartDialogue(DialogueData dialogueData)
     {
+        if (dialogueData == null)
+        {
+            Debug.LogError("dialogueData passed to StartDialogue() is null.");
+            return;
+        }
+
         currentDialogue = dialogueData;
         currentLineIndex = 0;
         dialoguePanel.SetActive(true); // Show dialogue panel
         DisplayNextLine();
     }
+
     // Display the next line in the dialogue
     private void DisplayNextLine()
     {

@@ -4,7 +4,6 @@ using UnityEngine;
 public class PerformTeleport : MonoBehaviour
 {
     public string sceneName;          // Target scene name
-    public string spawnPointID;       // Unique identifier for the spawn point in the new scene
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,7 +16,7 @@ public class PerformTeleport : MonoBehaviour
             {
                 Debug.Log("ScenesManager found, loading scene: " + sceneName);
                 // Trigger the scene change and pass the spawn point ID
-                ScenesManager.Instance.LoadScene(sceneName, spawnPointID);
+                ScenesManager.Instance.LoadScene(sceneName);
             }
             else
             {

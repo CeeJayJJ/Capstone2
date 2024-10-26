@@ -8,7 +8,7 @@ public class SaveLoadManager : MonoBehaviour
     public static SaveLoadManager Instance { get; private set; }
 
     private string saveFilePath;
-
+    private PlayerMovement playerMovement;
     void Awake()
     {
         // Singleton implementation
@@ -29,7 +29,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         // Gather data to save
         GameData dataToSave = new GameData();
-        dataToSave.playerData = PlayerController.Instance.playerData; // Save player data
+        dataToSave.playerData = playerMovement.playerData; // Save player data
         dataToSave.questsData = QuestManager.Instance.GetQuestsData(); // Save quest progress
         dataToSave.achievementsData = AchievementManager.Instance.GetAchievementsData(); // Save achievements
 

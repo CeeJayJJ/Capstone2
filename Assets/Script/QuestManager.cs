@@ -9,8 +9,7 @@ public class QuestManager : MonoBehaviour
     private List<IQuestObserver> questObservers = new List<IQuestObserver>();
     private List<QuestData> quests = new List<QuestData>();
 
-    private PlayerData playerData; // Assign in the Unity Inspector
-    private ItemData itemData;
+    public PlayerData playerData; // Assign in the Unity Inspector
 
 
     void Awake()
