@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-parent of 4163e76 (Lightings)
+  m_IndirectSpecularColor: {r: 0.18268594, g: 0.22839299, b: 0.30710974, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18369,7 +18369,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 83f25ee3b9f68a04faad68fee3d27b51, type: 3}
-<<<<<<< HEAD
 --- !u!1 &605711187
 GameObject:
   m_ObjectHideFlags: 0
@@ -18635,216 +18634,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 664854457}
-  - {fileID: 656080297}
-  - {fileID: 1515502145}
-  - {fileID: 849335005}
-  - {fileID: 1797088496}
-  - {fileID: 294492126}
-  - {fileID: 374328723}
-  - {fileID: 710828209}
-  - {fileID: 1815272217}
-  - {fileID: 1307137420}
-  - {fileID: 260466029}
-  - {fileID: 508238883}
-  - {fileID: 575698244}
-  - {fileID: 747492380}
-  - {fileID: 2016230962}
-  - {fileID: 448057970}
-  - {fileID: 1584006975}
-  - {fileID: 1006494015}
-  - {fileID: 450827411}
-  - {fileID: 599581911}
-  - {fileID: 719971197}
-  - {fileID: 1521444227}
-  - {fileID: 1802130958}
-  - {fileID: 1701680682}
-  - {fileID: 820127609}
-  - {fileID: 1419390803}
-  - {fileID: 1637849108}
-  - {fileID: 1475756366}
-  - {fileID: 568994689}
-  - {fileID: 221066808}
-  - {fileID: 1806418810}
-  - {fileID: 1631255741}
-  - {fileID: 465053497}
-  - {fileID: 421861945}
-  - {fileID: 396571997}
-  - {fileID: 1784778804}
-  - {fileID: 1641904331}
-  - {fileID: 792373316}
-  - {fileID: 16661206}
-  - {fileID: 1433131922}
-  - {fileID: 30010387}
-  - {fileID: 136641009}
   - {fileID: 605961155}
-  - {fileID: 1611963135}
-  - {fileID: 1947831770}
-  - {fileID: 115412278}
   - {fileID: 605711188}
-  - {fileID: 1368956965}
-  - {fileID: 744217147}
-  - {fileID: 948128607}
-  - {fileID: 1355064947}
-  - {fileID: 2125492677}
-  - {fileID: 1494854319}
-  - {fileID: 694692093}
-  - {fileID: 1120768739}
-  - {fileID: 1354688024}
-  - {fileID: 1115049722}
-  - {fileID: 384803900}
-  - {fileID: 1171973998}
-  - {fileID: 1930181323}
-  - {fileID: 1474327995}
-  - {fileID: 302525889}
-  - {fileID: 1245682678}
-  - {fileID: 14980498}
-  - {fileID: 2107053901}
-  - {fileID: 779014195}
-  - {fileID: 992884728}
-  - {fileID: 1452630893}
-  - {fileID: 371761228}
-  - {fileID: 1496948118}
-  - {fileID: 1775272130}
-  - {fileID: 1050664015}
-  - {fileID: 1021206546}
-  - {fileID: 928047416}
-  - {fileID: 1984183200}
-  - {fileID: 310515773}
-  - {fileID: 269710031}
-  - {fileID: 891197810}
-  - {fileID: 138249201}
-  - {fileID: 2140124060}
-  - {fileID: 834833754}
-  - {fileID: 770841988}
-  - {fileID: 1611852529}
-  - {fileID: 589145042}
-  - {fileID: 170049998}
-  - {fileID: 173600424}
-  - {fileID: 1401031124}
-  - {fileID: 1971035566}
-  - {fileID: 1335491702}
-  - {fileID: 2020880123}
-  - {fileID: 494363925}
-  - {fileID: 2040035340}
-  - {fileID: 585283335}
-  - {fileID: 1335189103}
-  - {fileID: 1426469302}
-  - {fileID: 1521492524}
-  - {fileID: 642345585}
-  - {fileID: 1420416024}
-  - {fileID: 418572650}
-  - {fileID: 68096348}
-  - {fileID: 1990235717}
-  - {fileID: 597553498}
-  - {fileID: 1512622379}
-  - {fileID: 532528144}
-  - {fileID: 1223930742}
-  - {fileID: 1760700378}
-  - {fileID: 2036827893}
-  - {fileID: 1629935596}
-  - {fileID: 736196635}
-  - {fileID: 1050010172}
-  - {fileID: 1530424368}
-  - {fileID: 1840576299}
-  - {fileID: 960861344}
-  - {fileID: 1822502191}
-  - {fileID: 1687835680}
-  - {fileID: 229323213}
-  - {fileID: 823952801}
-  - {fileID: 721708773}
-  - {fileID: 507444427}
-  - {fileID: 474221047}
-  - {fileID: 1025828033}
-  - {fileID: 1450995328}
-  - {fileID: 1754091179}
-  - {fileID: 1188881338}
-  - {fileID: 644463444}
-  - {fileID: 1289634359}
-  - {fileID: 1890306707}
-  - {fileID: 119335231}
-  - {fileID: 1945314756}
-  - {fileID: 691187567}
-  - {fileID: 1062798125}
-  - {fileID: 2027002187}
-  - {fileID: 562003088}
-  - {fileID: 1133162240}
-  - {fileID: 882797095}
-  - {fileID: 2118444653}
-  - {fileID: 259898717}
-  - {fileID: 338455036}
-  - {fileID: 718015362}
-  - {fileID: 102689502}
-  - {fileID: 1152117823}
-  - {fileID: 764570011}
-  - {fileID: 470159121}
-  - {fileID: 444273056}
-  - {fileID: 1524003031}
-  - {fileID: 698548443}
-  - {fileID: 1884210871}
-  - {fileID: 1297201029}
-  - {fileID: 920169420}
-  - {fileID: 2081731610}
-  - {fileID: 1064327763}
-  - {fileID: 1463126269}
-  - {fileID: 1874114135}
-  - {fileID: 1125127916}
-  - {fileID: 1757420990}
-  - {fileID: 1097808599}
-  - {fileID: 1380964608}
-  - {fileID: 416703924}
-  - {fileID: 1728696816}
-  - {fileID: 1663959996}
-  - {fileID: 1065264556}
-  - {fileID: 1923199014}
-  - {fileID: 1758305741}
-  - {fileID: 1843805523}
-  - {fileID: 756810180}
-  - {fileID: 633857575}
-  - {fileID: 427002786}
-  - {fileID: 2028407730}
-  - {fileID: 705972478}
-  - {fileID: 1828327008}
-  - {fileID: 1931627255}
-  - {fileID: 668905450}
-  - {fileID: 1446118223}
-  - {fileID: 1999445329}
-  - {fileID: 2032513470}
-  - {fileID: 1782803419}
-  - {fileID: 1695057622}
-  - {fileID: 1613612397}
-  - {fileID: 1025890846}
-  - {fileID: 1277721996}
-  - {fileID: 1923020756}
-  - {fileID: 826121481}
-  - {fileID: 589974226}
-  - {fileID: 2074649624}
-  - {fileID: 2131201265}
-  - {fileID: 641107563}
-  - {fileID: 1795586953}
-  - {fileID: 1510720540}
-  - {fileID: 274277931}
-  - {fileID: 1179743632}
-  - {fileID: 1677347019}
-  - {fileID: 970881235}
-  - {fileID: 1483855339}
-  - {fileID: 825399174}
-  - {fileID: 1387334139}
-  - {fileID: 562567391}
-  - {fileID: 329205432}
-  - {fileID: 1401298142}
-  - {fileID: 1395924955}
-  - {fileID: 1705697764}
-  - {fileID: 1825931652}
-  - {fileID: 1198058331}
-  - {fileID: 1643838023}
-  - {fileID: 1701679970}
-  - {fileID: 204792913}
-  - {fileID: 1174173963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> parent of 4163e76 (Lightings)
 --- !u!1 &607428459
 GameObject:
   m_ObjectHideFlags: 0
@@ -28497,7 +28290,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1008417733}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &1010637179
 GameObject:
   m_ObjectHideFlags: 0
@@ -28616,8 +28408,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 73.632, y: 18.647, z: 59.261}
-=======
->>>>>>> parent of 4163e76 (Lightings)
 --- !u!1001 &1016682864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29994,7 +29784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce2dd4bb67fdc684dac928dc2cfb7a0f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.119835
+      value: 40.55
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce2dd4bb67fdc684dac928dc2cfb7a0f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33764,7 +33554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.3500004
+      value: 5.23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -61887,4 +61677,11 @@ SceneRoots:
   - {fileID: 1569791617}
   - {fileID: 671549571}
   - {fileID: 708255417}
+
+  - {fileID: 484149880}
+  - {fileID: 782438652}
+  - {fileID: 606340845}
+  - {fileID: 1010637182}
+
   - {fileID: 1185391847}
+
