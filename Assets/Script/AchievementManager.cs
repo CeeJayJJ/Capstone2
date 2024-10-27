@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class AchievementManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton implementation
         if (Instance == null)
         {
             Instance = this;
@@ -22,56 +22,49 @@ public class AchievementManager : MonoBehaviour
             return;
         }
 
-        // Initialize achievements (e.g., from a save file or new game)
         InitializeAchievements();
 
-        // Register with QuestManager to receive quest completion events
-        QuestManager.Instance.RegisterQuestObserver(this);
-    }
-
-    // Initializes achievements, either by loading or by creating a default set for a new game
-    private void InitializeAchievements()
-    {
-        // Load achievements from save file or create new entries if not found
-        if (SaveLoadManager.FileExists("Achievements")) // Assuming SaveSystem is implemented
+        if (QuestManager.Instance != null)
         {
-            achievements = SaveLoadManager.Load<Dictionary<string, bool>>("Achievements");
+            QuestManager.Instance.RegisterQuestObserver(this);
         }
         else
         {
-            // Example: Initial achievements for new game
-            achievements.Add("FirstQuest_Completed", false);
-            achievements.Add("DefeatDragon_Completed", false);
-            // Add more default achievements as needed
+            Debug.LogError("QuestManager instance is not initialized.");
         }
     }
 
-    // Implement IQuestObserver interface (observer pattern)
+    private void InitializeAchievements()
+    {
+        List<Achievement> loadedAchievements = SaveLoadManager.Instance.LoadAchievements();
+        if (loadedAchievements.Any())
+        {
+            achievements = loadedAchievements.ToDictionary(a => a.key, a => a.isUnlocked);
+        }
+        else
+        {
+            achievements.Add("FirstQuest_Completed", false);
+            achievements.Add("DefeatDragon_Completed", false);
+        }
+    }
+
     public void OnQuestUpdated(QuestData questData, QuestEventType eventType)
     {
         if (eventType == QuestEventType.Completed)
         {
-            // Check if an achievement is associated with this quest
             string achievementKey = questData.questTitle + "_Completed";
 
-            if (achievements.ContainsKey(achievementKey))
+            if (achievements.ContainsKey(achievementKey) && !achievements[achievementKey])
             {
-                if (!achievements[achievementKey]) // If not already completed
-                {
-                    achievements[achievementKey] = true;
-                    // Optionally, trigger UI notification or effects
-                    Debug.Log("Achievement unlocked: " + achievementKey);
-
-                    // Trigger notification to player (add your own method for UI feedback)
-                    TriggerAchievementNotification(achievementKey);
-                }
+                achievements[achievementKey] = true;
+                TriggerAchievementNotification(achievementKey);
             }
         }
     }
 
     public Dictionary<string, bool> GetAchievementsData()
     {
-        return achievements; // Return the current achievements dictionary
+        return achievements;
     }
 
     public void LoadAchievementsData(Dictionary<string, bool> loadedAchievements)
@@ -79,7 +72,6 @@ public class AchievementManager : MonoBehaviour
         achievements = loadedAchievements;
     }
 
-    // Method to check if a specific achievement is unlocked
     public bool IsAchievementUnlocked(string achievementKey)
     {
         if (achievements.ContainsKey(achievementKey))
@@ -93,27 +85,28 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    // Optional: Method to trigger UI notifications when achievements are unlocked
     private void TriggerAchievementNotification(string achievementKey)
     {
-        // Implement UI notifications or visual effects when an achievement is unlocked
         Debug.Log("Display notification for achievement: " + achievementKey);
     }
 
-    // Save achievements data (e.g., at checkpoints or game exits)
     public void SaveAchievements()
     {
-        SaveLoadManager.Save(achievements, "Achievements");
+        var achievementsList = achievements
+            .Select(entry => new Achievement { key = entry.Key, isUnlocked = entry.Value })
+            .ToList();
+        SaveLoadManager.Instance.SaveAchievements(achievementsList);
     }
 
-    // Load achievements data (called during initialization)
-    public void LoadAchievements()
+    private void OnApplicationQuit()
     {
-        if (SaveLoadManager.FileExists("Achievements"))
-        {
-            achievements = SaveLoadManager.Load<Dictionary<string, bool>>("Achievements");
-        }
+        SaveAchievements();
     }
 
-
+    [System.Serializable]
+    public class Achievement
+    {
+        public string key;
+        public bool isUnlocked;
+    }
 }
