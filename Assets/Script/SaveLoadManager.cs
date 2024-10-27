@@ -1,45 +1,46 @@
-using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance { get; private set; }
+    private string gameDataFilePath;
+    private string inventoryFilePath;
+    private string achievementsFilePath;
 
-    private string saveFilePath;
-    private PlayerMovement playerMovement;
-    void Awake()
+    private void Awake()
     {
-        // Singleton implementation
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            saveFilePath = Application.persistentDataPath + "/gamedata.dat"; // File path for saving game data
+            gameDataFilePath = Application.persistentDataPath + "/gamedata.dat";
+            inventoryFilePath = Application.persistentDataPath + "/inventory.dat";
+            achievementsFilePath = Application.persistentDataPath + "/achievements.dat"; // Separate file for achievements
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
     }
 
-    public void SaveGame()
-    {
-        // Gather data to save
-        GameData dataToSave = new GameData();
-        dataToSave.playerData = playerMovement.playerData; // Save player data
-        dataToSave.questsData = QuestManager.Instance.GetQuestsData(); // Save quest progress
-        dataToSave.achievementsData = AchievementManager.Instance.GetAchievementsData(); // Save achievements
+    // Button-triggered Save method
 
-        // Binary serialization
+    // Save player data
+    // Save game data including player and current scene
+    public void SaveGame(PlayerData playerData, Transform playerTransform)
+    {
+        var currentScene = SceneManager.GetActiveScene().name;
+        var dataToSave = new PlayerDataToSerialize(playerData, playerTransform.position, currentScene);
+
         try
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream file = File.Create(saveFilePath))
+            using (FileStream file = File.Create(gameDataFilePath))
             {
-                bf.Serialize(file, dataToSave);
+                new BinaryFormatter().Serialize(file, dataToSave);
             }
             Debug.Log("Game saved successfully.");
         }
@@ -49,22 +50,18 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
-    public void LoadGame()
+    // Load game data
+    public void LoadGame(PlayerData playerData, Transform playerTransform)
     {
-        if (File.Exists(saveFilePath))
+        if (File.Exists(gameDataFilePath))
         {
             try
             {
-                // Binary deserialization
-                BinaryFormatter bf = new BinaryFormatter();
-                using (FileStream file = File.Open(saveFilePath, FileMode.Open))
+                using (FileStream file = File.Open(gameDataFilePath, FileMode.Open))
                 {
-                    GameData loadedData = (GameData)bf.Deserialize(file);
-
-                    // Apply loaded data to the game
-                    PlayerController.Instance.playerData = loadedData.playerData; // Load player data
-                    QuestManager.Instance.LoadQuestsData(loadedData.questsData); // Load quest progress
-                    AchievementManager.Instance.LoadAchievementsData(loadedData.achievementsData); // Load achievements
+                    var loadedData = (PlayerDataToSerialize)new BinaryFormatter().Deserialize(file);
+                    loadedData.ApplyTo(playerData, playerTransform);
+                    SceneManager.LoadScene(loadedData.sceneName);
                 }
                 Debug.Log("Game loaded successfully.");
             }
@@ -79,63 +76,120 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
-    // Method to check if a save file exists
+    // Save inventory data using ItemDataSerializable
+    public void SaveInventory(List<ItemDataSerializable> inventoryItems)
+    {
+        try
+        {
+            using (FileStream file = File.Create(inventoryFilePath))
+            {
+                new BinaryFormatter().Serialize(file, inventoryItems);
+            }
+            Debug.Log("Inventory saved successfully.");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to save inventory: " + e.Message);
+        }
+    }
+
+    // Load inventory data and return a list of ItemData
+    public List<ItemData> LoadInventory()
+    {
+        if (File.Exists(inventoryFilePath))
+        {
+            try
+            {
+                using (FileStream file = File.Open(inventoryFilePath, FileMode.Open))
+                {
+                    var loadedItems = (List<ItemDataSerializable>)new BinaryFormatter().Deserialize(file);
+                    List<ItemData> inventoryItems = new List<ItemData>();
+
+                    foreach (var serializableItem in loadedItems)
+                    {
+                        // Create a new instance of ItemData for each item loaded
+                        ItemData item = ScriptableObject.CreateInstance<ItemData>();
+                        item.InitializeItem(serializableItem.itemName, serializableItem.itemDescription, LoadIcon(serializableItem.iconPath), serializableItem.itemQuantity);
+                        inventoryItems.Add(item);
+                    }
+
+                    Debug.Log("Inventory loaded successfully.");
+                    return inventoryItems;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Failed to load inventory: " + e.Message);
+            }
+        }
+        else
+        {
+            Debug.Log("No inventory save file found, starting with empty inventory.");
+        }
+
+        return new List<ItemData>(); // Return an empty list if no save file is found
+    }
+
+    // Load icon from Resources
+    private Sprite LoadIcon(string iconName)
+    {
+        return Resources.Load<Sprite>("Icons/" + iconName); // Adjust the path as necessary
+    }
+
+
+
+    // Save achievements data
+    public void SaveAchievements(List<AchievementManager.Achievement> achievements)
+    {
+        try
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream file = File.Create(achievementsFilePath))
+            {
+                bf.Serialize(file, achievements);
+            }
+            Debug.Log("Achievements saved successfully.");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to save achievements: " + e.Message);
+        }
+    }
+
+    // Load achievements data
+    public List<AchievementManager.Achievement> LoadAchievements()
+    {
+        if (File.Exists(achievementsFilePath))
+        {
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                using (FileStream file = File.Open(achievementsFilePath, FileMode.Open))
+                {
+                    var loadedAchievements = (List<AchievementManager.Achievement>)bf.Deserialize(file);
+                    Debug.Log("Achievements loaded successfully.");
+                    return loadedAchievements;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Failed to load achievements: " + e.Message);
+            }
+        }
+        else
+        {
+            Debug.Log("No achievements save file found, initializing with default achievements.");
+        }
+
+        return new List<AchievementManager.Achievement>(); // Return an empty list if no save file is found
+    }
+
+    // Utility method to check if a specific file exists
     public static bool FileExists(string fileName)
     {
         return File.Exists(Application.persistentDataPath + "/" + fileName + ".dat");
     }
-
-    // Generic method to save data
-    public static void Save<T>(T data, string fileName)
-    {
-        string path = Application.persistentDataPath + "/" + fileName + ".dat";
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(path);
-
-        bf.Serialize(file, data);
-        file.Close();
-
-        Debug.Log("Data saved to: " + path);
-    }
-
-    // Generic method to load data
-    public static T Load<T>(string fileName)
-    {
-        string path = Application.persistentDataPath + "/" + fileName + ".dat";
-
-        if (File.Exists(path))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(path, FileMode.Open);
-
-            T data = (T)bf.Deserialize(file);
-            file.Close();
-
-            Debug.Log("Data loaded from: " + path);
-            return data;
-        }
-        else
-        {
-            Debug.LogError("Save file not found: " + path);
-            return default;
-        }
-    }
 }
 
-// Data structure to hold all saveable game data
-[System.Serializable]
-public class GameData
-{
-    public PlayerData playerData;  // Stores player-specific data
-    public QuestData[] questsData; // Stores quest progress (array of quest data)
-    public Dictionary<string, bool> achievementsData; // Stores achievement progress
 
-    public float techbar;
-    public float socialbar;
-    public int relationship;
-    public int coins;
 
-    public List<ItemData> inventoryItems;   // Save inventory items
-    public List<QuestData> activeQuests;    // Save active quests
-    public List<QuestData> completedQuests; // Save completed quests
-}
