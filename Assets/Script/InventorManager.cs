@@ -5,31 +5,27 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    // Use a List for dynamic item storage
     private List<ItemData> inventoryItems = new List<ItemData>();
 
     void Awake()
     {
-        // Singleton implementation
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadInventory(); // Load inventory on startup
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        // Load inventory data from save file or initialize if new game
-        LoadInventory();
     }
 
     public void AddItem(ItemData item)
     {
         inventoryItems.Add(item);
-        Debug.Log("Item added: " + item.itemName); // Access itemName field
+        Debug.Log("Item added: " + item.itemName);
     }
 
     public void RemoveItem(ItemData item)
@@ -37,11 +33,11 @@ public class InventoryManager : MonoBehaviour
         if (inventoryItems.Contains(item))
         {
             inventoryItems.Remove(item);
-            Debug.Log("Item removed: " + item.itemName); // Access itemName field
+            Debug.Log("Item removed: " + item.itemName);
         }
         else
         {
-            Debug.LogWarning("Item not found in inventory: " + item.itemName); // Access itemName field
+            Debug.LogWarning("Item not found in inventory: " + item.itemName);
         }
     }
 
@@ -52,26 +48,22 @@ public class InventoryManager : MonoBehaviour
 
     public List<ItemData> GetInventoryItems()
     {
-        return inventoryItems;
+        return new List<ItemData>(inventoryItems); // Return a copy to prevent external modification
     }
 
-    // Save the inventory data
     public void SaveInventory()
     {
-        SaveLoadManager.Save(inventoryItems, "Inventory");
+        List<ItemDataSerializable> serializableInventory = new List<ItemDataSerializable>();
+        foreach (var item in inventoryItems) // Use the inventoryItems directly
+        {
+            serializableInventory.Add(new ItemDataSerializable(item));
+        }
+        SaveLoadManager.Instance.SaveInventory(serializableInventory);
     }
 
-    // Load the inventory data
     public void LoadInventory()
     {
-        if (SaveLoadManager.FileExists("Inventory"))
-        {
-            inventoryItems = SaveLoadManager.Load<List<ItemData>>("Inventory");
-            Debug.Log("Inventory loaded successfully.");
-        }
-        else
-        {
-            Debug.Log("No inventory save file found, starting with empty inventory.");
-        }
+        inventoryItems = SaveLoadManager.Instance.LoadInventory();
+        Debug.Log("Inventory loaded, total items: " + inventoryItems.Count);
     }
 }

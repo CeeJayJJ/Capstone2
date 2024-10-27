@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
-// Player-specific data (stats, inventory, etc.)
 [CreateAssetMenu(fileName = "New Player Data", menuName = "RPG/Player Data")]
 public class PlayerData : ScriptableObject
 {
@@ -10,50 +9,133 @@ public class PlayerData : ScriptableObject
     public float socialbar;
     public int relationship;
     public int coins;
+    public Vector3 playerPosition;
 
-    // Add inventoryItems to hold the player's inventory
-    public List<ItemData> inventoryItems = new List<ItemData>();  // Now contains inventory items
-
-    // You can also add quests or other properties you want to save here
+    // Changed to hold serialized items only for saving
+    public List<ItemData> inventoryItems = new List<ItemData>();
     public List<QuestData> activeQuests = new List<QuestData>();
     public List<QuestData> completedQuests = new List<QuestData>();
 
-
-    public void SaveGame()
+    public void AddGold(int amount)
     {
-        GameData dataToSave = new GameData();
-
-        // Gather data from PlayerData ScriptableObject
-        dataToSave.techbar = PlayerMovement.Instance.playerData.techbar;
-        dataToSave.socialbar = PlayerMovement.Instance.playerData.socialbar;
-        dataToSave.relationship = PlayerMovement.Instance.playerData.relationship;
-        dataToSave.coins = PlayerMovement.Instance.playerData.coins;
-
-        // Copy inventory and quest data
-        dataToSave.inventoryItems = new List<ItemData>(PlayerMovement.Instance.playerData.inventoryItems);
-        dataToSave.activeQuests = new List<QuestData>(PlayerMovement.Instance.playerData.activeQuests);
-        dataToSave.completedQuests = new List<QuestData>(PlayerMovement.Instance.playerData.completedQuests);
-
-        // Save using binary or JSON format
-        SaveLoadManager.Save(dataToSave, "GameData");
+        coins += amount;
+        Debug.Log("Added Gold: " + amount);
     }
 
-    public void LoadGame()
+    public void AddItem(ItemData item)
     {
-        if (SaveLoadManager.FileExists("GameData"))
+        var existingItem = inventoryItems.Find(i => i.itemName == item.itemName);
+
+        if (existingItem != null)
         {
-            GameData loadedData = SaveLoadManager.Load<GameData>("GameData");
-
-            // Populate PlayerData from loaded data
-            PlayerMovement.Instance.playerData.techbar = loadedData.techbar;
-            PlayerMovement.Instance.playerData.socialbar = loadedData.socialbar;
-            PlayerMovement.Instance.playerData.relationship = loadedData.relationship;
-            PlayerMovement.Instance.playerData.coins = loadedData.coins;
-
-            // Copy inventory and quest data
-            PlayerMovement.Instance.playerData.inventoryItems = new List<ItemData>(loadedData.inventoryItems);
-            PlayerMovement  .Instance.playerData.activeQuests = new List<QuestData>(loadedData.activeQuests);
-            PlayerMovement.Instance.playerData.completedQuests = new List<QuestData>(loadedData.completedQuests);
+            existingItem.itemQuantity += item.itemQuantity;
         }
+        else
+        {
+            inventoryItems.Add(item);
+        }
+
+        Debug.Log("Added item: " + item.itemName + " Quantity: " + item.itemQuantity);
     }
 }
+
+[Serializable]
+public class PlayerDataToSerialize
+{
+    public float techbar;
+    public float socialbar;
+    public int relationship;
+    public int coins;
+
+    // Changed to List<ItemDataSerializable> for serialization
+    public List<ItemDataSerializable> inventoryItems = new List<ItemDataSerializable>();
+    public List<QuestDataSerializable> activeQuests = new List<QuestDataSerializable>();
+    public List<QuestDataSerializable> completedQuests = new List<QuestDataSerializable>();
+
+    public SerializableVector3 position;
+    public string sceneName;
+
+    public PlayerDataToSerialize(PlayerData playerData, Vector3 playerPosition, string playerScene)
+    {
+        techbar = playerData.techbar;
+        socialbar = playerData.socialbar;
+        relationship = playerData.relationship;
+        coins = playerData.coins;
+
+        // Convert ItemData to ItemDataSerializable
+        foreach (var item in playerData.inventoryItems)
+        {
+            inventoryItems.Add(new ItemDataSerializable(item));
+        }
+
+        // Convert QuestData to QuestDataSerializable
+        foreach (var quest in playerData.activeQuests)
+        {
+            activeQuests.Add(new QuestDataSerializable(quest));
+        }
+
+        foreach (var quest in playerData.completedQuests)
+        {
+            completedQuests.Add(new QuestDataSerializable(quest));
+        }
+
+        position = new SerializableVector3(playerPosition);
+        sceneName = playerScene;
+    }
+
+    public void ApplyTo(PlayerData playerData, Transform playerTransform)
+    {
+        playerData.techbar = techbar;
+        playerData.socialbar = socialbar;
+        playerData.relationship = relationship;
+        playerData.coins = coins;
+
+        // Convert back from ItemDataSerializable to ItemData
+        playerData.inventoryItems.Clear();
+        foreach (var serializableItem in inventoryItems)
+        {
+            ItemData item = ScriptableObject.CreateInstance<ItemData>();
+            item.InitializeItem(serializableItem.itemName, serializableItem.itemDescription, LoadIcon(serializableItem.iconPath), serializableItem.itemQuantity);
+            playerData.inventoryItems.Add(item);
+        }
+
+        // Convert back from QuestDataSerializable to QuestData
+        playerData.activeQuests.Clear();
+        foreach (var questSerializable in activeQuests)
+        {
+            playerData.activeQuests.Add(questSerializable.ToQuestData());
+        }
+
+        playerData.completedQuests.Clear();
+        foreach (var questSerializable in completedQuests)
+        {
+            playerData.completedQuests.Add(questSerializable.ToQuestData());
+        }
+
+        playerTransform.position = position.ToVector3();
+    }
+
+    private Sprite LoadIcon(string iconName)
+    {
+        return Resources.Load<Sprite>("Icons/" + iconName);
+    }
+}
+
+[Serializable]
+public class SerializableVector3
+{
+    public float x, y, z;
+
+    public SerializableVector3(Vector3 vector)
+    {
+        x = vector.x;
+        y = vector.y;
+        z = vector.z;
+    }
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(x, y, z);
+    }
+}
+

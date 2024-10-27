@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,3 +23,22 @@ public class ItemData : ScriptableObject
 
     // Add other item-related properties or methods as needed
 }
+
+[Serializable]
+public class ItemDataSerializable
+{
+    public string itemName;
+    public string itemDescription;
+    public int itemQuantity;
+    public string iconPath;
+
+    public ItemDataSerializable(ItemData item)
+    {
+        itemName = item.itemName;
+        itemDescription = item.itemDescription;
+        itemQuantity = item.itemQuantity;
+        iconPath = item.itemIcon != null ? item.itemIcon.name : null;
+    }
+}
+
+

@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System;
 using UnityEngine;
+using static QuestData;
 
 [CreateAssetMenu(fileName = "New Quest", menuName = "RPG/Quest")]
 public class QuestData : ScriptableObject
@@ -90,4 +93,134 @@ public class QuestData : ScriptableObject
         }
         return true; // If no time limit, always return true
     }
+}
+
+
+
+[Serializable]
+public class QuestDataSerializable
+{
+    public string questTitle;
+    public string questDescription;
+    public QuestCondition condition;
+    public QuestStatus status;
+    public float questTimer;
+    public string questLocation;
+
+    public bool availableDuringDay;
+    public bool availableAtNight;
+
+    public bool hasTimeLimit;
+    public float completionDeadline;
+
+    public bool isTimeLimited;
+    public float startHour;
+    public float endHour;
+
+    public List<RewardSerializable> rewards; // Using serializable rewards
+
+    public QuestData ToQuestData()
+    {
+        QuestData questData = ScriptableObject.CreateInstance<QuestData>();
+        questData.questTitle = questTitle;
+        questData.questDescription = questDescription;
+        questData.condition = (QuestData.QuestCondition)(int)condition;
+        questData.status = (QuestData.QuestStatus)(int)status;
+        questData.questTimer = questTimer;
+        questData.questLocation = questLocation;
+        questData.availableDuringDay = availableDuringDay;
+        questData.availableAtNight = availableAtNight;
+        questData.hasTimeLimit = hasTimeLimit;
+        questData.completionDeadline = completionDeadline;
+        questData.isTimeLimited = isTimeLimited;
+        questData.startHour = startHour;
+        questData.endHour = endHour;
+
+        questData.rewards = new QuestData.Reward[rewards.Count];
+        for (int i = 0; i < rewards.Count; i++)
+        {
+            var reward = rewards[i];
+            questData.rewards[i] = new QuestData.Reward
+            {
+                type = (QuestData.Reward.RewardType)(int)reward.type,
+                amount = reward.amount,
+                item = Resources.Load<ItemData>("Items/" + reward.itemName)
+            };
+        }
+
+        return questData;
+    }
+
+    public QuestDataSerializable(QuestData questData)
+    {
+        questTitle = questData.questTitle;
+        questDescription = questData.questDescription;
+
+        // Explicitly casting QuestData enums to QuestDataSerializable enums
+        condition = (QuestCondition)(int)questData.condition;
+        status = (QuestStatus)(int)questData.status;
+
+        questTimer = questData.questTimer;
+        questLocation = questData.questLocation;
+
+        availableDuringDay = questData.availableDuringDay;
+        availableAtNight = questData.availableAtNight;
+
+        hasTimeLimit = questData.hasTimeLimit;
+        completionDeadline = questData.completionDeadline;
+
+        isTimeLimited = questData.isTimeLimited;
+        startHour = questData.startHour;
+        endHour = questData.endHour;
+
+        rewards = new List<RewardSerializable>();
+        foreach (var reward in questData.rewards)
+        {
+            rewards.Add(new RewardSerializable(reward));
+        }
+    }
+
+
+
+    [Serializable]
+    public class RewardSerializable
+    {
+        public RewardType type;
+        public int amount;
+        public string itemName;
+
+        public RewardSerializable(QuestData.Reward reward)
+        {
+            type = (RewardType)(int)reward.type;
+            amount = reward.amount;
+            itemName = reward.item != null ? reward.item.itemName : null;
+        }
+
+
+        public enum RewardType
+        {
+            Gold,
+            Experience,
+            Item
+        }
+    }
+
+    // Enums for quest condition
+    public enum QuestCondition
+    {
+        NotStarted,
+        InProgress,
+        Completed,
+        Failed
+    }
+
+    // Enums for quest status
+    public enum QuestStatus
+    {
+        NotStarted,
+        InProgress,
+        Completed,
+        Failed
+    }
+
 }
