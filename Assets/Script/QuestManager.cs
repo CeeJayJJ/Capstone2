@@ -9,9 +9,22 @@ public class QuestManager : MonoBehaviour
     private List<IQuestObserver> questObservers = new List<IQuestObserver>();
     private List<QuestData> quests = new List<QuestData>();
 
-    void Awake()
+    public PlayerData playerData; // Assign in the Unity Inspector
+
+
+    private void Awake()
     {
-        // Singleton implementation (similar to PlayerController)
+        // Singleton implementation (similar to other core scripts)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     // Method to start a new quest
@@ -31,12 +44,32 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteQuest(QuestData quest)
     {
-        if (quest != null && quests.Contains(quest))
+        if (quest == null || !quests.Contains(quest)) return;
+
+        quest.status = QuestData.QuestStatus.Completed;
+        Debug.Log("Quest completed: " + quest.questTitle);
+
+        foreach (var reward in quest.rewards)
         {
-            quest.status = QuestData.QuestStatus.Completed;
-            Debug.Log("Quest completed: " + quest.questTitle);
+            switch (reward.type)
+            {
+                case QuestData.Reward.RewardType.Gold:
+                    playerData.AddGold(reward.amount); // Assuming PlayerData has AddGold
+                    break;
+                case QuestData.Reward.RewardType.Item:
+                    playerData.AddItem(reward.item);
+                    break;
+            }
         }
     }
+    public bool IsQuestAvailableAtCurrentTime(QuestData quest)
+    {
+        if (TimeManager.Instance == null) return true;
+
+        return (quest.availableDuringDay && TimeManager.Instance.IsDay()) ||
+               (quest.availableAtNight && TimeManager.Instance.IsNight());
+    }
+
 
     public void UpdateQuest(QuestData questData, QuestEventType eventType)
     {

@@ -11,8 +11,10 @@ public class NPCInteraction : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private void Start()
-    {    
+    {
+        Debug.Log("NPC Data: " + (npcData != null ? npcData.npcName : "null"));
         UIManager.Instance.interactionPrompt.SetActive(false);
+
         // Assuming PlayerMovement is attached to the Player with the "Player" tag
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -106,12 +108,12 @@ public class NPCInteraction : MonoBehaviour
 
     private void HandleDialogueEnd(DialogueData dialogueData, int selectedChoice, int lineIndex)
     {
-        // Unsubscribe from the event after handling dialogue end
+        // Unsubscribe to avoid multiple event triggers
         DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnd;
 
-        if (selectedChoice == 1)
+        if (selectedChoice == 1 && npcData.npcName == "Berto")
         {
-            if (npcData.npcName == "QuestGiver" && dialogueData.dialogueLines[lineIndex] == "Will you accept this quest?")
+            if (lineIndex < dialogueData.dialogueLines.Count && dialogueData.dialogueLines[lineIndex] == "Hello Kai, could you help me clean the sewage?")
             {
                 QuestData questToStart = GetQuestToStart();
                 if (questToStart != null)
@@ -124,8 +126,10 @@ public class NPCInteraction : MonoBehaviour
                 }
             }
         }
-        // Handle other choices here
+
+        // Handle other choices and dialogue options...
     }
+
 
     private QuestData GetQuestToStart()
     {
@@ -149,7 +153,8 @@ public class NPCInteraction : MonoBehaviour
         return null;
     }
 
-    
+
+
 
     private int CalculateRelationshipChange()
     {
@@ -158,7 +163,7 @@ public class NPCInteraction : MonoBehaviour
         {
 
         }
-        return 0; // Placeholder value
+        return relationShipStatus; // Placeholder value
     }
 }
 

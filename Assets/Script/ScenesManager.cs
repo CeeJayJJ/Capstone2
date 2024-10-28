@@ -20,9 +20,6 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        // Optionally, trigger a loading screen or transition effect
-        // ...
-
         SceneManager.LoadScene(sceneName);
     }
 }
