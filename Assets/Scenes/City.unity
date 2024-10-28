@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.18268594, g: 0.22839299, b: 0.30710974, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10084,7 +10084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &250556959
 Light:
   m_ObjectHideFlags: 0
@@ -24150,7 +24150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &606340845
 Transform:
   m_ObjectHideFlags: 0
@@ -37372,7 +37372,7 @@ MonoBehaviour:
   directionalLight: {fileID: 250556959}
   ambientLightColor:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.4867924, g: 0.4867924, b: 0.4867924, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -37380,7 +37380,7 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
+    ctime0: 43407
     ctime1: 65535
     ctime2: 0
     ctime3: 0
@@ -37402,17 +37402,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   directionalLightColor:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.2603773, g: 0.22746167, b: 0.22746167, a: 1}
+    key1: {r: 0.17463125, g: 0.122858755, b: 0.14478517, a: 1}
+    key2: {r: 0.11976635, g: 0.10956763, b: 0.2572187, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
+    ctime0: 52565
+    ctime1: 64533
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -37428,22 +37428,22 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   skyboxTintColor:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.0050062845, g: 0, b: 0.18490559, a: 1}
+    key1: {r: 0.020223834, g: 0.015294117, b: 0.19737174, a: 1}
+    key2: {r: 0.11220211, g: 0.10773518, b: 0.27271992, a: 0}
+    key3: {r: 0.24528301, g: 0.13997427, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime1: 6399
+    ctime2: 35389
+    ctime3: 60832
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -37458,7 +37458,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 2
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   nightStart: 18
   nightEnd: 6
