@@ -1,9 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 public class PerformTeleport : MonoBehaviour
 {
-    public string sceneName;          // Target scene name
+    public string sceneName;  // Target scene name
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,9 +14,20 @@ public class PerformTeleport : MonoBehaviour
 
             if (ScenesManager.Instance != null)
             {
-                Debug.Log("ScenesManager found, loading scene: " + sceneName);
-                // Trigger the scene change and pass the spawn point ID
-                ScenesManager.Instance.LoadScene(sceneName);
+                if (UIManager.Instance != null)
+                {
+                    // Update UIManager references before loading the new scene
+                    UIManager.Instance.InitializeUIReferences();
+                    Debug.Log("UIManager references initialized.");
+
+                    // Trigger the scene change
+                    Debug.Log("ScenesManager found, loading scene: " + sceneName);
+                    ScenesManager.Instance.LoadScene(sceneName);
+                }
+                else
+                {
+                    Debug.LogError("UIManager.Instance is null, UI references cannot be initialized.");
+                }
             }
             else
             {
@@ -25,5 +36,6 @@ public class PerformTeleport : MonoBehaviour
         }
     }
 }
+
 
 

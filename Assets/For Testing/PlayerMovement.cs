@@ -91,10 +91,12 @@ public class PlayerMovement : MonoBehaviour
         else if (playerDialogue != null)
         {
             UIManager.Instance.playerDialoguePanel.SetActive(true);  // Show dialogue panel
-          
             playerDialogue.StartDialogue();  // Start the dialogue
+            animator.SetFloat("xMove", 0);
+            animator.SetFloat("yMove", 0);
+            animator.SetFloat("Speed", 0);
             playerDialogue.StopPlayerMovement();
-
+            
             // Check for dialogue completion (or add event listener when dialogue ends)
             StartCoroutine(WaitForDialogueToEnd(playerDialogue));
         }

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b9e19b1f81a0448aaace7f014edbc, type: 3}
+  m_Name: First Scene Dialogue
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - line: 'Grandma: (Shouting from the living room) "Kai! Can you come here for a
+      moment?"'
+    portrait: {fileID: -993759113, guid: ef260d922f72c3d4fb409f8484f14753, type: 3}
+  - line: 'Kai: (Groaning, rolls over, and checks his phone) "Coming, Grandma." '
+    portrait: {fileID: -1473477665, guid: 2e042d4b891856241902657c57bc5d66, type: 3}
+  - line: 'Grandma: "Look at this. I can''t figure out how to turn off this annoying
+      notification." She shows Kai her smartphone, and there is a flurry of notifications
+      on the screen. '
+    portrait: {fileID: -993759113, guid: ef260d922f72c3d4fb409f8484f14753, type: 3}
+  - line: 'Kai: (Sighs) "It''s just a spam notification, Grandma. Just swipe it away." '
+    portrait: {fileID: -1473477665, guid: 2e042d4b891856241902657c57bc5d66, type: 3}
+  - line: 'Grandma: "I tried that, but it keeps coming back. It''s driving me crazy!" '
+    portrait: {fileID: -993759113, guid: ef260d922f72c3d4fb409f8484f14753, type: 3}
+  - line: 'Kai: (Chuckles) "Let me see. He takes the phone, sees a virus, and quickly
+      swipes the notification away. There, all done." '
+    portrait: {fileID: -1473477665, guid: 2e042d4b891856241902657c57bc5d66, type: 3}
+  - line: 'Grandma: "You''re a lifesaver, Kai. But this technology, it''s getting
+      a bit too much, isn''t it?"  '
+    portrait: {fileID: -993759113, guid: ef260d922f72c3d4fb409f8484f14753, type: 3}
+  - line: 'Kai: "Yeah, sometimes it feels like it''s controlling us, not the other
+      way around."'
+    portrait: {fileID: -1473477665, guid: 2e042d4b891856241902657c57bc5d66, type: 3}
+  - line: 'Grandma: "Remember, technology is a tool, not a master. Use it wisely,
+      and don''t let it consume you."'
+    portrait: {fileID: -993759113, guid: ef260d922f72c3d4fb409f8484f14753, type: 3}
+  - line: 'Kai: "I know, Grandma. I know." '
+    portrait: {fileID: -1473477665, guid: 2e042d4b891856241902657c57bc5d66, type: 3}
