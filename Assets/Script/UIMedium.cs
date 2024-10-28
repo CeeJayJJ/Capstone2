@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIMedium : MonoBehaviour
 {
@@ -11,19 +12,43 @@ public class UIMedium : MonoBehaviour
     public GameObject interactionPrompt;
 
     public Button saveButton;
+    public Button loadButton;
     public PlayerData playerData;
     public Transform playerTransform;
 
     void Awake()
     {
-        // Check if the UIManager instance exists to prevent null reference errors
+        StartCoroutine(InitializeUIReferences());
+    }
+
+    // This coroutine will retry the assignment until UIManager is ready
+    private System.Collections.IEnumerator InitializeUIReferences()
+    {
+        // Wait for UIManager to be instantiated if it is null
+        while (UIManager.Instance == null)
+        {
+            yield return null;
+        }
+
+        AssignUIElements();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Re-assign elements in case they are reset in the new scene
         if (UIManager.Instance != null)
         {
             AssignUIElements();
-        }
-        else
-        {
-            Debug.LogWarning("UIManager instance not found. Make sure UIManager is set up correctly.");
         }
     }
 
@@ -40,10 +65,11 @@ public class UIMedium : MonoBehaviour
         UIManager.Instance.techBar = techBar;
         UIManager.Instance.interactionPrompt = interactionPrompt;
         UIManager.Instance.saveButton = saveButton;
+        UIManager.Instance.loadButton = loadButton;
         UIManager.Instance.playerData = playerData;
         UIManager.Instance.playerTransform = playerTransform;
 
-        // Initialize the UI elements' default states
+        // Initialize UI default states
         UIManager.Instance.InitializeUIReferences();
     }
 }

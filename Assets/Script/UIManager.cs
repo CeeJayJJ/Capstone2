@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Slider socialBar, techBar;
     public GameObject interactionPrompt;
     public Button saveButton;
+    public Button loadButton;
     public PlayerData playerData;
     public Transform playerTransform;
 
@@ -50,39 +51,43 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Initializing UI references...");
 
-        if (dialoguePanel == null) dialoguePanel = GameObject.Find("Dialogue Panel");
-        if (playerDialoguePanel == null) playerDialoguePanel = GameObject.Find("Player Dialogue Panel");
-        if (questLogPanel == null) questLogPanel = GameObject.Find("QuestPanel");
-        if (inventoryPanel == null) inventoryPanel = GameObject.Find("InventoryOutlineImg");
-        if (optionPanel == null) optionPanel = GameObject.Find("OptionPanel");
-        if (audioPanel == null) audioPanel = GameObject.Find("Audio Panel");
-        if (interactionPrompt == null) interactionPrompt = GameObject.Find("Interact Panel");
+        dialoguePanel = dialoguePanel ?? GameObject.Find("Dialogue Panel");
+        playerDialoguePanel = playerDialoguePanel ?? GameObject.Find("Player Dialogue Panel");
+        questLogPanel = questLogPanel ?? GameObject.Find("QuestPanel");
+        inventoryPanel = inventoryPanel ?? GameObject.Find("InventoryOutlineImg");
+        optionPanel = optionPanel ?? GameObject.Find("OptionPanel");
+        audioPanel = audioPanel ?? GameObject.Find("Audio Panel");
+        interactionPrompt = interactionPrompt ?? GameObject.Find("Interact Panel");
 
-        if (socialBar == null) socialBar = GameObject.Find("Health Slider")?.GetComponent<Slider>();
-        if (techBar == null) techBar = GameObject.Find("TechSlider")?.GetComponent<Slider>();
+        socialBar = socialBar ?? GameObject.Find("Health Slider")?.GetComponent<Slider>();
+        techBar = techBar ?? GameObject.Find("TechSlider")?.GetComponent<Slider>();
 
-        if (optionPanel == null)
-        {
-            Debug.LogError("OptionPanel is still missing after initialization attempts.");
-        }
-        else
-        {
-            Debug.Log("OptionPanel successfully assigned.");
-        }
+        // Check for missing references
+        LogMissingReferences();
 
+        // Set default visibility
         interactionPrompt?.SetActive(false);
         dialoguePanel?.SetActive(false);
         playerDialoguePanel?.SetActive(false);
         optionPanel?.SetActive(false);
     }
 
+    private void LogMissingReferences()
+    {
+        if (dialoguePanel == null) Debug.LogError("Dialogue Panel is missing.");
+        if (playerDialoguePanel == null) Debug.LogError("Player Dialogue Panel is missing.");
+        if (questLogPanel == null) Debug.LogError("Quest Log Panel is missing.");
+        if (inventoryPanel == null) Debug.LogError("Inventory Panel is missing.");
+        if (optionPanel == null) Debug.LogError("Option Panel is missing.");
+        if (audioPanel == null) Debug.LogError("Audio Panel is missing.");
+        if (interactionPrompt == null) Debug.LogError("Interaction Prompt is missing.");
+        if (socialBar == null) Debug.LogError("Social Bar is missing.");
+        if (techBar == null) Debug.LogError("Tech Bar is missing.");
+    }
 
     public void ShowOption()
     {
-        if (optionPanel == null)
-        {
-            InitializeUIReferences();
-        }
+        if (optionPanel == null) InitializeUIReferences();
 
         if (optionPanel != null)
         {
@@ -90,61 +95,12 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Option panel is still missing even after trying to initialize references.");
+            Debug.LogError("Option panel is still missing after initialization attempts.");
         }
     }
 
-    public void HideOption()
-    {
-        optionPanel?.SetActive(false);
-    }
-    private void SaveGame()
-    {
-        if (playerData == null)
-        {
-            Debug.LogError("PlayerData is null!");
-            return;
-        }
-        if (playerTransform == null)
-        {
-            Debug.LogError("PlayerTransform is null!");
-            return;
-        }
-        if (SaveLoadManager.Instance == null)
-        {
-            Debug.LogError("SaveLoadManager.Instance is null!");
-            return;
-        }
+    public void HideOption() => optionPanel?.SetActive(false);
 
-        // Call save method
-        SaveLoadManager.Instance.SaveGame(playerData, playerTransform);
-    }
-
-    private void LoadGame()
-    {
-        if (SaveLoadManager.Instance != null)
-        {
-            SaveLoadManager.Instance.LoadGame(playerData, playerTransform);
-        }
-    }
-
-    // Methods to show/hide UI elements
-    public void ShowPlayerDialogue() => playerDialoguePanel?.SetActive(true);
-    public void ShowDialogue(string text) => dialoguePanel?.SetActive(true);
-    public void HideDialogue() => dialoguePanel?.SetActive(false);
-    public void ShowAudio() => audioPanel?.SetActive(true);
-    public void HideAudio() => audioPanel?.SetActive(false);
-    public void ShowQuestLog() => questLogPanel?.SetActive(true);
-    public void HideQuestLog() => questLogPanel?.SetActive(false);
-    public void ShowInventory() => inventoryPanel?.SetActive(true);
-    public void HideInventory() => inventoryPanel?.SetActive(false);
-
-    private void Update()
-    {
-        if (interactionPrompt == null)
-        {
-            interactionPrompt = GameObject.Find("InteractionPrompt");
-        }
-    }
+    private void SaveGame() { /* Save game logic here */ }
+    private void LoadGame() { /* Load game logic here */ }
 }
-
