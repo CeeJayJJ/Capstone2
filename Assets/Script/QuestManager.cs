@@ -12,7 +12,7 @@ public class QuestManager : MonoBehaviour
     public PlayerData playerData; // Assign in the Unity Inspector
 
 
-    void Awake()
+    private void Awake()
     {
         // Singleton implementation (similar to other core scripts)
         if (Instance == null)
