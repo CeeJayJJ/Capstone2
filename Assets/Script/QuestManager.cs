@@ -5,7 +5,7 @@ using System;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; } // Singleton
-
+    public QuestUI questUI;
     private List<IQuestObserver> questObservers = new List<IQuestObserver>();
     private List<QuestData> quests = new List<QuestData>();
 
@@ -34,6 +34,7 @@ public class QuestManager : MonoBehaviour
         {
             quests.Add(quest);
             quest.status = QuestData.QuestStatus.InProgress;
+            questUI.DisplayQuests(quests); // Refresh UI after starting a new quest
             Debug.Log("Quest started: " + quest.questTitle);
         }
         else
@@ -48,7 +49,7 @@ public class QuestManager : MonoBehaviour
 
         quest.status = QuestData.QuestStatus.Completed;
         Debug.Log("Quest completed: " + quest.questTitle);
-
+        questUI.DisplayQuests(quests); // Refresh UI after quest completion
         foreach (var reward in quest.rewards)
         {
             switch (reward.type)
