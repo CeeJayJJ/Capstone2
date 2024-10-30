@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
     public static PanelManager Instance { get; private set; }
 
-    [SerializeField] private GameObject[] panels;
-    [SerializeField] private GameObject mainPanel;
+    [SerializeField] public GameObject[] panels;
+    [SerializeField] public GameObject mainPanel;
 
     private void Awake()
     {
@@ -50,6 +51,35 @@ public class PanelManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public PlayerData playerData;
+    public Transform playerTransform;
+    private List<ItemDataSerializable> inventoryItems;
+    private List<AchievementManager.Achievement> achievements;
+
+    public void GoToMainMenu() => ScenesManager.Instance.LoadScene("MainMenu");
+    public void SaveTheGame() => SaveGame();
+    public void LoadTheGame() => LoadGame();
+    public void QuitGame() => Quit();
+
+    private void SaveGame()
+    {
+        SaveLoadManager.Instance.SaveGame(playerData, playerTransform);
+        SaveLoadManager.Instance.SaveInventory(inventoryItems);
+        SaveLoadManager.Instance.SaveAchievements(achievements);
+    }
+
+    private void Quit()
+    {
+        Application.Quit();
+    }
+
+    private void LoadGame()
+    {
+        SaveLoadManager.Instance.LoadGame(playerData, playerTransform);
+        SaveLoadManager.Instance.LoadInventory();
+        SaveLoadManager.Instance.LoadAchievements();
     }
 }
 

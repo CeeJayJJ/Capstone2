@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Slider = UnityEngine.UI.Slider;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class UIManager : MonoBehaviour
     public Button loadButton;
     public PlayerData playerData;
     public Transform playerTransform;
-
+    private List<ItemDataSerializable> inventoryItems;
+    private List<AchievementManager.Achievement> achievements;
     private void Awake()
     {
         if (Instance == null)
@@ -62,7 +64,6 @@ public class UIManager : MonoBehaviour
         socialBar = socialBar ?? GameObject.Find("Health Slider")?.GetComponent<Slider>();
         techBar = techBar ?? GameObject.Find("TechSlider")?.GetComponent<Slider>();
 
-        // Check for missing references
         LogMissingReferences();
 
         // Set default visibility
@@ -85,22 +86,44 @@ public class UIManager : MonoBehaviour
         if (techBar == null) Debug.LogError("Tech Bar is missing.");
     }
 
-    public void ShowOption()
-    {
-        if (optionPanel == null) InitializeUIReferences();
+    // Show methods
+    public void ShowDialoguePanel() => dialoguePanel?.SetActive(true);
+    public void ShowPlayerDialoguePanel() => playerDialoguePanel?.SetActive(true);
+    public void ShowQuestLogPanel() => questLogPanel?.SetActive(true);
+    public void ShowInventoryPanel() => inventoryPanel?.SetActive(true);
+    public void ShowOptionPanel() => optionPanel?.SetActive(true);
+    public void ShowAudioPanel() => audioPanel?.SetActive(true);
+    public void ShowInteractionPrompt() => interactionPrompt?.SetActive(true);
 
-        if (optionPanel != null)
-        {
-            optionPanel.SetActive(true);
-        }
-        else
-        {
-            Debug.LogError("Option panel is still missing after initialization attempts.");
-        }
+    // Hide methods
+    public void HideDialoguePanel() => dialoguePanel?.SetActive(false);
+    public void HidePlayerDialoguePanel() => playerDialoguePanel?.SetActive(false);
+    public void HideQuestLogPanel() => questLogPanel?.SetActive(false);
+    public void HideInventoryPanel() => inventoryPanel?.SetActive(false);
+    public void HideOptionPanel() => optionPanel?.SetActive(false);
+    public void HideAudioPanel() => audioPanel?.SetActive(false);
+    public void HideInteractionPrompt() => interactionPrompt?.SetActive(false);
+
+    public void GoToMainMenu() => ScenesManager.Instance.LoadScene("MainMenu");
+    public void SaveTheGame() => SaveGame();
+    public void LoadTheGame() => LoadGame();
+    public void QuitGame() => Quit();
+    private void SaveGame() 
+    {
+        SaveLoadManager.Instance.SaveGame(playerData, playerTransform);
+        SaveLoadManager.Instance.SaveInventory(inventoryItems);
+        SaveLoadManager.Instance.SaveAchievements(achievements);
     }
 
-    public void HideOption() => optionPanel?.SetActive(false);
+    private void Quit() 
+    { 
+        Application.Quit();
+    }
 
-    private void SaveGame() { /* Save game logic here */ }
-    private void LoadGame() { /* Load game logic here */ }
+    private void LoadGame() 
+    {
+        SaveLoadManager.Instance.LoadGame(playerData, playerTransform);
+        SaveLoadManager.Instance.LoadInventory();
+        SaveLoadManager.Instance.LoadAchievements();
+    }
 }
