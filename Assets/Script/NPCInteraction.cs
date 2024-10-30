@@ -9,17 +9,25 @@ public class NPCInteraction : MonoBehaviour
 
     // Reference to the PlayerMovement script
     private PlayerMovement playerMovement;
-
     private void Start()
     {
         Debug.Log("NPC Data: " + (npcData != null ? npcData.npcName : "null"));
         UIManager.Instance.interactionPrompt.SetActive(false);
 
-        // Assuming PlayerMovement is attached to the Player with the "Player" tag
+        // Check if player is tagged correctly
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerMovement = player.GetComponent<PlayerMovement>();
+
+            if (playerMovement == null)
+            {
+                Debug.LogError("PlayerMovement component is missing on the Player object!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player GameObject with the 'Player' tag was not found!");
         }
     }
 
@@ -112,6 +120,22 @@ public class NPCInteraction : MonoBehaviour
         DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnd;
 
         if (selectedChoice == 1 && npcData.npcName == "Berto")
+        {
+            if (lineIndex < dialogueData.dialogueLines.Count && dialogueData.dialogueLines[lineIndex] == "Hello Kai, could you help me clean the sewage?")
+            {
+                QuestData questToStart = GetQuestToStart();
+                if (questToStart != null)
+                {
+                    QuestManager.Instance.StartQuest(questToStart);
+                }
+                else
+                {
+                    Debug.LogError("Quest to start is not assigned or found!");
+                }
+            }
+        } 
+        
+        else if(selectedChoice == 1 && npcData.npcName == "Grandma")
         {
             if (lineIndex < dialogueData.dialogueLines.Count && dialogueData.dialogueLines[lineIndex] == "Hello Kai, could you help me clean the sewage?")
             {
