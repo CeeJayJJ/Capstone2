@@ -63,14 +63,6 @@ public class PlayerMovement : MonoBehaviour
             UIManager.Instance.dialoguePanel.SetActive(true);
             currentNPC.Interact();
         }
-
-        if (Input.GetKeyDown(KeyCode.I)) // Press 'I' to add an item to the inventory (for testing purposes)
-        {
-            // Add an item to the player's inventory (example, you need to define ItemData properly)
-            ItemData newItem = new ItemData(); // Create a new item (this will depend on how you define ItemData)
-            playerData.inventoryItems.Add(newItem);
-            Debug.Log("Added item to inventory.");
-        }
     }
 
     // Detect when the player enters an NPC's interaction range (trigger collider)

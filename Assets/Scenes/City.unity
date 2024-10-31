@@ -12629,7 +12629,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5782848150347781038, guid: 7ea42816d638d2d4d9d34b38778d74eb,
           type: 3}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowOption
+        m_MethodName: ShowOptionPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23092,7 +23092,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 561088670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1330867856}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SaveAchievements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1330867856}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1330867856}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SaveInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &561088670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53303,6 +53339,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 111998223}
   m_SourcePrefab: {fileID: 100100000, guid: b8ee657c6800ab849bb30b4375d02323, type: 3}
+--- !u!114 &1330867856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8032738862737210057, guid: 8b84be2b572ca6048af6975046f497fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 1346336481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e837d0d20cbd84db7f32f3945f557e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1331082736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54560,6 +54608,74 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ab761d05302615348a9aed34ccd58dd7, type: 3}
+--- !u!1001 &1346336481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 323.33978
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 188.78244
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6447074
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770849537405010683, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839680884202787893, guid: 8b84be2b572ca6048af6975046f497fe,
+        type: 3}
+      propertyPath: m_Name
+      value: Save Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b84be2b572ca6048af6975046f497fe, type: 3}
 --- !u!1 &1346895401
 GameObject:
   m_ObjectHideFlags: 0
@@ -65858,7 +65974,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5782848150347781038, guid: 7ea42816d638d2d4d9d34b38778d74eb,
           type: 3}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: HideOption
+        m_MethodName: ShowAudioPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -65871,7 +65987,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5782848150347781038, guid: 7ea42816d638d2d4d9d34b38778d74eb,
           type: 3}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowAudio
+        m_MethodName: HideOptionPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -67978,7 +68094,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5782848150347781038, guid: 7ea42816d638d2d4d9d34b38778d74eb,
           type: 3}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: HideOption
+        m_MethodName: HideOptionPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -88843,4 +88959,5 @@ SceneRoots:
   - {fileID: 2064447898}
   - {fileID: 2061693920}
   - {fileID: 202477589}
+  - {fileID: 1346336481}
   - {fileID: 1723283782}

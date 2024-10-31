@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PerformTeleport : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PerformTeleport : MonoBehaviour
 
                     // Trigger the scene change
                     Debug.Log("ScenesManager found, loading scene: " + sceneName);
-                    ScenesManager.Instance.LoadScene(sceneName);
+                    SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
                 }
                 else
                 {
