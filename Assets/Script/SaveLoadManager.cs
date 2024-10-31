@@ -29,6 +29,10 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
+    public bool IsGameDataAvailable() => File.Exists(gameDataFilePath);
+    public bool IsInventoryDataAvailable() => File.Exists(inventoryFilePath);
+    public bool IsAchievementsDataAvailable() => File.Exists(achievementsFilePath);
+
     // Main Save method triggered by a button or event
     public void SaveGame(GameData gameData)
     {
