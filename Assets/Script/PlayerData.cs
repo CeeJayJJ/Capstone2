@@ -90,22 +90,26 @@ public class PlayerDataToSerialize
         playerData.relationship = relationship;
         playerData.coins = coins;
 
-        // Convert back from ItemDataSerializable to ItemData
         playerData.inventoryItems.Clear();
         foreach (var serializableItem in inventoryItems)
         {
             ItemData item = ScriptableObject.CreateInstance<ItemData>();
-            item.InitializeItem(serializableItem.itemName, serializableItem.itemDescription, LoadIcon(serializableItem.iconPath), serializableItem.itemQuantity);
+            item.InitializeItem(
+                serializableItem.itemName,
+                serializableItem.itemDescription,
+                LoadIcon(serializableItem.iconPath),
+                serializableItem.itemQuantity,
+                serializableItem.id  // Pass id here
+            );
             playerData.inventoryItems.Add(item);
         }
-
-        // Convert back from QuestDataSerializable to QuestData
+    
+        // Same for quests
         playerData.activeQuests.Clear();
         foreach (var questSerializable in activeQuests)
         {
             playerData.activeQuests.Add(questSerializable.ToQuestData());
         }
-
         playerData.completedQuests.Clear();
         foreach (var questSerializable in completedQuests)
         {
@@ -120,6 +124,7 @@ public class PlayerDataToSerialize
         return Resources.Load<Sprite>("Icons/" + iconName);
     }
 }
+
 
 [Serializable]
 public class SerializableVector3

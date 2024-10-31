@@ -105,25 +105,13 @@ public class UIManager : MonoBehaviour
     public void HideInteractionPrompt() => interactionPrompt?.SetActive(false);
 
     public void GoToMainMenu() => ScenesManager.Instance.LoadScene("MainMenu");
-    public void SaveTheGame() => SaveGame();
-    public void LoadTheGame() => LoadGame();
     public void QuitGame() => Quit();
-    private void SaveGame() 
-    {
-        SaveLoadManager.Instance.SaveGame(playerData, playerTransform);
-        SaveLoadManager.Instance.SaveInventory(inventoryItems);
-        SaveLoadManager.Instance.SaveAchievements(achievements);
-    }
+
 
     private void Quit() 
     { 
         Application.Quit();
     }
 
-    private void LoadGame() 
-    {
-        SaveLoadManager.Instance.LoadGame(playerData, playerTransform);
-        SaveLoadManager.Instance.LoadInventory();
-        SaveLoadManager.Instance.LoadAchievements();
-    }
+
 }
