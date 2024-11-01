@@ -9931,6 +9931,156 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 587407902}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &590837013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 590837019}
+  - component: {fileID: 590837018}
+  - component: {fileID: 590837017}
+  - component: {fileID: 590837016}
+  - component: {fileID: 590837015}
+  - component: {fileID: 590837014}
+  m_Layer: 0
+  m_Name: Item2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &590837014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590837013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23bf5822384bf464ea4498a14b40d5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Porkchop
+  quantity: 1
+  sprite: {fileID: -154207939, guid: 24a02c76ffc1a6f4ab2c7ad44c9217db, type: 3}
+  itemDescription: This is an edible item that can increase the agility of the player.
+--- !u!54 &590837015
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590837013}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &590837016
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590837013}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &590837017
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590837013}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &590837018
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590837013}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &590837019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590837013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 194.59, y: 1.72, z: 37.66}
+  m_LocalScale: {x: 0.4483, y: 0.55306876, z: 0.6879}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590877915
 GameObject:
   m_ObjectHideFlags: 0
@@ -18685,7 +18835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Electric Machine
-  quantity: 1
+  quantity: 5
   sprite: {fileID: -1390064229, guid: 23f37b1b2e739d845bd386a0a567e585, type: 3}
   itemDescription: A box of electic charges that can electrify mosquitoes
 --- !u!54 &1154370927
@@ -18795,7 +18945,7 @@ Transform:
   m_GameObject: {fileID: 1154370925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 197.03, y: 1.769, z: 38.328}
+  m_LocalPosition: {x: 196.59, y: 1.769, z: 36.84}
   m_LocalScale: {x: 0.4688, y: 0.4661, z: 0.3841}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20947,22 +21097,37 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1468684611}
     m_Modifications:
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.7705626
+      objectReference: {fileID: 0}
+    - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.7705626
+      objectReference: {fileID: 0}
+    - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.7705626
+      objectReference: {fileID: 0}
+    - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 191.8
+      value: -428.606
       objectReference: {fileID: 0}
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.56
+      value: -533.16705
       objectReference: {fileID: 0}
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.58
+      value: 117.970566
       objectReference: {fileID: 0}
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
@@ -20972,17 +21137,17 @@ PrefabInstance:
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
         type: 3}
@@ -24332,6 +24497,7 @@ RectTransform:
   m_Children:
   - {fileID: 712415195}
   - {fileID: 1243294447}
+  - {fileID: 1789126986}
   - {fileID: 1351777574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24453,6 +24619,9 @@ MonoBehaviour:
   - {fileID: 1622260124}
   - {fileID: 1165931210}
   - {fileID: 336885083}
+  itemSO:
+  - {fileID: 11400000, guid: fb461912fb60ea84faa4f70b98c72cda, type: 2}
+  - {fileID: 11400000, guid: 9acdaab9aa2035d48911c310d3db3759, type: 2}
 --- !u!1 &1469483379
 GameObject:
   m_ObjectHideFlags: 0
@@ -30261,6 +30430,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c179f0b539cee504e8d40c539bdf1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1789126986 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 265910978965805453, guid: 33060d4af8b48a840af6d2839b1b45f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1283708316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1791672832
 GameObject:
   m_ObjectHideFlags: 0
@@ -35808,6 +35983,7 @@ SceneRoots:
   - {fileID: 1468684611}
   - {fileID: 310074926}
   - {fileID: 1154370931}
+  - {fileID: 590837019}
   - {fileID: 917406919}
   - {fileID: 400684745}
   - {fileID: 583030613}
@@ -35817,7 +35993,6 @@ SceneRoots:
   - {fileID: 1887009692}
   - {fileID: 1508585372}
   - {fileID: 1224418928}
-  - {fileID: 1283708316}
   - {fileID: 129277464}
   - {fileID: 490803459985359112}
   - {fileID: 1614125341}

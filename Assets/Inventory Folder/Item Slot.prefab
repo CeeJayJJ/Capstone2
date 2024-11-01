@@ -380,7 +380,11 @@ MonoBehaviour:
   itemSprite: {fileID: -576378181, guid: 11b438d414011c7479e0703dbd84f84d, type: 3}
   isFull: 0
   itemDescription: 
-  emptySprite: {fileID: 0}
+  emptySprite: {fileID: -576378181, guid: 11b438d414011c7479e0703dbd84f84d, type: 3}
+  itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  itemMaterial: {fileID: 2895064947943234598, guid: 22979a140857f8f49ad4426515414f92,
+    type: 3}
+  maxNumberOfItems: 3
   quantityText: {fileID: 8110098461409191879}
   itemImage: {fileID: 4843007173277592045}
   itemmDescriptionImage: {fileID: 0}
