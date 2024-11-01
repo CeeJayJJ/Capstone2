@@ -16,6 +16,19 @@ public class PlayerData : ScriptableObject
     public List<QuestData> activeQuests = new List<QuestData>();
     public List<QuestData> completedQuests = new List<QuestData>();
 
+    public event Action<float> OnTechbarChanged; // Event for techbar changes
+
+    public float Techbar
+    {
+        get => techbar;
+        set
+        {
+            if (Mathf.Approximately(techbar, value)) return; // Only update if there's a change
+            techbar = value;
+            OnTechbarChanged?.Invoke(techbar); // Trigger the event
+        }
+    }
+
     public void AddGold(int amount)
     {
         coins += amount;
