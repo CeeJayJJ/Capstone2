@@ -17,20 +17,56 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode interactionKey = KeyCode.E; // The key for interaction, like 'E'
     private NPCData currentNPC1;
     public PlayerData playerData; // Reference to PlayerData ScriptableObject
-
-
+    public float techbar = 50f, maxTechbar = 100f;
     private void Start()
     {
         rb.gameObject.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogWarning("Rigidbody component is missing on this GameObject!");
+        }
 
         if (playerData == null)
         {
             Debug.LogError("PlayerData ScriptableObject is not assigned!");
+            return;
         }
+
+        // Subscribe to the event for techbar changes in PlayerData
+        playerData.OnTechbarChanged += UpdateTechbarUI;
+
+        // Initialize techbar with PlayerData's current value and update the UI
+        this.techbar = playerData.Techbar;
+        UIManager.Instance.techBar.value = techbar;
     }
 
+    private void UpdateTechbarUI(float newTechbarValue)
+    {
+        this.techbar = newTechbarValue; // Update the instance variable
+        UIManager.Instance.techBar.value = this.techbar; // Update the UI
+    }
+
+    public void ChangeTechbar(float amount)
+    {
+        // Update the instance variable
+        this.techbar += amount;
+
+        // Update PlayerData's techbar to trigger the event
+        playerData.Techbar = this.techbar;
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from the event to prevent memory leaks
+        if (playerData != null)
+        {
+            playerData.OnTechbarChanged -= UpdateTechbarUI;
+        }
+    }
     private void Update()
     {
+ 
+       
         RaycastHit hit;
         Vector3 castPos = transform.position;
         castPos.y += 1;

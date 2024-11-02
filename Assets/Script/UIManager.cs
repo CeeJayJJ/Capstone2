@@ -18,8 +18,6 @@ public class UIManager : MonoBehaviour
     public Button loadButton;
     public PlayerData playerData;
     public Transform playerTransform;
-    private List<ItemDataSerializable> inventoryItems;
-    private List<AchievementManager.Achievement> achievements;
     private void Awake()
     {
         if (Instance == null)
@@ -32,6 +30,11 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+
+    public void DisplayTechBarCurrentState()
+    {
+        techBar.value = playerData.techbar;
     }
 
     private void OnEnable()
