@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class PerformTeleport : MonoBehaviour
 {
     public string sceneName;  // Target scene name
+    public Vector3 targetPosition; // Target position in the new scene
+    public Vector3 targetRotation; // Optional: Target rotation if you want the player facing a specific direction
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,30 +15,34 @@ public class PerformTeleport : MonoBehaviour
         {
             Debug.Log("Player entered the teleport trigger.");
 
-            if (ScenesManager.Instance != null)
-            {
-                if (UIManager.Instance != null)
-                {
-                    // Update UIManager references before loading the new scene
-                    UIManager.Instance.InitializeUIReferences();
-                    Debug.Log("UIManager references initialized.");
+            // Subscribe to the sceneLoaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
 
-                    // Trigger the scene change
-                    Debug.Log("ScenesManager found, loading scene: " + sceneName);
-                    SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-                }
-                else
-                {
-                    Debug.LogError("UIManager.Instance is null, UI references cannot be initialized.");
-                }
-            }
-            else
+            // Load the target scene
+            SceneManager.LoadScene(sceneName);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Check if the loaded scene is the target scene
+        if (scene.name == sceneName)
+        {
+            // Find the player object by tag
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
             {
-                Debug.LogError("ScenesManager.Instance is null, cannot load scene.");
+                // Set the player's position and rotation
+                player.transform.position = targetPosition;
+                player.transform.rotation = Quaternion.Euler(targetRotation);
             }
+
+            // Unsubscribe from the event to prevent this method from being called multiple times
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }
+
 
 
 

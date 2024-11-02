@@ -11655,6 +11655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Kai'sHouse
+  targetPosition: {x: 44.67, y: 1.48, z: 151.05}
+  targetRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &274070824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41409,8 +41411,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3416518368715099733, guid: df647c61a615c9548b4851091815cf49,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1038873579}
   m_SourcePrefab: {fileID: 100100000, guid: df647c61a615c9548b4851091815cf49, type: 3}
+--- !u!1 &1038873578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3416518368715099733, guid: df647c61a615c9548b4851091815cf49,
+    type: 3}
+  m_PrefabInstance: {fileID: 1038873577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038873579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038873578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9477be911bf89aa4f939b9202a8f65e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectIndex: 0
 --- !u!1 &1041227276 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: b8ee657c6800ab849bb30b4375d02323,
@@ -47403,6 +47428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Kai'sHouse
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1185391844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83671,6 +83698,7 @@ GameObject:
   - component: {fileID: 2051784886}
   - component: {fileID: 2051784885}
   - component: {fileID: 2051784889}
+  - component: {fileID: 2051784890}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -83777,6 +83805,19 @@ MonoBehaviour:
   sfxSlider: {fileID: 1198816381}
   musicMuteButton: {fileID: 336202074}
   sfxMuteButton: {fileID: 1815652444}
+--- !u!114 &2051784890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051784884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9477be911bf89aa4f939b9202a8f65e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectIndex: 1
 --- !u!1 &2051937166
 GameObject:
   m_ObjectHideFlags: 0
