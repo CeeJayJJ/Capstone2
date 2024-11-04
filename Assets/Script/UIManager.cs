@@ -25,11 +25,6 @@ public class UIManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
     }
 
     public void DisplayTechBarCurrentState()
