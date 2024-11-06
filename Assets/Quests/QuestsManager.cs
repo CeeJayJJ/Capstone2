@@ -33,7 +33,10 @@ public class QuestsManager : MonoBehaviour
                     if (questList[i].id == NPCQuestObject.availaQuestIDs[j] && questList[i].progress == Quest.QuestProgress.AVAILABLE)
                     {
                         Debug.Log("Quest ID: " + NPCQuestObject.availaQuestIDs[j] + " " + questList[i].progress);
-                        AcceptQuest(NPCQuestObject.availaQuestIDs[j]);
+                        //AcceptQuest(NPCQuestObject.availaQuestIDs[j]);
+
+                        QuestUIManager.uiManager.questAvailable = true;
+                        QuestUIManager.uiManager.availableQuests.Add(questList[i]);
                     }
                 }
             }
@@ -47,7 +50,10 @@ public class QuestsManager : MonoBehaviour
                 if (currentQuestList[i].id  == NPCQuestObject.receivableQuestIDs[j] && currentQuestList[i].progress == Quest.QuestProgress.ACCEPTED || currentQuestList[i].progress == Quest.QuestProgress.COMPLETE)
                 {
                     Debug.Log("Quest ID: " + NPCQuestObject.receivableQuestIDs[j] + " is "+ currentQuestList[i].progress);
-                    CompleteQuest(NPCQuestObject.receivableQuestIDs[j]);
+                    // CompleteQuest(NPCQuestObject.receivableQuestIDs[j]);
+
+                    QuestUIManager.uiManager.questRunning = true;
+                    QuestUIManager.uiManager.activeQuests.Add(questList[i]);
                 }
           }
 
