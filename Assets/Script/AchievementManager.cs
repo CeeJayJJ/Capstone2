@@ -36,13 +36,17 @@ public class AchievementManager : MonoBehaviour
 
     private void InitializeAchievements()
     {
-        List<Achievement> loadedAchievements = SaveLoadManager.Instance.LoadAchievements();
-        if (loadedAchievements.Any())
+        GameData gameData = new GameData();
+        SaveLoadManager.Instance.LoadAchievements(gameData); // Load achievements into gameData
+
+        // If loaded achievements are available, initialize from them
+        if (gameData.activeAchievements != null && gameData.activeAchievements.Any())
         {
-            achievements = loadedAchievements.ToDictionary(a => a.key, a => a.isUnlocked);
+            achievements = gameData.activeAchievements.ToDictionary(a => a.key, a => a.isUnlocked);
         }
         else
         {
+            // Add default achievements if no achievements were loaded
             achievements.Add("FirstQuest_Completed", false);
             achievements.Add("DefeatDragon_Completed", false);
         }
@@ -58,6 +62,7 @@ public class AchievementManager : MonoBehaviour
             {
                 achievements[achievementKey] = true;
                 TriggerAchievementNotification(achievementKey);
+                SaveAchievements(); // Save immediately upon unlocking an achievement
             }
         }
     }
@@ -95,7 +100,10 @@ public class AchievementManager : MonoBehaviour
         var achievementsList = achievements
             .Select(entry => new Achievement { key = entry.Key, isUnlocked = entry.Value })
             .ToList();
-        SaveLoadManager.Instance.SaveAchievements(achievementsList);
+
+        // Save achievements data within GameData
+        GameData gameData = new GameData { activeAchievements = achievementsList };
+        SaveLoadManager.Instance.SaveAchievements(gameData);
     }
 
     private void OnApplicationQuit()
@@ -110,3 +118,4 @@ public class AchievementManager : MonoBehaviour
         public bool isUnlocked;
     }
 }
+

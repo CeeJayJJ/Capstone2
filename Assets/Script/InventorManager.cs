@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -67,3 +68,38 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Inventory loaded, total items: " + inventoryItems.Count);
     }
 }
+
+[Serializable]
+public class ItemDataSerializable
+{
+    public string itemName;
+    public string itemDescription;
+    public int itemQuantity;
+    public string iconPath;
+    public int id;
+
+    public ItemDataSerializable(ItemData itemData)
+    {
+        itemName = itemData.itemName;
+        itemDescription = itemData.itemDescription;
+        itemQuantity = itemData.itemQuantity;
+        iconPath = itemData.itemIcon != null ? itemData.itemIcon.name : string.Empty;
+        id = itemData.itemID;
+    }
+
+    // Method to convert Serializable data back to ItemData
+    public ItemData ToItemData()
+    {
+        ItemData itemData = ScriptableObject.CreateInstance<ItemData>();
+        itemData.InitializeItem(itemName, itemDescription, LoadIcon(iconPath), itemQuantity, id);
+        return itemData;
+    }
+
+    private Sprite LoadIcon(string iconName)
+    {
+        return Resources.Load<Sprite>("Icons/" + iconName);
+    }
+}
+
+
+

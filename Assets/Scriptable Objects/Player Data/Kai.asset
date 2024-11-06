@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8dbf39c2fb9bf042ba97a8fd22885c6, type: 3}
   m_Name: Kai
   m_EditorClassIdentifier: 
-  techbar: 100
+  techbar: 75
   socialbar: 100
   relationship: 50
   coins: 25
+  playerPosition: {x: 0, y: 0, z: 0}
   inventoryItems: []
   activeQuests: []
   completedQuests: []
