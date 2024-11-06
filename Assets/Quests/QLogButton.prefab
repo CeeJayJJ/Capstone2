@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3957218000877610156}
   - component: {fileID: 594698474837414613}
   - component: {fileID: 5605335652254750722}
-  - component: {fileID: 4121009646559068380}
+  - component: {fileID: 3755760405840700851}
   m_Layer: 5
-  m_Name: QButton
+  m_Name: QLogButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4121009646559068380}
-        m_TargetAssemblyTypeName: QButtonScript, Assembly-CSharp
+      - m_Target: {fileID: 3755760405840700851}
+        m_TargetAssemblyTypeName: QLogButtonScript, Assembly-CSharp
         m_MethodName: ShowAllInfos
         m_Mode: 1
         m_Arguments:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
---- !u!114 &4121009646559068380
+--- !u!114 &3755760405840700851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2955320632393523955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af0b17e321b0e14d9a7fcbd6f522149, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d6a64ea48ecb5c448e251a550221f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questID: 0
