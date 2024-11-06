@@ -18,22 +18,33 @@ public class Item : MonoBehaviour
     public string itemDescription;
 
     private ItemManager1 inventoryManager;
-    // Start is called before the first frame update
+
     void Start()
     {
-        inventoryManager = GameObject.Find("Canvas").GetComponent<ItemManager1>();
+        inventoryManager = GameObject.Find("Canvas")?.GetComponent<ItemManager1>();
+        if (inventoryManager == null)
+        {
+            Debug.LogWarning("ItemManager1 component is missing on the Canvas.");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-           int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
-           
-            if(leftOverItems <= 0)
-            Destroy(gameObject);
+            if (inventoryManager != null)
+            {
+                int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+
+                if (leftOverItems <= 0)
+                    Destroy(gameObject);
+                else
+                    quantity = leftOverItems;
+            }
             else
-                quantity = leftOverItems;
+            {
+                Debug.LogWarning("InventoryManager is not assigned.");
+            }
         }
     }
 }

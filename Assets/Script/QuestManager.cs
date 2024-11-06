@@ -34,7 +34,7 @@ public class QuestManager : MonoBehaviour
         {
             quests.Add(quest);
             quest.status = QuestData.QuestStatus.InProgress;
-            questUI.DisplayQuests(quests); // Refresh UI after starting a new quest
+            //questUI.DisplayQuests(quests); // Refresh UI after starting a new quest
             Debug.Log("Quest started: " + quest.questTitle);
         }
         else
@@ -49,7 +49,7 @@ public class QuestManager : MonoBehaviour
 
         quest.status = QuestData.QuestStatus.Completed;
         Debug.Log("Quest completed: " + quest.questTitle);
-        questUI.DisplayQuests(quests); // Refresh UI after quest completion
+        //questUI.DisplayQuests(quests); // Refresh UI after quest completion
         foreach (var reward in quest.rewards)
         {
             switch (reward.type)

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 661009869177710141}
   - component: {fileID: 5782848150347781038}
+  - component: {fileID: 746272492130018182}
+  - component: {fileID: 7189602450615962328}
   m_Layer: 0
   m_Name: UI manager
   m_TagString: Untagged
@@ -55,5 +57,47 @@ MonoBehaviour:
   interactionPrompt: {fileID: 0}
   saveButton: {fileID: 0}
   loadButton: {fileID: 0}
-  playerData: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 475aaec51e621284bb735204131b9225, type: 2}
   playerTransform: {fileID: 0}
+--- !u!114 &746272492130018182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672608152703752924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9477be911bf89aa4f939b9202a8f65e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectIndex: 4
+--- !u!114 &7189602450615962328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672608152703752924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe526231afaf58d44b54e0c06443e675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questAvailable: 0
+  questRunning: 0
+  questPanel: {fileID: 0}
+  questLogPanel: {fileID: 0}
+  availableQuests: []
+  activeQuests: []
+  qButton: {fileID: 2955320632393523955, guid: 06e9e0ef36937494a9673a56a27c8d50, type: 3}
+  qLogButton: {fileID: 0}
+  qButtonSpacer1: {fileID: 0}
+  qButtonSpacer2: {fileID: 0}
+  qLogButtonSpacer: {fileID: 0}
+  questTitle: {fileID: 0}
+  questDescription: {fileID: 0}
+  questSummary: {fileID: 0}
+  questLogTitle: {fileID: 0}
+  questLogDescription: {fileID: 0}
+  questLogSummary: {fileID: 0}
