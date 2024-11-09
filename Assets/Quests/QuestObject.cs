@@ -32,7 +32,7 @@ public class QuestObject : MonoBehaviour
         }
     }
 
-    void SetQuestMaker()
+   public void SetQuestMaker()
     {
         if (QuestsManager.questsManager.CheckCompletedQuest(this))
         {
