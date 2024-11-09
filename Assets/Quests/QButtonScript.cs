@@ -60,7 +60,6 @@ public class QButtonScript : MonoBehaviour
 
     public void ShowAllInfos()
     {
-         Debug.Log("Button clicked");
         // Display quest information
         QuestUIManager.uiManager.ShowSelectedQuest(questID);
 

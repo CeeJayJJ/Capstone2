@@ -44,6 +44,7 @@ public class QuestUIManager : MonoBehaviour
     public QButtonScript giveUpButtonScript;
     public QButtonScript completeButtonScript;
 
+<<<<<<< Updated upstream
 
     private void Start()
     {
@@ -52,6 +53,13 @@ public class QuestUIManager : MonoBehaviour
         giveUpButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/GiveupButton");
         completeButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/CompleteButton");
 
+=======
+    private void Start()
+    {
+        acceptButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("AcceptButton").gameObject;
+        giveUpButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("GiveupButton").gameObject;
+        completeButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("CompleteButton").gameObject;
+>>>>>>> Stashed changes
         // Now check if each button was found and get the QButtonScript components
         if (acceptButton != null)
         {
@@ -82,6 +90,10 @@ public class QuestUIManager : MonoBehaviour
         {
             Debug.LogWarning("CompleteButton is missing in the scene!");
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     }
 
 
@@ -172,6 +184,11 @@ public class QuestUIManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
+=======
+   
+
+>>>>>>> Stashed changes
     public void HideQuestPanel()
     {
         questPanelActive = false;
@@ -271,4 +288,5 @@ public class QuestUIManager : MonoBehaviour
             }
         }
     }
+
 }
