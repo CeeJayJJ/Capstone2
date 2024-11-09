@@ -13,7 +13,7 @@ public class QButtonScript : MonoBehaviour
     private GameObject giveUpButton;
     private GameObject completeButton;
 
-    private QButtonScript acceptButtonScript;
+  /*  private QButtonScript acceptButtonScript;
     private QButtonScript giveUpButtonScript;
     private QButtonScript completeButtonScript;
 
@@ -59,6 +59,7 @@ public class QButtonScript : MonoBehaviour
 
     public void ShowAllInfos()
     {
+         Debug.Log("Button clicked");
         // Display quest information
         QuestUIManager.uiManager.ShowSelectedQuest(questID);
 

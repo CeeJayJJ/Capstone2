@@ -25,10 +25,13 @@ public class QuestObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inTrigger && Input.GetKeyDown(KeyCode.Space))
-        {
-            //QuestsManager.questsManager.QuestRequest(this);
-            QuestUIManager.uiManager.CheckQuest(this);
+        if (QuestUIManager.uiManager.questPanelActive) 
+        { 
+              if (inTrigger && Input.GetKeyDown(KeyCode.Space))
+                {
+                   //QuestsManager.questsManager.QuestRequest(this);
+                   QuestUIManager.uiManager.CheckQuest(this);
+                }
         }
     }
 
