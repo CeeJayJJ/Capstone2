@@ -59,7 +59,6 @@ public class QButtonScript : MonoBehaviour
 
     public void ShowAllInfos()
     {
-         Debug.Log("Button clicked");
         // Display quest information
         QuestUIManager.uiManager.ShowSelectedQuest(questID);
 
@@ -67,11 +66,6 @@ public class QButtonScript : MonoBehaviour
         ConfigureButton(QuestUIManager.uiManager.acceptButton, QuestUIManager.uiManager.acceptButtonScript, QuestsManager.questsManager.RequestAvailableQuest(questID), questID);
         ConfigureButton(QuestUIManager.uiManager.giveUpButton, QuestUIManager.uiManager.giveUpButtonScript, QuestsManager.questsManager.RequestAcceptedQuest(questID), questID);
         ConfigureButton(QuestUIManager.uiManager.completeButton, QuestUIManager.uiManager.completeButtonScript, QuestsManager.questsManager.RequestCompleteQuest(questID), questID);
-
-        // Configure each button's visibility and quest ID
-        ConfigureButton(QuestUIManager.uiManager.acceptButton1, QuestUIManager.uiManager.acceptButtonScript1, QuestsManager.questsManager.RequestAvailableQuest(questID), questID);
-        ConfigureButton(QuestUIManager.uiManager.giveUpButton1, QuestUIManager.uiManager.giveUpButtonScript1, QuestsManager.questsManager.RequestAcceptedQuest(questID), questID);
-        ConfigureButton(QuestUIManager.uiManager.completeButton1, QuestUIManager.uiManager.completeButtonScript1, QuestsManager.questsManager.RequestCompleteQuest(questID), questID);
     }
 
     // Helper method to configure button visibility and quest ID
@@ -134,8 +128,5 @@ public class QButtonScript : MonoBehaviour
         QuestUIManager.uiManager.acceptButton.SetActive(false);
         QuestUIManager.uiManager.giveUpButton.SetActive(false);
         QuestUIManager.uiManager.completeButton.SetActive(false);
-        QuestUIManager.uiManager.acceptButton1.SetActive(false);
-        QuestUIManager.uiManager.giveUpButton1.SetActive(false);
-        QuestUIManager.uiManager.completeButton1.SetActive(false);
     }
 }
