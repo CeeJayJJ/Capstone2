@@ -24,6 +24,15 @@ public class QButtonScript : MonoBehaviour
         acceptButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/AcceptButton");
         giveUpButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/GiveupButton");
         completeButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/CompleteButton");
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        acceptButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/AcceptButton");
+        giveUpButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/GiveupButton");
+        completeButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/CompleteButton");
+=======
+>>>>>>> a774f099384fe74d0fb25d3aea80a634d4c8e43e
+>>>>>>> Stashed changes
 
         // Now check if each button was found and get the QButtonScript components
         if (acceptButton != null)

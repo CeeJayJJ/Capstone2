@@ -137,26 +137,42 @@ public class QuestUIManager : MonoBehaviour
     public void ShowQuestLogPanel()
     {
         questLogPanel.SetActive(questLogPanelActive);
+<<<<<<< Updated upstream
         if (questLogPanelActive && !questPanelActive)
+=======
+        if(questLogPanelActive && !questPanelActive)
+>>>>>>> Stashed changes
         {
             foreach (Quest curQuest in QuestsManager.questsManager.currentQuestList)
             {
                 GameObject questButton = Instantiate(qLogButton);
+<<<<<<< Updated upstream
                 QLogButtonScript qbutton = questButton.GetComponent<QLogButtonScript>();
 
                 qbutton.questID = curQuest.id;
                 qbutton.questTitle.text = curQuest.title;
+=======
+                QLogButtonScript qButton = questButton.GetComponent<QLogButtonScript>();
+
+                qButton.questID = curQuest.id;
+                qButton.questTitle.text = curQuest.title;
+>>>>>>> Stashed changes
 
                 questButton.transform.SetParent(qLogButtonSpacer, false);
                 qButtons.Add(questButton);
             }
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         else if (!questLogPanelActive && !questPanelActive)
         {
             HideQuestLogPanel();
         }
     }
 
+<<<<<<< Updated upstream
     public void ShowQuestLog(Quest activeQuests)
     {
         questLogTitle.text = activeQuests.title;
@@ -174,6 +190,28 @@ public class QuestUIManager : MonoBehaviour
     }
 
  
+=======
+    public void ShowQuestLog(Quest activeQuest)
+    {
+        questLogTitle.text = activeQuest.title;
+
+        if (activeQuest.progress == Quest.QuestProgress.ACCEPTED)
+        {
+            questLogDescription.text = activeQuest.hint;
+            questLogSummary.text = activeQuest.questObjective + " : " + activeQuest.questObjectiveCount + " / " + activeQuest.questObjectiveRequirement;
+        }
+        else if (activeQuest.progress == Quest.QuestProgress.COMPLETE)
+        {
+            questLogDescription.text = activeQuest.congratulation;
+            questLogSummary.text = activeQuest.questObjective + " : " + activeQuest.questObjectiveCount + " / " + activeQuest.questObjectiveRequirement;
+        }
+    }
+
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> a774f099384fe74d0fb25d3aea80a634d4c8e43e
+>>>>>>> Stashed changes
 
     public void HideQuestPanel()
     {
@@ -205,7 +243,11 @@ public class QuestUIManager : MonoBehaviour
         questLogDescription.text = "";
         questLogSummary.text = "";
 
+<<<<<<< Updated upstream
         for (int i = 0; i < qButtons.Count; i++)
+=======
+        for(int i = 0; i < qButtons.Count; i++)
+>>>>>>> Stashed changes
         {
             Destroy(qButtons[i]);
         }
@@ -275,4 +317,5 @@ public class QuestUIManager : MonoBehaviour
             }
         }
     }
+
 }

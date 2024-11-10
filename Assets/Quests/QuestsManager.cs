@@ -61,7 +61,13 @@ public class QuestsManager : MonoBehaviour
 
     }
 
+<<<<<<< HEAD
+=======
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> a774f099384fe74d0fb25d3aea80a634d4c8e43e
+>>>>>>> Stashed changes
     public void AcceptQuest(int questID)
     {
         for(int i = 0; i < questList.Count; i++)
@@ -86,6 +92,7 @@ public class QuestsManager : MonoBehaviour
             }
         }
     }
+
 
     public void CompleteQuest(int questID)
     {
@@ -225,9 +232,20 @@ public class QuestsManager : MonoBehaviour
         return false;
     }
 
+<<<<<<< Updated upstream
     public void ShowQuestLog(int questID)
     {
         for(int i =0; i < questList.Count; i++)
+=======
+
+    public void ShowQuestLog(int questID)
+    {
+<<<<<<< HEAD
+        for(int i = 0; i < currentQuestList.Count; i++)
+=======
+        for(int i =0; i < questList.Count; i++)
+>>>>>>> a774f099384fe74d0fb25d3aea80a634d4c8e43e
+>>>>>>> Stashed changes
         {
             if (currentQuestList[i].id == questID)
             {
@@ -235,5 +253,8 @@ public class QuestsManager : MonoBehaviour
             }
         }
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }

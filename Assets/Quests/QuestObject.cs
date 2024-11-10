@@ -35,6 +35,13 @@ public class QuestObject : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> a774f099384fe74d0fb25d3aea80a634d4c8e43e
+>>>>>>> Stashed changes
    public void SetQuestMaker()
     {
         if (QuestsManager.questsManager.CheckCompletedQuest(this))
@@ -58,7 +65,6 @@ public class QuestObject : MonoBehaviour
         else
         {
             QuestMarker.SetActive(false);
-
         }
     }
 
@@ -77,5 +83,6 @@ public class QuestObject : MonoBehaviour
             inTrigger = false;
         }
     }
+
 
 }

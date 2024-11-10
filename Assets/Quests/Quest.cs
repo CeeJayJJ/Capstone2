@@ -23,4 +23,5 @@ public class Quest
 
     public string rewardItem;
     public int relationship;
+
 }
