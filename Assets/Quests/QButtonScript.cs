@@ -8,11 +8,12 @@ public class QButtonScript : MonoBehaviour
 {
     public int questID;
     public TMPro.TextMeshProUGUI questTitle;
-    private GameObject acceptButton;
+
+   /* private GameObject acceptButton;
     private GameObject giveUpButton;
     private GameObject completeButton;
 
-    private QButtonScript acceptButtonScript;
+  /*  private QButtonScript acceptButtonScript;
     private QButtonScript giveUpButtonScript;
     private QButtonScript completeButtonScript;
 
@@ -20,9 +21,9 @@ public class QButtonScript : MonoBehaviour
     private void Start()
     {
         // First, find the button GameObjects
-        acceptButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/AcceptButton");
-        giveUpButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/GiveupButton");
-        completeButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/CompleteButton");
+        acceptButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/AcceptButton");
+        giveUpButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/GiveupButton");
+        completeButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/CompleteButton");
 
         // Now check if each button was found and get the QButtonScript components
         if (acceptButton != null)
@@ -54,7 +55,7 @@ public class QButtonScript : MonoBehaviour
         {
             Debug.LogWarning("CompleteButton is missing in the scene!");
         }
-    }
+    }*/
 
     public void ShowAllInfos()
     {
@@ -62,9 +63,9 @@ public class QButtonScript : MonoBehaviour
         QuestUIManager.uiManager.ShowSelectedQuest(questID);
 
         // Configure each button's visibility and quest ID
-        ConfigureButton(acceptButton, acceptButtonScript, QuestsManager.questsManager.RequestAvailableQuest(questID), questID);
-        ConfigureButton(giveUpButton, giveUpButtonScript, QuestsManager.questsManager.RequestAcceptedQuest(questID), questID);
-        ConfigureButton(completeButton, completeButtonScript, QuestsManager.questsManager.RequestCompleteQuest(questID), questID);
+        ConfigureButton(QuestUIManager.uiManager.acceptButton, QuestUIManager.uiManager.acceptButtonScript, QuestsManager.questsManager.RequestAvailableQuest(questID), questID);
+        ConfigureButton(QuestUIManager.uiManager.giveUpButton, QuestUIManager.uiManager.giveUpButtonScript, QuestsManager.questsManager.RequestAcceptedQuest(questID), questID);
+        ConfigureButton(QuestUIManager.uiManager.completeButton, QuestUIManager.uiManager.completeButtonScript, QuestsManager.questsManager.RequestCompleteQuest(questID), questID);
     }
 
     // Helper method to configure button visibility and quest ID
@@ -88,5 +89,44 @@ public class QButtonScript : MonoBehaviour
     {
         QuestsManager.questsManager.AcceptQuest(questID);
         QuestUIManager.uiManager.HideQuestPanel();
+
+        QuestObject[] currentQuestGuys = FindObjectsOfType(typeof(QuestObject)) as QuestObject[];
+        foreach (QuestObject obj in currentQuestGuys)
+        {
+            obj.SetQuestMaker();
+        }
+    }
+
+
+    public void GiveUpQuest()
+    {
+        QuestsManager.questsManager.GiveUpQuest(questID);
+        QuestUIManager.uiManager.HideQuestPanel();
+
+        QuestObject[] currentQuestGuys = FindObjectsOfType(typeof(QuestObject)) as QuestObject[];
+        foreach (QuestObject obj in currentQuestGuys)
+        {
+            obj.SetQuestMaker();
+        }
+    }
+
+    public void CompleteQuest()
+    {
+        QuestsManager.questsManager.CompleteQuest(questID);
+        QuestUIManager.uiManager.HideQuestPanel();
+
+        QuestObject[] currentQuestGuys = FindObjectsOfType(typeof(QuestObject)) as QuestObject[];
+        foreach (QuestObject obj in currentQuestGuys)
+        {
+            obj.SetQuestMaker();
+        }
+    }
+
+    public void ClosePanel()
+    {
+        QuestUIManager.uiManager.HideQuestPanel();
+        QuestUIManager.uiManager.acceptButton.SetActive(false);
+        QuestUIManager.uiManager.giveUpButton.SetActive(false);
+        QuestUIManager.uiManager.completeButton.SetActive(false);
     }
 }

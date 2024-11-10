@@ -27,18 +27,21 @@ public class QuestObject : MonoBehaviour
     {
         if (inTrigger && Input.GetKeyDown(KeyCode.Space))
         {
-            //QuestsManager.questsManager.QuestRequest(this);
-            QuestUIManager.uiManager.CheckQuest(this);
+            if (!QuestUIManager.uiManager.questPanelActive) 
+                { 
+                   //QuestsManager.questsManager.QuestRequest(this);
+                   QuestUIManager.uiManager.CheckQuest(this);
+                }
         }
     }
 
-    void SetQuestMaker()
+   public void SetQuestMaker()
     {
         if (QuestsManager.questsManager.CheckCompletedQuest(this))
         {
             QuestMarker.SetActive(true);
             theImage.sprite = questReceivableSprite;
-            theImage.color = Color.red;
+            theImage.color = Color.green;
         }
         else if (QuestsManager.questsManager.CheckAvailableQuest(this))
         {

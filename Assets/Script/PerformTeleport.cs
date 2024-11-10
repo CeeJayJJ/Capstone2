@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PerformTeleport : MonoBehaviour
 {
-    public string sceneName;           // Target scene name
+    public string sceneName;                   // Target scene name
     public string spawnPointName = "SpawnPoint"; // Name of the spawn point object in the target scene
 
     private void Start()
@@ -14,6 +13,15 @@ public class PerformTeleport : MonoBehaviour
         {
             Debug.LogError("Player object not found in persistentObjects array! Ensure it is set in DontDestroy.");
         }
+
+        // Register the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        // Unregister the scene loaded event to avoid memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,28 +30,18 @@ public class PerformTeleport : MonoBehaviour
         if (other.gameObject == DontDestroy.persistentObjects[0])
         {
             Debug.Log("Player entered the teleport trigger.");
-            StartCoroutine(TeleportPlayer());
+            SceneManager.LoadScene(sceneName);
+            QuestsManager.questsManager.AddQuestItem("Leave the house", 1);
         }
-
-        QuestsManager.questsManager.AddQuestItem("Leave the house", 1);
     }
 
-    private IEnumerator TeleportPlayer()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Load the target scene asynchronously
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        // Wait until the scene is fully loaded
-        while (!asyncLoad.isDone)
+        // Only place the player if the correct scene is loaded
+        if (scene.name == sceneName)
         {
-            yield return null;
+            PlacePlayerAtSpawnPoint();
         }
-
-        // After the scene is loaded, add a slight delay to ensure everything is ready before setting position
-        yield return new WaitForSeconds(0.1f);
-
-        // Now that the scene is loaded, place the player at the spawn point
-        PlacePlayerAtSpawnPoint();
     }
 
     private void PlacePlayerAtSpawnPoint()
@@ -74,6 +72,7 @@ public class PerformTeleport : MonoBehaviour
         }
     }
 }
+
 
 
 
