@@ -25,23 +25,23 @@ public class QuestObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (QuestUIManager.uiManager.questPanelActive) 
-        { 
-              if (inTrigger && Input.GetKeyDown(KeyCode.Space))
-                {
+        if (inTrigger && Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!QuestUIManager.uiManager.questPanelActive) 
+                { 
                    //QuestsManager.questsManager.QuestRequest(this);
                    QuestUIManager.uiManager.CheckQuest(this);
                 }
         }
     }
 
-    public void SetQuestMaker()
+   public void SetQuestMaker()
     {
         if (QuestsManager.questsManager.CheckCompletedQuest(this))
         {
             QuestMarker.SetActive(true);
             theImage.sprite = questReceivableSprite;
-            theImage.color = Color.red;
+            theImage.color = Color.green;
         }
         else if (QuestsManager.questsManager.CheckAvailableQuest(this))
         {

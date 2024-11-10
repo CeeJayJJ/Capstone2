@@ -62,8 +62,6 @@ public class QuestsManager : MonoBehaviour
     }
 
 
-
-
     public void AcceptQuest(int questID)
     {
         for(int i = 0; i < questList.Count; i++)
@@ -102,7 +100,6 @@ public class QuestsManager : MonoBehaviour
             }
         }
         CheckChainQuest(questID);
-
     }
 
     void CheckChainQuest(int questID)
@@ -230,7 +227,7 @@ public class QuestsManager : MonoBehaviour
 
     public void ShowQuestLog(int questID)
     {
-        for (int i = 0; i < currentQuestList.Count; i++)
+        for(int i =0; i < questList.Count; i++)
         {
             if (currentQuestList[i].id == questID)
             {

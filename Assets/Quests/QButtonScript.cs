@@ -9,10 +9,9 @@ public class QButtonScript : MonoBehaviour
     public int questID;
     public TMPro.TextMeshProUGUI questTitle;
 
-
-    //private GameObject acceptButton;
-   // private GameObject giveUpButton;
-   // private GameObject completeButton;
+   /* private GameObject acceptButton;
+    private GameObject giveUpButton;
+    private GameObject completeButton;
 
   /*  private QButtonScript acceptButtonScript;
     private QButtonScript giveUpButtonScript;
@@ -22,9 +21,9 @@ public class QButtonScript : MonoBehaviour
     private void Start()
     {
         // First, find the button GameObjects
-        acceptButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/AcceptButton");
-        giveUpButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/GiveupButton");
-        completeButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/CompleteButton");
+        acceptButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/AcceptButton");
+        giveUpButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/GiveupButton");
+        completeButton = GameObject.Find("Canvas/Quest Panel/QuestDescription/GameObject/CompleteButton");
 
         // Now check if each button was found and get the QButtonScript components
         if (acceptButton != null)
@@ -60,7 +59,6 @@ public class QButtonScript : MonoBehaviour
 
     public void ShowAllInfos()
     {
-         Debug.Log("Button clicked");
         // Display quest information
         QuestUIManager.uiManager.ShowSelectedQuest(questID);
 
@@ -93,12 +91,12 @@ public class QButtonScript : MonoBehaviour
         QuestUIManager.uiManager.HideQuestPanel();
 
         QuestObject[] currentQuestGuys = FindObjectsOfType(typeof(QuestObject)) as QuestObject[];
-
         foreach (QuestObject obj in currentQuestGuys)
         {
             obj.SetQuestMaker();
         }
     }
+
 
     public void GiveUpQuest()
     {
@@ -106,7 +104,6 @@ public class QButtonScript : MonoBehaviour
         QuestUIManager.uiManager.HideQuestPanel();
 
         QuestObject[] currentQuestGuys = FindObjectsOfType(typeof(QuestObject)) as QuestObject[];
-
         foreach (QuestObject obj in currentQuestGuys)
         {
             obj.SetQuestMaker();
@@ -119,7 +116,6 @@ public class QButtonScript : MonoBehaviour
         QuestUIManager.uiManager.HideQuestPanel();
 
         QuestObject[] currentQuestGuys = FindObjectsOfType(typeof(QuestObject)) as QuestObject[];
-
         foreach (QuestObject obj in currentQuestGuys)
         {
             obj.SetQuestMaker();

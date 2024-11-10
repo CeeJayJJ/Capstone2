@@ -45,12 +45,12 @@ public class QuestUIManager : MonoBehaviour
     public QButtonScript completeButtonScript;
 
 
+
     private void Start()
     {
-        // First, find the button GameObjects
-        acceptButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/AcceptButton");
-        giveUpButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/GiveupButton");
-        completeButton = GameObject.Find("Canvas/Quest Log Panel1/Quest Panel/QuestDescription/GameObject/CompleteButton");
+        acceptButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("AcceptButton").gameObject;
+        giveUpButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("GiveupButton").gameObject;
+        completeButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("CompleteButton").gameObject;
 
         // Now check if each button was found and get the QButtonScript components
         if (acceptButton != null)
@@ -82,7 +82,9 @@ public class QuestUIManager : MonoBehaviour
         {
             Debug.LogWarning("CompleteButton is missing in the scene!");
         }
+
     }
+
 
 
     private void Awake()
@@ -104,7 +106,6 @@ public class QuestUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Q is pressed");
             questLogPanelActive = !questLogPanelActive;
             ShowQuestLogPanel();
         }
@@ -172,6 +173,8 @@ public class QuestUIManager : MonoBehaviour
         }
     }
 
+ 
+
     public void HideQuestPanel()
     {
         questPanelActive = false;
@@ -210,6 +213,7 @@ public class QuestUIManager : MonoBehaviour
         qButtons.Clear();
         questLogPanel.SetActive(questLogPanelActive);
     }
+
 
     void FillQuestButtons()
     {
