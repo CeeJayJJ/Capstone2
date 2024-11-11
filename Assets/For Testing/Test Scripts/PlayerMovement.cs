@@ -99,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movDir = new Vector3(x, 0, y);
 
-        animator.SetFloat("xMove", movDir.x);
-        animator.SetFloat("yMove", movDir.z);
+        animator.SetFloat("xHorizontal", movDir.x); //xMove 
+        animator.SetFloat("xVertical", movDir.z); //yMove
         animator.SetFloat("Speed", movDir.sqrMagnitude);
 
         rb.velocity = movDir * speed;
