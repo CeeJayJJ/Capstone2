@@ -108,6 +108,13 @@ public class QuestUIManager : MonoBehaviour
         {
             questLogPanelActive = !questLogPanelActive;
             ShowQuestLogPanel();
+
+            if (ItemManager1.itemManager1.inventoryMenu.activeSelf && ItemManager1.itemManager1.menuActivated == true)
+            {
+                Time.timeScale = 1;
+                ItemManager1.itemManager1.inventoryMenu.SetActive(false);
+                ItemManager1.itemManager1.menuActivated = false;
+            }
         }
     }
 

@@ -6,10 +6,24 @@ using UnityEngine;
 public class ItemManager1 : MonoBehaviour
 {
     public GameObject inventoryMenu;
-    private bool menuActivated;
+    public bool menuActivated;
     public ItemSlot[] itemSlot;
 
     public ItemSO[] itemSO;
+
+    public static ItemManager1 itemManager1;
+
+    private void Awake()
+    {
+        if (itemManager1 == null)
+        {
+            itemManager1 = this;
+        }
+        else if (itemManager1 != this)
+        {
+            Destroy(gameObject);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -24,6 +38,11 @@ public class ItemManager1 : MonoBehaviour
             Time.timeScale = 0;
             inventoryMenu.SetActive(true);
             menuActivated = true;
+
+            if (QuestUIManager.uiManager.questLogPanel.activeSelf)
+            {
+                QuestUIManager.uiManager.HideQuestLogPanel();
+            }
         }
     }
 
