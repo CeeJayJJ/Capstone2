@@ -8,5 +8,6 @@ public class GameIntroduction : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene("Introduction",LoadSceneMode.Single);
+        PlayerPrefs.SetString("LastExitName", "Room");
     }
 }

@@ -13,6 +13,4 @@ public class SceneExit : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
         QuestsManager.questsManager.AddQuestItem("Leave the house", 1);
     }
-
-    
 }
