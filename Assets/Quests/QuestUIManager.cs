@@ -9,7 +9,7 @@ public class QuestUIManager : MonoBehaviour
 
     public bool questAvailable = false;
     public bool questRunning = false;
-    private bool questPanelActive = false;
+    public bool questPanelActive = false;
     private bool questLogPanelActive = false;
 
     public GameObject questPanel;
@@ -24,9 +24,9 @@ public class QuestUIManager : MonoBehaviour
     public GameObject qLogButton;
     private List<GameObject> qButtons = new List <GameObject> ();
 
-    private GameObject acceptButton;
-    private GameObject giveUpButton;
-    private GameObject completeButton;
+    public GameObject acceptButton;
+    public GameObject giveUpButton;
+    public GameObject completeButton;
 
     public Transform qButtonSpacer1;
     public Transform qButtonSpacer2;
@@ -39,6 +39,53 @@ public class QuestUIManager : MonoBehaviour
     public TextMeshProUGUI questLogTitle;
     public TextMeshProUGUI questLogDescription;
     public TextMeshProUGUI questLogSummary;
+
+    public QButtonScript acceptButtonScript;
+    public QButtonScript giveUpButtonScript;
+    public QButtonScript completeButtonScript;
+
+
+
+    private void Start()
+    {
+        acceptButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("AcceptButton").gameObject;
+        giveUpButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("GiveupButton").gameObject;
+        completeButton = GameObject.Find("Canvas").transform.Find("QuestPanel").transform.Find("QuestDescription").transform.Find("GameObject").transform.Find("CompleteButton").gameObject;
+
+        // Now check if each button was found and get the QButtonScript components
+        if (acceptButton != null)
+        {
+            acceptButtonScript = acceptButton.GetComponent<QButtonScript>();
+            acceptButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("AcceptButton is missing in the scene!");
+        }
+
+        if (giveUpButton != null)
+        {
+            giveUpButtonScript = giveUpButton.GetComponent<QButtonScript>();
+            giveUpButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("GiveUpButton is missing in the scene!");
+        }
+
+        if (completeButton != null)
+        {
+            completeButtonScript = completeButton.GetComponent<QButtonScript>();
+            completeButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("CompleteButton is missing in the scene!");
+        }
+
+    }
+
+
 
     private void Awake()
     {
@@ -57,10 +104,17 @@ public class QuestUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            questPanelActive = !questPanelActive;
+            questLogPanelActive = !questLogPanelActive;
+            ShowQuestLogPanel();
 
+            if (ItemManager1.itemManager1.inventoryMenu.activeSelf && ItemManager1.itemManager1.menuActivated == true)
+            {
+                Time.timeScale = 1;
+                ItemManager1.itemManager1.inventoryMenu.SetActive(false);
+                ItemManager1.itemManager1.menuActivated = false;
+            }
         }
     }
 
@@ -87,6 +141,47 @@ public class QuestUIManager : MonoBehaviour
         FillQuestButtons();
     }
 
+    public void ShowQuestLogPanel()
+    {
+        questLogPanel.SetActive(questLogPanelActive);
+        if (questLogPanelActive && !questPanelActive)
+        {
+            foreach (Quest curQuest in QuestsManager.questsManager.currentQuestList)
+            {
+                GameObject questButton = Instantiate(qLogButton);
+                QLogButtonScript qbutton = questButton.GetComponent<QLogButtonScript>();
+
+                qbutton.questID = curQuest.id;
+                qbutton.questTitle.text = curQuest.title;
+
+                questButton.transform.SetParent(qLogButtonSpacer, false);
+                qButtons.Add(questButton);
+            }
+        }
+        else if (!questLogPanelActive && !questPanelActive)
+        {
+            HideQuestLogPanel();
+        }
+    }
+
+    public void ShowQuestLog(Quest activeQuests)
+    {
+        questLogTitle.text = activeQuests.title;
+        if (activeQuests.progress == Quest.QuestProgress.ACCEPTED)
+        {
+            questLogDescription.text = activeQuests.hint;
+            questLogSummary.text = activeQuests.questObjective + " : " +activeQuests.questObjectiveCount + " / " + activeQuests.questObjectiveRequirement;
+
+        }
+        else if (activeQuests.progress == Quest.QuestProgress.COMPLETE)
+        {
+            questLogDescription.text = activeQuests.congratulation;
+            questLogSummary.text = activeQuests.questObjective + " : " + activeQuests.questObjectiveCount + " / " + activeQuests.questObjectiveRequirement;
+        }
+    }
+
+ 
+
     public void HideQuestPanel()
     {
         questPanelActive = false;
@@ -108,6 +203,24 @@ public class QuestUIManager : MonoBehaviour
         qButtons.Clear();
         questPanel.SetActive(questPanelActive);
     }
+
+    public void HideQuestLogPanel()
+    {
+        questLogPanelActive = false;
+
+        questLogTitle.text = "";
+        questLogDescription.text = "";
+        questLogSummary.text = "";
+
+        for (int i = 0; i < qButtons.Count; i++)
+        {
+            Destroy(qButtons[i]);
+        }
+
+        qButtons.Clear();
+        questLogPanel.SetActive(questLogPanelActive);
+    }
+
 
     void FillQuestButtons()
     {

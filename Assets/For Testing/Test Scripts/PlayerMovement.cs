@@ -18,8 +18,19 @@ public class PlayerMovement : MonoBehaviour
     private NPCData currentNPC1;
     public PlayerData playerData; // Reference to PlayerData ScriptableObject
     public float techbar = 50f, maxTechbar = 100f;
+
+    public static PlayerMovement instance;
     private void Start()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
         rb.gameObject.GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -38,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         // Initialize techbar with PlayerData's current value and update the UI
         this.techbar = playerData.Techbar;
         UIManager.Instance.techBar.value = techbar;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void UpdateTechbarUI(float newTechbarValue)
@@ -86,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movDir = new Vector3(x, 0, y);
 
-        animator.SetFloat("xMove", movDir.x);
-        animator.SetFloat("yMove", movDir.z);
+        animator.SetFloat("xHorizontal", movDir.x); //xMove 
+        animator.SetFloat("xVertical", movDir.z); //yMove
         animator.SetFloat("Speed", movDir.sqrMagnitude);
 
         rb.velocity = movDir * speed;

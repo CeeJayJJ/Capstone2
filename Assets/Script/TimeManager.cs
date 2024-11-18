@@ -62,7 +62,7 @@ public class TimeManager : MonoBehaviour
         {
             isDayTime = currentDayTime;
             OnDayNightChange?.Invoke(isDayTime);
-            Debug.Log(isDayTime ? "It's now day!" : "It's now night!");
+            Debug.Log(isDayTime ? "Now it's night!" : "It's now night!");
         }
     }
 
