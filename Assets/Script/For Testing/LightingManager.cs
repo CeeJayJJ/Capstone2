@@ -9,7 +9,7 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private LightingsPreset Preset;
 
     // Variables
-    [SerializeField, Range(4, 24)] private float TimeOfDay = 6f; // Start at 6 AM
+    [SerializeField, Range(6, 24)] private float TimeOfDay = 6f; // Start at 6 AM
     [SerializeField] private float maxIntensity = 1.5f;
     private float baseIntensity = 0f;
     [SerializeField] private float maxShadowStrength = 1f;
