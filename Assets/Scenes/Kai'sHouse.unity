@@ -2242,7 +2242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.030480854, y: 0.21084672}
   m_AnchorMax: {x: 0.9861731, y: 0.32134584}
-  m_AnchoredPosition: {x: -12, y: -1.9999695}
+  m_AnchoredPosition: {x: -12.0000305, y: -2}
   m_SizeDelta: {x: 1.38, y: 42.103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &103766342
@@ -17652,7 +17652,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d8ea38793a6bd104aa20d7dc912caba7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1734310324}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d8ea38793a6bd104aa20d7dc912caba7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1734310323}
   m_SourcePrefab: {fileID: 100100000, guid: d8ea38793a6bd104aa20d7dc912caba7, type: 3}
 --- !u!4 &782119344 stripped
 Transform:
@@ -23064,7 +23072,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056096322}
   m_LocalRotation: {x: 0.026264153, y: 0, z: 0, w: 0.99965507}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23073,7 +23081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 3.01, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -389, y: 183}
+  m_AnchoredPosition: {x: -400, y: 82}
   m_SizeDelta: {x: 418.68, y: 346.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056096324
@@ -26104,6 +26112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -4.059204, y: 0.0009765625}
+  m_SizeDelta: {x: 9.478, y: 0.002}
   m_AnchoredPosition: {x: 18.499023, y: -18.751953}
   m_SizeDelta: {x: -561.15, y: -291.57}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28957,7 +28967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.030480854, y: 0.38115332}
   m_AnchorMax: {x: 0.9861731, y: 0.8695758}
-  m_AnchoredPosition: {x: -6.8117676, y: -5.133087}
+  m_AnchoredPosition: {x: -6.811798, y: -5.133087}
   m_SizeDelta: {x: 4.380001, y: 2.2680054}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360723846
@@ -33271,8 +33281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e090491a8f3542408e9a8946b0bbd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availaQuestIDs: 01000000
-  receivableQuestIDs: 01000000
+  availaQuestIDs: 0100000002000000
+  receivableQuestIDs: 0100000002000000
   QuestMarker: {fileID: 428479916}
   theImage: {fileID: 1330412512}
   questAvailableSprite: {fileID: 21300000, guid: 0ef9b02c17d551c4c823ee9a2b94590f,
@@ -34945,6 +34955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00012207031, y: -16.690002}
   m_AnchoredPosition: {x: 0, y: -16.690063}
   m_SizeDelta: {x: 645.2388, y: 357.0725}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -35309,6 +35320,7 @@ GameObject:
   - component: {fileID: 1587739482}
   - component: {fileID: 1587739481}
   - component: {fileID: 1587739480}
+  - component: {fileID: 1587739484}
   m_Layer: 0
   m_Name: ScreenLight
   m_TagString: Untagged
@@ -35403,6 +35415,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 583030613}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!135 &1587739484
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587739479}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5.000001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1589172961
 GameObject:
   m_ObjectHideFlags: 0
@@ -36568,8 +36601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55.7, y: -673.3}
-  m_SizeDelta: {x: 31.6871, y: 25.4322}
+  m_AnchoredPosition: {x: 56.395, y: -622.8008}
+  m_SizeDelta: {x: 26.08, y: 33.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649512808
 MonoBehaviour:
@@ -38549,6 +38582,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 18.5, y: -12.268921}
+  m_AnchoredPosition: {x: 18.5, y: -12.268799}
   m_SizeDelta: {x: -561.15, y: -304.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1733166427
@@ -38702,6 +38736,48 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1733208622}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1734310320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d8ea38793a6bd104aa20d7dc912caba7,
+    type: 3}
+  m_PrefabInstance: {fileID: 782119343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1734310323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734310320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9b6d7014fe9d940ae9a7c60aa93c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DesktopPanel: {fileID: 0}
+  interactPanel: {fileID: 0}
+  interactionRadius: 2
+--- !u!135 &1734310324
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734310320}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.30905896
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1734572526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42510,7 +42586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.030480854, y: 0.21084672}
   m_AnchorMax: {x: 0.9861731, y: 0.32134584}
-  m_AnchoredPosition: {x: -10, y: 113}
+  m_AnchoredPosition: {x: -10.0000305, y: 112.999985}
   m_SizeDelta: {x: 1.38, y: 42.103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936470470
@@ -46940,22 +47016,22 @@ PrefabInstance:
         type: 3}
       propertyPath: questIcon
       value: 
-      objectReference: {fileID: 1485452908}
+      objectReference: {fileID: 0}
     - target: {fileID: 3427651065868800749, guid: e4616f9af0007c14ca1468b24d0d7267,
         type: 3}
       propertyPath: questTitleText
       value: 
-      objectReference: {fileID: 1929171075}
+      objectReference: {fileID: 0}
     - target: {fileID: 3427651065868800749, guid: e4616f9af0007c14ca1468b24d0d7267,
         type: 3}
       propertyPath: questStatusText
       value: 
-      objectReference: {fileID: 479335462}
+      objectReference: {fileID: 0}
     - target: {fileID: 3427651065868800749, guid: e4616f9af0007c14ca1468b24d0d7267,
         type: 3}
       propertyPath: questDescriptionText
       value: 
-      objectReference: {fileID: 695208872}
+      objectReference: {fileID: 0}
     - target: {fileID: 5812879579851292049, guid: e4616f9af0007c14ca1468b24d0d7267,
         type: 3}
       propertyPath: m_Name
@@ -47078,6 +47154,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuestManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].hint
+      value: Head over to Lola's laptop and jump into the mini-game to start removing
+        those pesky ads.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].title
+      value: Get Rid of Those Annoying Pop-up Ads!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].progress
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[0].nextQuest
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].description
+      value: Lola is fed up with her laptop being flooded by endless pop-up ads that
+        make it nearly impossible to get any work done. Her laptop is so full of
+        these annoying ads that it's starting to slowdown! Can you help Lola clear
+        out the junk and get her laptop back to normal?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].congratulation
+      value: Awesome job! You've successfully helped Lola get rid of all those annoying
+        ads and cleaned up her laptop. Now she can get back to what she loves!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].questObjective
+      value: Remove Unwanted Pop-Up Ads from Lola's laptop.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057186968068024684, guid: 0691c2acbe7d1914ab54f50ad390e056,
+        type: 3}
+      propertyPath: questList.Array.data[1].questObjectiveRequirement
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8623302446954672016, guid: 0691c2acbe7d1914ab54f50ad390e056,
         type: 3}
