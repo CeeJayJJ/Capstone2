@@ -9,5 +9,7 @@ public class GameIntroduction : MonoBehaviour
     {
         SceneManager.LoadScene("Introduction",LoadSceneMode.Single);
         PlayerPrefs.SetString("LastExitName", "Room");
+        AudioManager.Instance.musicSource.Stop();
+        AudioManager.Instance.PlayMusic("Ambience_House");
     }
 }
