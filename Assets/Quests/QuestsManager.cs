@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Quest;
 
 public class QuestsManager : MonoBehaviour
 {
@@ -24,41 +25,34 @@ public class QuestsManager : MonoBehaviour
 
     public void QuestRequest(QuestObject NPCQuestObject)
     {
-        if(NPCQuestObject.availaQuestIDs.Count > 0)
-        {
-            for(int i = 0; i < questList.Count; i ++)
-            {
-                for(int j = 0;  j < NPCQuestObject.availaQuestIDs.Count; j++)
-                {
-                    if (questList[i].id == NPCQuestObject.availaQuestIDs[j] && questList[i].progress == Quest.QuestProgress.AVAILABLE)
-                    {
-                        Debug.Log("Quest ID: " + NPCQuestObject.availaQuestIDs[j] + " " + questList[i].progress);
-                        //AcceptQuest(NPCQuestObject.availaQuestIDs[j]);
+        UpdateAvailableQuests(NPCQuestObject);
+        UpdateActiveQuests(NPCQuestObject);
+    }
 
-                        QuestUIManager.uiManager.questAvailable = true;
-                        QuestUIManager.uiManager.availableQuests.Add(questList[i]);
-                    }
-                }
+    private void UpdateAvailableQuests(QuestObject NPCQuestObject)
+    {
+        foreach (var quest in questList)
+        {
+            if (quest.progress == QuestProgress.AVAILABLE && NPCQuestObject.availaQuestIDs.Contains(quest.id))
+            {
+                Debug.Log($"Quest {quest.id} is available");
+                QuestUIManager.uiManager.questAvailable = true;
+                QuestUIManager.uiManager.availableQuests.Add(quest);
             }
         }
+    }
 
-        for (int i = 0; i < currentQuestList.Count; i ++)
+    private void UpdateActiveQuests(QuestObject NPCQuestObject)
+    {
+        foreach (var quest in currentQuestList)
         {
-
-          for(int j = 0;j < NPCQuestObject.receivableQuestIDs.Count;j++)
-          {
-                if (currentQuestList[i].id  == NPCQuestObject.receivableQuestIDs[j] && currentQuestList[i].progress == Quest.QuestProgress.ACCEPTED || currentQuestList[i].progress == Quest.QuestProgress.COMPLETE)
-                {
-                    Debug.Log("Quest ID: " + NPCQuestObject.receivableQuestIDs[j] + " is "+ currentQuestList[i].progress);
-                    // CompleteQuest(NPCQuestObject.receivableQuestIDs[j]);
-
-                    QuestUIManager.uiManager.questRunning = true;
-                    QuestUIManager.uiManager.activeQuests.Add(questList[i]);
-                }
-          }
-
+            if ((quest.progress == QuestProgress.ACCEPTED || quest.progress == QuestProgress.COMPLETE) && NPCQuestObject.receivableQuestIDs.Contains(quest.id))
+            {
+                Debug.Log($"Quest {quest.id} is active");
+                QuestUIManager.uiManager.questRunning = true;
+                QuestUIManager.uiManager.activeQuests.Add(quest);
+            }
         }
-
     }
 
 

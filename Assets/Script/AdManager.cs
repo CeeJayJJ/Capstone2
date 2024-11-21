@@ -40,7 +40,7 @@ public class AdManager : MonoBehaviour
         // Deactivate the panel to simulate closing the ad
         adPanel.SetActive(false);
         adsClosed++;
-
+        QuestsManager.questsManager.AddQuestItem("Remove Unwanted Pop-Up Ads from Lola's laptop.", 1);
         // Check if all ads are closed
         if (adsClosed >= adPanels.Length)
         {
