@@ -26,6 +26,14 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    private void Update()
+    {
+        // Check if the Escape key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.Instance.optionPanel.SetActive(true);
+        }
+    }
 
     public void DisplayTechBarCurrentState()
     {
@@ -102,7 +110,7 @@ public class UIManager : MonoBehaviour
     public void HideAudioPanel() => audioPanel?.SetActive(false);
     public void HideInteractionPrompt() => interactionPrompt?.SetActive(false);
 
-    public void GoToMainMenu() => ScenesManager.Instance.LoadScene("MainMenu");
+    public void GoToMainMenu() => SceneManager.LoadScene("MainMenu");
     public void QuitGame() => Quit();
 
 

@@ -5,8 +5,9 @@ public class SaveGame
 
     //serialized
     public string PlayerName = "Player";
-    public int XP = 0;
-
+    public float techbar = 0;
+    public Vector3 PlayerPosition = Vector3.zero;
+    public string currentScene = "";
     private static string _gameDataFileName = "data.json";
 
     private static SaveGame _instance;
