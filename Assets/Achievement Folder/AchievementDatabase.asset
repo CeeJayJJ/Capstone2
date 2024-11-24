@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3531aa0db159e494db246906f53e8aec, type: 3}
+  m_Name: AchievementDatabase
+  m_EditorClassIdentifier: 
+  achievements:
+    array:
+    - id: FirstPlay
+      title: Beginner!
+      description: First time playing the game
+    - id: FirstQuest
+      title: Quest I
+      description: First quest to do have completed
+    - id: FirstMinigame
+      title: Gamers I
+      description: First time playing minigames
+    - id: FirstTalk
+      title: Social Skills
+      description: First time talking to an NPC
+    - id: FirstTechUse
+      title: Techsavy Person
+      description: First time utilizing a gadget or device
+    - id: FirstItem
+      title: Collectors
+      description: First time picking an item
+    - id: FirstLesson
+      title: Apprentice
+      description: Completing the tutorials
