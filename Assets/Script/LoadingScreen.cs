@@ -1,50 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
-public class LoadingScreen : MonoBehaviour
+
+public class LoadingScreen1 : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Slider progressBar; // Reference to your UI Slider
+    public TextMeshProUGUI progressText;  // Optional: Text to show percentage
 
-    private void OnEnable()
+
+    void Start()
     {
-        SceneManager.LoadScene("Introduction", LoadSceneMode.Single);
+        LoadScene("Kai'sHouse"); // Automatically load the target scene when the loading screen starts
     }
 
+    // Method to start loading a scene
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
 
-    //public Image LoadingBarFill;
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        // Start loading the scene asynchronously
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
-    //public void LoadScene(int SceneID)
-    //{
-    //   StartCoroutine(LoadSceneAsync(SceneID));
-    //   AudioManager.Instance.musicSource.Stop();
+        // Prevent scene activation until the loading is complete
+        operation.allowSceneActivation = false;
 
-    //    if(SceneID == 1)
-    //    {
-    //      AudioManager.Instance.PlayMusic("Theme2");
-    //    }else
-    //    {
+        // While the scene is loading
+        while (!operation.isDone)
+        {
+            // Calculate the progress (normalized from 0 to 1)
+            float progress = Mathf.Clamp01(operation.progress / 0.9f); // 90% is the maximum progress value
 
-    //    }
+            // Update UI
+            if (progressBar != null)
+                progressBar.value = progress;
+            if (progressText != null)
+                progressText.text = Mathf.RoundToInt(progress * 100) + "%";
 
-    //}
+            // Activate the scene when fully loaded
+            if (operation.progress >= 0.9f)
+            {
+                operation.allowSceneActivation = true;
+            }
 
-    //IEnumerator LoadSceneAsync(int SceneID)
-    //{
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync(SceneID);
-
-    //    LoadingScreens.SetActive(true);
-
-    //    while(!operation.isDone)
-    //    {
-    //        float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-    //        LoadingBarFill.fillAmount = progressValue;
-
-    //        yield return null;
-
-    //    }
-    //}
-
+            yield return null; // Wait until the next frame
+        }
+    }
 }
