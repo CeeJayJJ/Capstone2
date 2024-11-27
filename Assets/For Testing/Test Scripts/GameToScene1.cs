@@ -8,6 +8,6 @@ public class GametoGameToScene1 : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.LoadScene("LoadingScreen",LoadSceneMode.Single);
+        SceneManager.LoadScene("Kai'sHouse", LoadSceneMode.Single);
     }
 }
