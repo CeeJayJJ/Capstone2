@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18268594, g: 0.22839299, b: 0.30710974, a: 1}
+  m_IndirectSpecularColor: {r: 0.1826863, g: 0.22839344, b: 0.30711025, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11663,8 +11663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa90b5c5df9a56469928849e78566f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Kai'sHouse
-  exitName: City
+  sceneToLoad: LoadingScreen 1
+  exitName: Kai'sHouse
 --- !u!1 &274704680
 GameObject:
   m_ObjectHideFlags: 0
@@ -32003,7 +32003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 835.72705, y: 515.4375}
+  m_AnchoredPosition: {x: 729.4, y: 393}
   m_SizeDelta: {x: 563.338, y: 450.046}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786567049
@@ -43930,8 +43930,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 835.72614, y: 440.3112}
-  m_SizeDelta: {x: 522.56, y: 99.065}
+  m_AnchoredPosition: {x: 0, y: 470}
+  m_SizeDelta: {x: 1392.4512, y: 99.065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091285609
 MonoBehaviour:
@@ -48139,8 +48139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa90b5c5df9a56469928849e78566f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Kai'sHouse
-  exitName: City
+  sceneToLoad: LoadingScreen 1
+  exitName: Kai'sHouse
 --- !u!1 &1185649566
 GameObject:
   m_ObjectHideFlags: 0
@@ -57346,8 +57346,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 729.39575, y: 440.314}
-  m_SizeDelta: {x: 98.808, y: 116.848}
+  m_AnchoredPosition: {x: -287.2, y: 470}
+  m_SizeDelta: {x: 175.3927, y: 191.4691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400237704
 MonoBehaviour:
@@ -66966,7 +66966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 835.72754, y: 515.4375}
+  m_AnchoredPosition: {x: 729.3999, y: 393}
   m_SizeDelta: {x: 522.555, y: 411.827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625070531
@@ -84330,7 +84330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2051784885
 MonoBehaviour:
   m_ObjectHideFlags: 0

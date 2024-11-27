@@ -14,7 +14,7 @@ public class LoadingScreen1 : MonoBehaviour
 
     void Start()
     {
-        LoadScene("Kai'sHouse"); // Automatically load the target scene when the loading screen starts
+        LoadScene("City"); // Automatically load the target scene when the loading screen starts
     }
 
     // Method to start loading a scene
