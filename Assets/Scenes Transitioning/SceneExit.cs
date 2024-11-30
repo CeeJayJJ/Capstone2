@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class SceneExit : MonoBehaviour
 {
     public string sceneToLoad;
@@ -9,8 +8,12 @@ public class SceneExit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        PlayerPrefs.SetString("LastExitName", exitName);
-        SceneManager.LoadScene(sceneToLoad);
-        QuestsManager.questsManager.AddQuestItem("Leave the house", 1);
+        if (other.CompareTag("Player"))
+        {
+            PlayerPrefs.SetString("LastExitName", exitName);
+            PlayerPrefs.Save(); // Explicitly save PlayerPrefs
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }
+
