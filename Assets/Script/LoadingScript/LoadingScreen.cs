@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class LoadingScreen : MonoBehaviour
+
+public class LoadingScreen1 : MonoBehaviour
 {
     public Slider progressBar; // Reference to your UI Slider
     public TextMeshProUGUI progressText;  // Optional: Text to show percentage
+
+
+    void Start()
+    {
+        LoadScene("City"); // Automatically load the target scene when the loading screen starts
+    }
 
     // Method to start loading a scene
     public void LoadScene(string sceneName)
