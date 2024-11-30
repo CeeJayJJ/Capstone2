@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneEntrance : MonoBehaviour
@@ -8,10 +7,24 @@ public class SceneEntrance : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.GetString("LastExitName") == lastExitName)
+        StartCoroutine(SetPlayerPosition());
+    }
+
+    IEnumerator SetPlayerPosition()
+    {
+        yield return new WaitForEndOfFrame(); // Wait for initialization
+        if (PlayerPrefs.GetString("LastExitName") == lastExitName)
         {
-           PlayerMovement.instance.transform.position = transform.position;
-           PlayerMovement.instance.transform.eulerAngles = transform.eulerAngles;
+            if (PlayerMovement.instance != null)
+            {
+                PlayerMovement.instance.transform.position = transform.position;
+                PlayerMovement.instance.transform.eulerAngles = transform.eulerAngles;
+            }
+            else
+            {
+                Debug.LogError("PlayerMovement.instance is null!");
+            }
         }
     }
 }
+
