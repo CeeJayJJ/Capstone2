@@ -1,1 +1,1 @@
-public enum Achievements {FirstPlay,FirstQuest,FirstMinigame,FirstTalk,FirstTechUse,FirstItem,FirstLesson,}
+public enum Achievements {FirstPlay,FirstQuest,FirstMinigame,FirstTalk,FirstTechUse,FirstItem,FirstLesson,FirtAdventure,}

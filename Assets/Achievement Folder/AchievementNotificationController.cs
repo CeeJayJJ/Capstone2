@@ -10,10 +10,19 @@ public class AchievementNotificationController : MonoBehaviour
     [SerializeField] Text achievementTitleLabel;
 
     private Animator m_Animator;
-
+    public static AchievementNotificationController instance;
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        else if (instance != null)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void ShowNotification(Achievement achievement)

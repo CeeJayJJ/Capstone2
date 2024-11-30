@@ -46,6 +46,7 @@ public class AdManager : MonoBehaviour
         {
             Debug.Log("All ads are removed! You win!");
             // Trigger win condition here (e.g., display a "You Win!" message)
+            AchievementsManager.instance.UnlockAchievement(Achievements.FirstTechUse);
         }
     }
 }

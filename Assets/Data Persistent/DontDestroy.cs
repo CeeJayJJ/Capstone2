@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DontDestroy : MonoBehaviour
 {
-    public static GameObject[] persistentObjects = new GameObject[7];  // Static array to store persistent objects
+    public static GameObject[] persistentObjects = new GameObject[20];  // Static array to store persistent objects
     public int objectIndex;  // Index for this object in the persistent array
 
     private void Awake()
