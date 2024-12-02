@@ -77,6 +77,7 @@ public class UIManager : MonoBehaviour
         dialoguePanel?.SetActive(false);
         playerDialoguePanel?.SetActive(false);
         optionPanel?.SetActive(false);
+        questLogPanel?.SetActive(false);
     }
 
     private void LogMissingReferences()

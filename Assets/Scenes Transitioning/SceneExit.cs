@@ -1,19 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneExit : MonoBehaviour
 {
+
+
     public string sceneToLoad;
     public string exitName;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerPrefs.SetString("LastExitName", exitName);
-            PlayerPrefs.Save(); // Explicitly save PlayerPrefs
-            SceneManager.LoadScene(sceneToLoad);
-        }
-    }
-}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        PlayerPrefs.SetString("LastExitName", exitName);
+        SceneManager.LoadScene(sceneToLoad); 
+    }
+
+
+}

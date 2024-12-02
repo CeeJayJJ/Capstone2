@@ -1,30 +1,27 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneEntrance : MonoBehaviour
 {
+    // Start is called before the first frame update
+
     public string lastExitName;
 
     void Start()
     {
-        StartCoroutine(SetPlayerPosition());
-    }
-
-    IEnumerator SetPlayerPosition()
-    {
-        yield return new WaitForEndOfFrame(); // Wait for initialization
-        if (PlayerPrefs.GetString("LastExitName") == lastExitName)
+        if(PlayerPrefs.GetString("LastExitName") == lastExitName)
         {
-            if (PlayerMovement.instance != null)
-            {
-                PlayerMovement.instance.transform.position = transform.position;
-                PlayerMovement.instance.transform.eulerAngles = transform.eulerAngles;
-            }
-            else
-            {
-                Debug.LogError("PlayerMovement.instance is null!");
-            }
+            PlayerMovement.instance.transform.position = transform.position;
+            PlayerMovement.instance.transform.eulerAngles = transform.eulerAngles;
+            QuestsManager.questsManager.AddQuestItem("Leave the house", 1);
+
         }
     }
-}
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
