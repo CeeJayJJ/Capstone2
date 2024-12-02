@@ -39,6 +39,7 @@ public class DesktopInteraction : MonoBehaviour
         // Check if the player is within interaction range
         if (interactionRadius > 0f)
         {
+
             float distanceToPlayer = Vector3.Distance(transform.position, playerMovement.transform.position);
             if (distanceToPlayer > interactionRadius)
             {
@@ -63,7 +64,7 @@ public class DesktopInteraction : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Time.timeScale = 0;
+                // Time.timeScale = 0;
                 Interact();  // Call the public Interact method
             }
         }

@@ -7241,6 +7241,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AchievementManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5635282659953428874, guid: 7b66d1e5b9f961a4a8823b3635725813,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6982318134870021590, guid: 7b66d1e5b9f961a4a8823b3635725813,
         type: 3}
       propertyPath: content
@@ -9229,7 +9234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1981270182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10390,6 +10395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DatabaseManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5260396949872988852, guid: 0f514be92340549478a9e00e7b078349,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10602,6 +10612,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Panel Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205061158102960443, guid: e1516e54aa761f34dbd2300c0b94c2ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5728782771365285805, guid: e1516e54aa761f34dbd2300c0b94c2ce,
         type: 3}
