@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-[CustomEditor(typeof(AchievementDatabase))]
+// [CustomEditor(typeof(AchievementDatabase))]
 public class AchievementDatabaseEditor : Editor
 {
 
