@@ -9,6 +9,7 @@ public class AdManager : MonoBehaviour
     public GameObject desktopPanel; // Reference to the DesktopPanel
     private GameObject[] adPanels; // Array to hold references to all ad panels
     private int adsClosed = 0;
+    public AchievementsManager instance;
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class AdManager : MonoBehaviour
         {
             Debug.Log("All ads are removed! You win!");
             // Trigger win condition here (e.g., display a "You Win!" message)
-            AchievementsManager.instance.UnlockAchievement(Achievements.FirstTechUse);
+            instance.UnlockAchievement(Achievements.FirstTechUse);
         }
     }
 }

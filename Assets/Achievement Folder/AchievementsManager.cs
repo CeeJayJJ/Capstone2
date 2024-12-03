@@ -12,20 +12,7 @@ public class AchievementsManager : MonoBehaviour
     public Achievements achievementToShow;
     [SerializeField][HideInInspector]
     private List<AchievementItemController> achievementItems;
-    public static AchievementsManager instance;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this; // Set the instance to this object
-            DontDestroyOnLoad(gameObject); // Make this object persistent across scenes
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject); // Destroy this object if another instance already exists
-        }
-    }
     private void Start()
     {
         achievementDropdownController.onValueChanged += HandleAchievementDropdownValueChanged;

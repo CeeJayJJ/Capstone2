@@ -26,9 +26,12 @@ public class UIManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+
     }
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Toggle the active state of the option panel

@@ -143,12 +143,19 @@ public class FakeNewsSpotter : MonoBehaviour
             currentEmail = emails[index];
             emailText.text = "Email: " + currentEmail.EmailAddress + "\n\n" + currentEmail.Description; // Display the email message
 
+            QuestsManager.questsManager.AddQuestItem("Identify if spam email or legit email", 1);
+
             emails.RemoveAt(index); // Remove it from the list to prevent repetition
+
+            
+
         }
         else
         {
             EndGame(); // End the game when all emails have been processed
         }
+
+
     }
 
     void CheckAnswer(bool isSpam)
