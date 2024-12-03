@@ -61,6 +61,10 @@ public class PanelManager : MonoBehaviour
     public void GoToMainMenu() => ScenesManager.Instance.LoadScene("MainMenu");
     public void QuitGame() => Quit();
 
+    public void Close()
+    {
+        gameObject.SetActive(false);
+    }
 
     private void Quit()
     {
