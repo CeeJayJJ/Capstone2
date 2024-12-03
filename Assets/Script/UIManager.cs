@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Button loadButton;
     public PlayerData playerData;
     public Transform playerTransform;
+
     private void Awake()
     {
         if (Instance == null)
@@ -28,10 +29,11 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        // Check if the Escape key is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UIManager.Instance.optionPanel.SetActive(true);
+            // Toggle the active state of the option panel
+            bool isActive = UIManager.Instance.optionPanel.activeSelf;
+            UIManager.Instance.optionPanel.SetActive(!isActive);
         }
     }
 

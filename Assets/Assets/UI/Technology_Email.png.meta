@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0b61f5bb90c58141aa8a49bceed2756
+guid: 3862f983b3bef8b4c9a8ba727471d861
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MgaVirus_0
+      name: Technology_Email_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1007
-        width: 68
-        height: 68
+        y: 293
+        width: 263
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b91640300516a1c4cbf1b3bf50972a43
-      internalID: -1819677066
+      spriteID: 7d107ac07acb3d248b40bd90b9e49c4a
+      internalID: -557270769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MgaVirus_1
+      name: Technology_Email_1
       rect:
         serializedVersion: 2
-        x: 813
-        y: 1
-        width: 177
-        height: 1061
+        x: 396
+        y: 310
+        width: 588
+        height: 43
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68dd190d49fafbc48a9e9cc8c89147af
-      internalID: -1136138882
+      spriteID: 90877a25754395c4bb9ac5fbf0f27430
+      internalID: -1971148286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MgaVirus_2
+      name: Technology_Email_2
       rect:
         serializedVersion: 2
-        x: 1451
-        y: 652
-        width: 469
-        height: 423
+        x: 395
+        y: 178
+        width: 81
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4967ebe27ba338040975be499775c8b0
-      internalID: -81219806
+      spriteID: 771310b02134ddc4db09add0ce3cef08
+      internalID: -936346508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MgaVirus_3
+      name: Technology_Email_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 493
-        width: 550
-        height: 490
+        x: 980
+        y: 280
+        width: 4
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,41 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63cb806045a2ddb4f8f20dd1f6223e1e
-      internalID: -2128564378
+      spriteID: 4573354b7a8e0664089aa2afda780281
+      internalID: 783195894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MgaVirus_4
-      rect:
-        serializedVersion: 2
-        x: 1398
-        y: 138
-        width: 522
-        height: 487
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bed0e4ffbcd3d824fad2612f12bf7a33
-      internalID: 1160531742
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MgaVirus_5
+      name: Technology_Email_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 13
-        width: 648
-        height: 456
+        y: 188
+        width: 76
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +195,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcf916d64c67dc8408180adc0ce5c1dd
-      internalID: -252472801
+      spriteID: 5e4bd81a8dd615b4e89293dc55bdc445
+      internalID: -2064275078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Technology_Email_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 76
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 357b2012901f10c42a6fd1433b587a3f
+      internalID: 2101352839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Technology_Email_33
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 72
+        width: 82
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88c9801f138d2484aa648649e5fdcf06
+      internalID: -1216938051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Technology_Email_48
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0
+        width: 50
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a0faf4f6bb43842a1771070a5acc3a
+      internalID: -1668878967
       vertices: []
       indices: 
       edges: []
@@ -225,7 +267,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d528232b6f3251e4a95f7d7abaa436fb
+    spriteID: 1f2437ad348a1ff40801fa1a4fe225fb
     internalID: 0
     vertices: []
     indices: 
@@ -233,12 +275,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MgaVirus_0: -1819677066
-      MgaVirus_1: -1136138882
-      MgaVirus_2: -81219806
-      MgaVirus_3: -2128564378
-      MgaVirus_4: 1160531742
-      MgaVirus_5: -252472801
+      Technology_Email_0: -557270769
+      Technology_Email_1: -1971148286
+      Technology_Email_10: -1463243055
+      Technology_Email_11: 1538997579
+      Technology_Email_12: 1766789301
+      Technology_Email_13: 871441356
+      Technology_Email_14: -298544364
+      Technology_Email_15: 1996032076
+      Technology_Email_16: -2143744838
+      Technology_Email_17: -402873587
+      Technology_Email_18: -379607724
+      Technology_Email_19: -1986905951
+      Technology_Email_2: -936346508
+      Technology_Email_20: -975295945
+      Technology_Email_21: 2144071503
+      Technology_Email_22: -854494677
+      Technology_Email_23: 1763932003
+      Technology_Email_24: 2077902230
+      Technology_Email_25: 557673707
+      Technology_Email_26: 2101352839
+      Technology_Email_27: 360513136
+      Technology_Email_28: -1328897421
+      Technology_Email_29: -638327239
+      Technology_Email_3: 783195894
+      Technology_Email_30: -1489188125
+      Technology_Email_31: -2081819447
+      Technology_Email_32: -676526112
+      Technology_Email_33: -1216938051
+      Technology_Email_34: 1336428662
+      Technology_Email_35: -1211764440
+      Technology_Email_36: -385236547
+      Technology_Email_37: 28721149
+      Technology_Email_38: -54459721
+      Technology_Email_39: 552259480
+      Technology_Email_4: 461597330
+      Technology_Email_40: 389000229
+      Technology_Email_41: 1465518702
+      Technology_Email_42: 1075014213
+      Technology_Email_43: -860153897
+      Technology_Email_44: 1910213569
+      Technology_Email_45: 1801867953
+      Technology_Email_46: 1593949913
+      Technology_Email_47: -719022957
+      Technology_Email_48: -1668878967
+      Technology_Email_49: 1916592797
+      Technology_Email_5: -2064275078
+      Technology_Email_50: -889763165
+      Technology_Email_51: -2117036298
+      Technology_Email_6: 320728462
+      Technology_Email_7: -523628974
+      Technology_Email_8: 1198333152
+      Technology_Email_9: -558491699
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
